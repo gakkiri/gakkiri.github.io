@@ -5,13 +5,16 @@
   
 
   
-  <title>gakkiri&#39;s blog</title>
+  <title>一些实用的pytorch脚本 | gakkiri&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="gakkiri&#39;s blog">
-<meta property="og:url" content="http:&#x2F;&#x2F;gakkiri.gitbuh.io&#x2F;index.html">
+  <meta name="description" content="一些在使用pytorch时可能会用到的比较有用的脚本归一化1234def normalize_channels(img):      _min, _max = img.min(axis=(0,1)), img.std(axis=(0,1))      img = (img - _min) &#x2F; (_max - _min)      return img  绘制第一个filterdef plot_fi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一些实用的pytorch脚本">
+<meta property="og:url" content="http:&#x2F;&#x2F;gakkiri.gitbuh.io&#x2F;2019&#x2F;10&#x2F;17&#x2F;%E4%B8%80%E4%BA%9B%E5%AE%9E%E7%94%A8%E7%9A%84pytorch%E8%84%9A%E6%9C%AC&#x2F;index.html">
 <meta property="og:site_name" content="gakkiri&#39;s blog">
+<meta property="og:description" content="一些在使用pytorch时可能会用到的比较有用的脚本归一化1234def normalize_channels(img):      _min, _max = img.min(axis=(0,1)), img.std(axis=(0,1))      img = (img - _min) &#x2F; (_max - _min)      return img  绘制第一个filterdef plot_fi">
 <meta property="og:locale" content="zn">
+<meta property="og:updated_time" content="2019-10-17T16:07:19.168Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="gakkiri&#39;s blog" type="application/atom+xml">
@@ -59,9 +62,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-一些实用的pytorch脚本" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-一些实用的pytorch脚本" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/10/17/%E4%B8%80%E4%BA%9B%E5%AE%9E%E7%94%A8%E7%9A%84pytorch%E8%84%9A%E6%9C%AC/" class="article-date">
   <time datetime="2019-10-17T15:59:15.000Z" itemprop="datePublished">2019-10-17</time>
@@ -74,8 +75,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/17/%E4%B8%80%E4%BA%9B%E5%AE%9E%E7%94%A8%E7%9A%84pytorch%E8%84%9A%E6%9C%AC/">一些实用的pytorch脚本</a>
+    <h1 class="article-title" itemprop="name">
+      一些实用的pytorch脚本
     </h1>
   
 
@@ -205,11 +206,9 @@
     </footer>
   </div>
   
-</article>
-
-
+    
   
-
+</article>
 
 </section>
         
