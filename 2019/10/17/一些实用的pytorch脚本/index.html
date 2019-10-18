@@ -5,17 +5,17 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="http://gakkiri.gitbuh.io">
+  <link rel="dns-prefetch" href="http://gakkiri.github.io">
   <title>一些实用的pytorch脚本 | gakkiri&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一些在使用pytorch时可能会用到的比较有用的脚本归一化1234def normalize_channels(img):      _min, _max = img.min(axis=(0,1)), img.std(axis=(0,1))      img = (img - _min) &#x2F; (_max - _min)      return img  绘制第一个filterdef plot_fi">
+  <meta name="description" content="一些在使用pytorch时可能会用到的比较有用的脚本归一化1234def normalize_channels(img):      _min, _max = img.min(axis=(0,1)), img.std(axis=(0,1))      img = (img - _min) &#x2F; (_max - _min)      return img">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一些实用的pytorch脚本">
-<meta property="og:url" content="http:&#x2F;&#x2F;gakkiri.gitbuh.io&#x2F;2019&#x2F;10&#x2F;17&#x2F;%E4%B8%80%E4%BA%9B%E5%AE%9E%E7%94%A8%E7%9A%84pytorch%E8%84%9A%E6%9C%AC&#x2F;index.html">
+<meta property="og:url" content="http:&#x2F;&#x2F;gakkiri.github.io&#x2F;2019&#x2F;10&#x2F;17&#x2F;%E4%B8%80%E4%BA%9B%E5%AE%9E%E7%94%A8%E7%9A%84pytorch%E8%84%9A%E6%9C%AC&#x2F;index.html">
 <meta property="og:site_name" content="gakkiri&#39;s blog">
-<meta property="og:description" content="一些在使用pytorch时可能会用到的比较有用的脚本归一化1234def normalize_channels(img):      _min, _max = img.min(axis=(0,1)), img.std(axis=(0,1))      img = (img - _min) &#x2F; (_max - _min)      return img  绘制第一个filterdef plot_fi">
+<meta property="og:description" content="一些在使用pytorch时可能会用到的比较有用的脚本归一化1234def normalize_channels(img):      _min, _max = img.min(axis=(0,1)), img.std(axis=(0,1))      img = (img - _min) &#x2F; (_max - _min)      return img">
 <meta property="og:locale" content="zn">
-<meta property="og:updated_time" content="2019-10-17T16:07:19.168Z">
+<meta property="og:updated_time" content="2019-10-18T05:38:57.648Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="gakkiri&#39;s blog" type="application/atom+xml">
@@ -173,7 +173,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="一些在使用pytorch时可能会用到的比较有用的脚本"><a href="#一些在使用pytorch时可能会用到的比较有用的脚本" class="headerlink" title="一些在使用pytorch时可能会用到的比较有用的脚本"></a>一些在使用pytorch时可能会用到的比较有用的脚本</h2><h3 id="归一化"><a href="#归一化" class="headerlink" title="归一化"></a>归一化</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">def normalize_channels(img):  </span><br><span class="line">    _min, _max = img.min(axis=(0,1)), img.std(axis=(0,1))  </span><br><span class="line">    img = (img - _min) / (_max - _min)  </span><br><span class="line">    return img</span><br></pre></td></tr></table></figure>
-
+<p><a id="more"></a> &gt;&gt;</p>
 <h3 id="绘制第一个filter"><a href="#绘制第一个filter" class="headerlink" title="绘制第一个filter"></a>绘制第一个filter</h3><pre><code>def plot_first_kernels(weight):  
     with torch.no_grad():  
         filters = weight.detach().cpu().float().numpy().transpose([0,2,3,1])  # channels last  
@@ -189,7 +189,8 @@
             idx = r + c * rows  
             if idx &lt; n:  
                 axs[r,c].imshow(filters[idx])  
-            axs[r,c].set_axis_off()  </code></pre><h3 id="绘制给定参数各层的l2范数分布"><a href="#绘制给定参数各层的l2范数分布" class="headerlink" title="绘制给定参数各层的l2范数分布"></a>绘制给定参数各层的l2范数分布</h3><pre><code>def plot_norms(named_parameters, figsize=None):  
+            axs[r,c].set_axis_off()
+</code></pre><h3 id="绘制给定参数各层的l2范数分布"><a href="#绘制给定参数各层的l2范数分布" class="headerlink" title="绘制给定参数各层的l2范数分布"></a>绘制给定参数各层的l2范数分布</h3><pre><code>def plot_norms(named_parameters, figsize=None):  
     from matplotlib import cm  
     p = [0, 25, 50, 75, 100]  
     with torch.no_grad():  
@@ -205,15 +206,16 @@
     if figsize is None:  
         figsize = (np.min([16, n]), 6)  
     plt.figure(figsize=figsize)  
-    plt.yscale(&apos;log&apos;)  
-    for i,c in zip(inv_p, cm.get_cmap(&apos;inferno&apos;)(0.1+inv_p/len(p))):  
+    plt.yscale(&#39;log&#39;)  
+    for i,c in zip(inv_p, cm.get_cmap(&#39;inferno&#39;)(0.1+inv_p/len(p))):  
         plt.bar(np.arange(n), norms[:,i], lw=1, color=c)  
     plt.xticks(range(n), names, rotation=&quot;vertical&quot;)  
     plt.xlabel(&quot;layers&quot;)  
     plt.ylabel(&quot;norm distribution&quot;)  
     plt.title(&quot;Kernel L2 Norms&quot;)  
     plt.grid(True)  
-    plt.legend(labels=[f&apos;{i}%&apos; for i in p[::-1]])  </code></pre><h3 id="绘制不同层的梯度"><a href="#绘制不同层的梯度" class="headerlink" title="绘制不同层的梯度"></a>绘制不同层的梯度</h3><pre><code>def plot_grad_flow(named_parameters, figsize=None):  
+    plt.legend(labels=[f&#39;{i}%&#39; for i in p[::-1]])
+</code></pre><h3 id="绘制不同层的梯度"><a href="#绘制不同层的梯度" class="headerlink" title="绘制不同层的梯度"></a>绘制不同层的梯度</h3><pre><code>def plot_grad_flow(named_parameters, figsize=None):  
     from matplotlib.lines import Line2D  
     avg_grads = []  
     max_grads= []  
@@ -233,12 +235,13 @@
     plt.xlim(left=-1, right=len(layers))  
     plt.xlabel(&quot;Layers&quot;)  
     plt.ylabel(&quot;Gradient Magnitude&quot;)  
-    plt.yscale(&apos;log&apos;)  
+    plt.yscale(&#39;log&#39;)  
     plt.title(&quot;Gradient flow&quot;)  
     plt.grid(True)  
     plt.legend([Line2D([0], [0], color=&quot;c&quot;, lw=4),  
                 Line2D([0], [0], color=&quot;b&quot;, lw=4),  
-                Line2D([0], [0], color=&quot;k&quot;, lw=4)], [&apos;max-gradient&apos;, &apos;mean-gradient&apos;, &apos;zero-gradient&apos;])  </code></pre><h3 id="Metrics"><a href="#Metrics" class="headerlink" title="Metrics"></a>Metrics</h3><pre><code>class Metrics(RunningAverage):  
+                Line2D([0], [0], color=&quot;k&quot;, lw=4)], [&#39;max-gradient&#39;, &#39;mean-gradient&#39;, &#39;zero-gradient&#39;])
+</code></pre><h3 id="Metrics"><a href="#Metrics" class="headerlink" title="Metrics"></a>Metrics</h3><pre><code>class Metrics(RunningAverage):  
     def __init__(self, evaluator, eval_loader, output_transform, interactive=False):  
         super().__init__(alpha=0.9, output_transform=output_transform)  
         self.evaluator = evaluator  
@@ -270,21 +273,22 @@
     def plot(self, epoch_size=None, figsize=(16, 4)):  
         plt.figure(figsize=figsize)  
         ax = plt.subplot()  
-        ax.set_yscale(&apos;log&apos;)  
-        ax.set_xlabel(&apos;Batches processed&apos;)  
+        ax.set_yscale(&#39;log&#39;)  
+        ax.set_xlabel(&#39;Batches processed&#39;)  
         ax.set_ylabel(&quot;loss&quot;)  
-        ax.plot(self.loss_history, label=&apos;Train Loss&apos;)  
+        ax.plot(self.loss_history, label=&#39;Train Loss&#39;)  
         ax2 = ax.twinx()  
         ax2.set_ylabel(&quot;score&quot;)  
         for k,v in self.validation_history.items():  
             if epoch_size is None:  
                 epoch_size = len(self.loss_history) // len(v)  
             iters = np.arange(1, len(v)+1) * epoch_size  
-            if k == &apos;Loss&apos;:  
-                  ax.plot(iters, v, label=&apos;Valid Loss&apos;)  
-            else: ax2.plot(iters, v, label=k, ls=&apos;--&apos;)  
-        ax.legend(frameon=False, loc=&apos;upper left&apos;)  
-        ax2.legend(frameon=False, loc=&apos;lower left&apos;)  </code></pre>
+            if k == &#39;Loss&#39;:  
+                  ax.plot(iters, v, label=&#39;Valid Loss&#39;)  
+            else: ax2.plot(iters, v, label=k, ls=&#39;--&#39;)  
+        ax.legend(frameon=False, loc=&#39;upper left&#39;)  
+        ax2.legend(frameon=False, loc=&#39;lower left&#39;)
+</code></pre>
       
 
       
@@ -363,7 +367,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://gakkiri.gitbuh.io/2019/10/17/%E4%B8%80%E4%BA%9B%E5%AE%9E%E7%94%A8%E7%9A%84pytorch%E8%84%9A%E6%9C%AC/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://gakkiri.github.io/2019/10/17/%E4%B8%80%E4%BA%9B%E5%AE%9E%E7%94%A8%E7%9A%84pytorch%E8%84%9A%E6%9C%AC/" alt="微信分享二维码">
     </div>
 </div>
 

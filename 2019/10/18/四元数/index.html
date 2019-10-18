@@ -5,21 +5,21 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="http://gakkiri.gitbuh.io">
+  <link rel="dns-prefetch" href="http://gakkiri.github.io">
   <title>四元数 | gakkiri&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="四元数（Quaternion）&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;最近在做的工作是深度点云, 在学习计算机图形学和刚体运动的过程中接触到四元数, 本身是一个比较抽象的概念, 我们都知道复数可以画成一个2维平面, 复数的乘法表示2维的拉伸和旋转, 那么四元数呢?  下面会一步步来学习四元数是如何表示三维旋转的. 1. 复数（Complex Number）1.1 定义  &amp;ensp;&amp;en">
+  <meta name="description" content="四元数（Quaternion）&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;最近在做的工作是深度点云, 在学习计算机图形学和刚体运动的过程中接触到四元数, 本身是一个比较抽象的概念, 我们都知道复数可以画成一个2维平面, 复数的乘法表示2维的拉伸和旋转, 那么四元数呢?  下面会一步步来学习四元数是如何表示三维旋转的.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="四元数">
-<meta property="og:url" content="http:&#x2F;&#x2F;gakkiri.gitbuh.io&#x2F;2019&#x2F;10&#x2F;18&#x2F;%E5%9B%9B%E5%85%83%E6%95%B0&#x2F;index.html">
+<meta property="og:url" content="http:&#x2F;&#x2F;gakkiri.github.io&#x2F;2019&#x2F;10&#x2F;18&#x2F;%E5%9B%9B%E5%85%83%E6%95%B0&#x2F;index.html">
 <meta property="og:site_name" content="gakkiri&#39;s blog">
-<meta property="og:description" content="四元数（Quaternion）&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;最近在做的工作是深度点云, 在学习计算机图形学和刚体运动的过程中接触到四元数, 本身是一个比较抽象的概念, 我们都知道复数可以画成一个2维平面, 复数的乘法表示2维的拉伸和旋转, 那么四元数呢?  下面会一步步来学习四元数是如何表示三维旋转的. 1. 复数（Complex Number）1.1 定义  &amp;ensp;&amp;en">
+<meta property="og:description" content="四元数（Quaternion）&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;最近在做的工作是深度点云, 在学习计算机图形学和刚体运动的过程中接触到四元数, 本身是一个比较抽象的概念, 我们都知道复数可以画成一个2维平面, 复数的乘法表示2维的拉伸和旋转, 那么四元数呢?  下面会一步步来学习四元数是如何表示三维旋转的.">
 <meta property="og:locale" content="zn">
 <meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;gakkiri&#x2F;gakkiri.github.io&#x2F;master&#x2F;img&#x2F;pic1.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;gakkiri&#x2F;gakkiri.github.io&#x2F;master&#x2F;img&#x2F;pic2.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;gakkiri&#x2F;gakkiri.github.io&#x2F;master&#x2F;img&#x2F;pic3.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;gakkiri&#x2F;gakkiri.github.io&#x2F;master&#x2F;img&#x2F;pic4.png">
-<meta property="og:updated_time" content="2019-10-18T05:23:46.069Z">
+<meta property="og:updated_time" content="2019-10-18T05:38:46.908Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;gakkiri&#x2F;gakkiri.github.io&#x2F;master&#x2F;img&#x2F;pic1.png">
   
@@ -178,6 +178,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="四元数（Quaternion）"><a href="#四元数（Quaternion）" class="headerlink" title="四元数（Quaternion）"></a>四元数（Quaternion）</h1><p>&ensp;&ensp;&ensp;&ensp;最近在做的工作是深度点云, 在学习计算机图形学和刚体运动的过程中接触到四元数, 本身是一个比较抽象的概念, 我们都知道复数可以画成一个2维平面, 复数的乘法表示2维的拉伸和旋转, 那么四元数呢?  下面会一步步来学习四元数是如何表示三维旋转的.</p>
+<p><a id="more"></a> &gt;&gt;</p>
 <h2 id="1-复数（Complex-Number）"><a href="#1-复数（Complex-Number）" class="headerlink" title="1. 复数（Complex Number）"></a>1. 复数（Complex Number）</h2><h3 id="1-1-定义"><a href="#1-1-定义" class="headerlink" title="1.1 定义"></a>1.1 定义</h3><p>  &ensp;&ensp;&ensp;&ensp;在介绍四元数之前, 先来了解复数和2D旋转之间的关系, 由于不是本文重点所以就简单介绍一下.<br>  &ensp;&ensp;&ensp;&ensp;任意一个复数$\mathcal z \in \mathbb C$都可以表示成 $\mathcal z =\mathcal a +\mathcal b \mathcal i$ 的形式, 其中$\mathcal a \mathcal b \in \mathbb R$而且$i^2=-1$. 其中$\mathcal a$和$\mathcal b$就是这个复数的实部(Real Part)和虚部(Imagirary Part).<br>  表示为向量形式就是:</p>
 <script type="math/tex; mode=display">
   \mathcal z = \left[
@@ -341,7 +342,7 @@ q = [s, \mathbf v] (\mathbf v = \left[ \begin{matrix} x\\y\\z \end{matrix} \righ
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://gakkiri.gitbuh.io/2019/10/18/%E5%9B%9B%E5%85%83%E6%95%B0/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://gakkiri.github.io/2019/10/18/%E5%9B%9B%E5%85%83%E6%95%B0/" alt="微信分享二维码">
     </div>
 </div>
 
