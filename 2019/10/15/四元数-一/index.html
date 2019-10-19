@@ -11,7 +11,7 @@
   <meta name="description" content="四元数（Quaternion）(一)&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;最近在做的工作是深度点云, 在学习计算机图形学和刚体运动的过程中接触到四元数, 本身是一个比较抽象的概念, 我们都知道复数可以画成一个2维平面, 复数的乘法表示2维的拉伸和旋转, 那么四元数呢?  下面会一步步来学习四元数是如何表示三维旋转的.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="四元数(一)">
-<meta property="og:url" content="http:&#x2F;&#x2F;gakkiri.github.io&#x2F;2019&#x2F;10&#x2F;18&#x2F;%E5%9B%9B%E5%85%83%E6%95%B0-%E4%B8%80&#x2F;index.html">
+<meta property="og:url" content="http:&#x2F;&#x2F;gakkiri.github.io&#x2F;2019&#x2F;10&#x2F;15&#x2F;%E5%9B%9B%E5%85%83%E6%95%B0-%E4%B8%80&#x2F;index.html">
 <meta property="og:site_name" content="gakkiri&#39;s blog">
 <meta property="og:description" content="四元数（Quaternion）(一)&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;最近在做的工作是深度点云, 在学习计算机图形学和刚体运动的过程中接触到四元数, 本身是一个比较抽象的概念, 我们都知道复数可以画成一个2维平面, 复数的乘法表示2维的拉伸和旋转, 那么四元数呢?  下面会一步步来学习四元数是如何表示三维旋转的.">
 <meta property="og:locale" content="zn">
@@ -19,7 +19,7 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;gakkiri&#x2F;gakkiri.github.io&#x2F;master&#x2F;img&#x2F;pic2.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;gakkiri&#x2F;gakkiri.github.io&#x2F;master&#x2F;img&#x2F;pic3.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;gakkiri&#x2F;gakkiri.github.io&#x2F;master&#x2F;img&#x2F;pic4.png">
-<meta property="og:updated_time" content="2019-10-18T11:29:31.946Z">
+<meta property="og:updated_time" content="2019-10-19T15:35:02.103Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;gakkiri&#x2F;gakkiri.github.io&#x2F;master&#x2F;img&#x2F;pic1.png">
   
@@ -165,8 +165,8 @@
   
 
         
-        <a href="/2019/10/18/%E5%9B%9B%E5%85%83%E6%95%B0-%E4%B8%80/" class="archive-article-date">
-  	<time datetime="2019-10-18T02:16:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-18</time>
+        <a href="/2019/10/15/%E5%9B%9B%E5%85%83%E6%95%B0-%E4%B8%80/" class="archive-article-date">
+  	<time datetime="2019-10-15T02:16:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-15</time>
 </a>
         
       </header>
@@ -317,7 +317,7 @@ q = [s, \mathbf v] (\mathbf v = \left[ \begin{matrix} x\\y\\z \end{matrix} \righ
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://gakkiri.github.io/2019/10/18/%E5%9B%9B%E5%85%83%E6%95%B0-%E4%B8%80/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://gakkiri.github.io/2019/10/15/%E5%9B%9B%E5%85%83%E6%95%B0-%E4%B8%80/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -331,7 +331,7 @@ q = [s, \mathbf v] (\mathbf v = \left[ \begin{matrix} x\\y\\z \end{matrix} \righ
   
 <nav id="article-nav">
   
-    <a href="/2019/10/18/%E5%9B%9B%E5%85%83%E6%95%B0-%E4%BA%8C/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/10/16/%E5%9B%9B%E5%85%83%E6%95%B0-%E4%BA%8C/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
@@ -341,7 +341,7 @@ q = [s, \mathbf v] (\mathbf v = \left[ \begin{matrix} x\\y\\z \end{matrix} \righ
     </a>
   
   
-    <a href="/2019/10/17/%E4%B8%80%E4%BA%9B%E5%AE%9E%E7%94%A8%E7%9A%84pytorch%E8%84%9A%E6%9C%AC/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2019/10/10/%E4%B8%80%E4%BA%9B%E5%AE%9E%E7%94%A8%E7%9A%84pytorch%E8%84%9A%E6%9C%AC/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">一些实用的pytorch脚本</div>
       <i class="icon-circle-right"></i>
     </a>

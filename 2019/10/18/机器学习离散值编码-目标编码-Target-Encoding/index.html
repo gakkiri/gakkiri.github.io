@@ -6,16 +6,16 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://gakkiri.github.io">
-  <title>四元数(二) | gakkiri&#39;s blog</title>
+  <title>机器学习离散值编码 - 目标编码(Target Encoding) | gakkiri&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="四元数（Quaternion）(二)四元数(一) 3. 四元数3.1 性质3.1.1 模长(范数)&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;仿照复数的定义, 可以暂时将一个四元数$q=a+bi+cj+dk$的模长定义为:    \Vert q \Vert = \sqrt{a^2+b^2+c^2+d^2}&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;若用标量向量有序对的形式进行表示的话, $">
+  <meta name="description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;当进行监督学习时, 经常要处理离散变量. 也就是说, 变量没有一个自然的数值表示. 问题是大多数机器学习算法要求输入的数据是数值的. 在某种程度上, 数据科学需要将离散变量转换为数值变量。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="四元数(二)">
-<meta property="og:url" content="http:&#x2F;&#x2F;gakkiri.github.io&#x2F;2019&#x2F;10&#x2F;18&#x2F;%E5%9B%9B%E5%85%83%E6%95%B0-%E4%BA%8C&#x2F;index.html">
+<meta property="og:title" content="机器学习离散值编码 - 目标编码(Target Encoding)">
+<meta property="og:url" content="http:&#x2F;&#x2F;gakkiri.github.io&#x2F;2019&#x2F;10&#x2F;18&#x2F;%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%A6%BB%E6%95%A3%E5%80%BC%E7%BC%96%E7%A0%81-%E7%9B%AE%E6%A0%87%E7%BC%96%E7%A0%81-Target-Encoding&#x2F;index.html">
 <meta property="og:site_name" content="gakkiri&#39;s blog">
-<meta property="og:description" content="四元数（Quaternion）(二)四元数(一) 3. 四元数3.1 性质3.1.1 模长(范数)&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;仿照复数的定义, 可以暂时将一个四元数$q=a+bi+cj+dk$的模长定义为:    \Vert q \Vert = \sqrt{a^2+b^2+c^2+d^2}&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;若用标量向量有序对的形式进行表示的话, $">
+<meta property="og:description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;当进行监督学习时, 经常要处理离散变量. 也就是说, 变量没有一个自然的数值表示. 问题是大多数机器学习算法要求输入的数据是数值的. 在某种程度上, 数据科学需要将离散变量转换为数值变量。">
 <meta property="og:locale" content="zn">
-<meta property="og:updated_time" content="2019-10-19T03:44:07.259Z">
+<meta property="og:updated_time" content="2019-10-19T15:35:21.864Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="gakkiri&#39;s blog" type="application/atom+xml">
@@ -148,237 +148,303 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-四元数-二" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-机器学习离散值编码-目标编码-Target-Encoding" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      四元数(二)
+      机器学习离散值编码 - 目标编码(Target Encoding)
     </h1>
   
 
         
-        <a href="/2019/10/18/%E5%9B%9B%E5%85%83%E6%95%B0-%E4%BA%8C/" class="archive-article-date">
-  	<time datetime="2019-10-18T11:29:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-18</time>
+        <a href="/2019/10/18/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%A6%BB%E6%95%A3%E5%80%BC%E7%BC%96%E7%A0%81-%E7%9B%AE%E6%A0%87%E7%BC%96%E7%A0%81-Target-Encoding/" class="archive-article-date">
+  	<time datetime="2019-10-18T08:28:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-18</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="四元数（Quaternion）-二"><a href="#四元数（Quaternion）-二" class="headerlink" title="四元数（Quaternion）(二)"></a>四元数（Quaternion）(二)</h1><p><a href="https://gakkiri.github.io/2019/10/18/%E5%9B%9B%E5%85%83%E6%95%B0/#more">四元数(一)</a></p>
-<h2 id="3-四元数"><a href="#3-四元数" class="headerlink" title="3. 四元数"></a>3. 四元数</h2><h3 id="3-1-性质"><a href="#3-1-性质" class="headerlink" title="3.1 性质"></a>3.1 性质</h3><h4 id="3-1-1-模长-范数"><a href="#3-1-1-模长-范数" class="headerlink" title="3.1.1 模长(范数)"></a>3.1.1 模长(范数)</h4><p>&ensp;&ensp;&ensp;&ensp;仿照复数的定义, 可以暂时将一个四元数$q=a+bi+cj+dk$的模长定义为:  </p>
-<script type="math/tex; mode=display">
-\Vert q \Vert = \sqrt{a^2+b^2+c^2+d^2}</script><p>&ensp;&ensp;&ensp;&ensp;若用标量向量有序对的形式进行表示的话, $q = [s, \mathbf v]$的模长为:  </p>
-<script type="math/tex; mode=display">
-\Vert q \Vert = \sqrt{s^2 + \Vert \mathbf v \Vert ^2}\\
-= \sqrt{s^2 + \mathbf  v · \mathbf v}</script><p>&ensp;&ensp;&ensp;&ensp;四元数很难用几何的方法进行理解, 因为它代表四维长度. 但是, 和高维向量的模长一样, 这只是类比复数模长进行衍生定义的结果.<br><a id="more"></a> &gt;&gt;  </p>
-<h4 id="3-1-2-四元数的加减法"><a href="#3-1-2-四元数的加减法" class="headerlink" title="3.1.2 四元数的加减法"></a>3.1.2 四元数的加减法</h4><p>&ensp;&ensp;&ensp;&ensp;跟复数一样, 直接相加(减), 假设我们有$q_1=a+bi+cj+dk$和$q_2=e+fi+gj+hk$, 求和(减法也一样):  </p>
-<script type="math/tex; mode=display">
-q_1 \pm q_2 = a \pm bi \pm cj \pm dk \pm e \pm fi \pm gj \pm hk\\
-= (a \pm e) \pm (b \pm f)i \pm (c \pm g)j \pm (d \pm h)k</script><p>&ensp;&ensp;&ensp;&ensp;写成标量向量有序对, $q_1=[s, \mathbf v], q_2=[t, \mathbf u]$, 那么有:</p>
-<script type="math/tex; mode=display">
-q_1 \pm q_2 = [s \pm t, \mathbf v \pm \mathbf u]</script><h4 id="3-1-3-四元数的乘法"><a href="#3-1-3-四元数的乘法" class="headerlink" title="3.1.3 四元数的乘法"></a>3.1.3 四元数的乘法</h4><p>&ensp;&ensp;&ensp;&ensp;首先说四元数与标量之间的乘法, 假设有四元数$q=a+bi+cj+dk$和标量$s$, 它们的乘积表示为: $sq=s(a+bi+cj+dk)$, 并且遵守交换律.<br>&ensp;&ensp;&ensp;&ensp;而四元数与四元数的乘法不同, 不遵守交换律, 即$q_1q_2 \neq q_2q_2$, 而结合律和分配律都是成立的.<br>&ensp;&ensp;&ensp;&ensp;同样, 假设有两个四元数$q_1=a+bi+cj+dk$和$q_2=e+fi+gj+hk$, 它们的乘积表示为:  </p>
-<script type="math/tex; mode=display">
-q1q2 = (a + bi + cj + dk)(e + f i + gj + hk)\\
-= ae + a f i + agj \\+ ahk+ bei + b f i^2 \\+ bgij + bhik+cej \\+ c f ji + cgj^2 + chjk\\+dek + d f ki + dgkj \\+ dhk^2 \tag{1}</script><p>&ensp;&ensp;&ensp;&ensp;尽管结果很混乱, 但是别忘了复数的性质, 由于$i^2 = j^2 = k^2 = ijk = -1$, 可以得出  </p>
-<script type="math/tex; mode=display">
-ijk = -1\\
-iijk = -i\\
--jk = -i\\
-jk = i</script><p>&ensp;&ensp;&ensp;&ensp;这里只写4种情况, 用同样的思路可以得到更多等式, 最终得到这样一张表格:  </p>
+        <p>&ensp;&ensp;&ensp;&ensp;当进行监督学习时, 经常要处理离散变量. 也就是说, 变量没有一个自然的数值表示. 问题是大多数机器学习算法要求输入的数据是数值的. 在某种程度上, 数据科学需要将离散变量转换为数值变量。<br><a id="more"></a> &gt;&gt; </p>
+<h4 id="分类特征编码有许多方式"><a href="#分类特征编码有许多方式" class="headerlink" title="分类特征编码有许多方式:"></a>分类特征编码有许多方式:</h4><ul>
+<li><a href="https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.LabelEncoder.html" target="_blank" rel="noopener">Label encoding(标签编码)</a></li>
+<li><a href="https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html" target="_blank" rel="noopener">One-hot encoding(独热码)</a></li>
+<li><a href="https://www.tensorflow.org/tutorials/text/word_embeddings" target="_blank" rel="noopener">Vector representation(向量表示法)</a></li>
+<li><a href="https://github.com/Microsoft/LightGBM/blob/master/docs/Advanced-Topics.rst#categorical-feature-support" target="_blank" rel="noopener">Optimal binning(最佳合并? 不知道怎么翻)</a></li>
+<li><a href="http://www.saedsayad.com/encoding.htm" target="_blank" rel="noopener">Target Encoding(目标编码)</a></li>
+</ul>
+<p>&ensp;&ensp;&ensp;&ensp;每种方法都有其优缺点, 通常取决于数据和需求. 如果一个变量有很多类别, 那么独热码将产生许多冗余列, 这可能会导致内存问题. 根据我的经验, LightGBM/CatBoost自带的编码方式很不错. 标签编码没什么用. 不过, 如果离散变量恰好是有序的, 可以用递增的数字来表示它(比如说, “cold”-&gt;0，“mild”-&gt;1，“hot”-&gt;2). 词嵌入(word2vec)也还不错, 但是需要一些微调, 有点麻烦.<br>&ensp;&ensp;&ensp;&ensp;目标编码比较简单实用, 本质非常简单, 当你有一个分类变量$x$和目标label $y$, label可以是离散值也可以是连续值, 对于$x$里的每个不同的样本, 你要计算对应的$y$的平均值, 然后用相应的均值替换$x_i$. 在python和python的pandas库里很容易实现.  </p>
+<h4 id="来试试"><a href="#来试试" class="headerlink" title="来试试"></a>来试试</h4><p>随意生成一些数据样本.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import pandas as pd</span><br><span class="line"></span><br><span class="line">df = pd.DataFrame(&#123;</span><br><span class="line">    &apos;x_0&apos;: [&apos;a&apos;] * 5 + [&apos;b&apos;] * 5,</span><br><span class="line">    &apos;x_1&apos;: [&apos;a&apos;] * 9 + [&apos;b&apos;] * 1,</span><br><span class="line">    &apos;y&apos;: [1, 1, 1, 1, 0, 1, 0, 0, 0, 0]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><br>得到的数据帧是这样的:</p>
 <div class="table-container">
 <table>
 <thead>
 <tr>
-<th>×</th>
-<th>1</th>
-<th>i</th>
-<th>j</th>
-<th>k</th>
+<th>$x_0$</th>
+<th>$x_1$</th>
+<th>$y$</th>
 </tr>
 </thead>
 <tbody>
 <tr>
+<td>a</td>
+<td>c</td>
 <td>1</td>
+</tr>
+<tr>
+<td>a</td>
+<td>c</td>
 <td>1</td>
-<td>i</td>
-<td>j</td>
-<td>k</td>
 </tr>
 <tr>
-<td>i</td>
-<td>i</td>
-<td>-1</td>
-<td>k</td>
-<td>-j</td>
+<td>a</td>
+<td>c</td>
+<td>1</td>
 </tr>
 <tr>
-<td>j</td>
-<td>j</td>
-<td>-k</td>
-<td>-1</td>
-<td>i</td>
+<td>a</td>
+<td>c</td>
+<td>1</td>
 </tr>
 <tr>
-<td>k</td>
-<td>k</td>
-<td>j</td>
-<td>-i</td>
-<td>-1</td>
+<td>a</td>
+<td>c</td>
+<td>0</td>
+</tr>
+<tr>
+<td>b</td>
+<td>c</td>
+<td>1</td>
+</tr>
+<tr>
+<td>b</td>
+<td>c</td>
+<td>0</td>
+</tr>
+<tr>
+<td>b</td>
+<td>c</td>
+<td>0</td>
+</tr>
+<tr>
+<td>b</td>
+<td>c</td>
+<td>0</td>
+</tr>
+<tr>
+<td>b</td>
+<td>d</td>
+<td>0</td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>&ensp;&ensp;&ensp;&ensp;利用这张表格将公式(1)化简, 得到:  </p>
+<p>计算$x_0$列的均值:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">means = df.groupby(&apos;x_0&apos;)[&apos;y&apos;].mean()</span><br></pre></td></tr></table></figure><br>得到一个字典:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &apos;a&apos;: 0.8,</span><br><span class="line">    &apos;b&apos;: 0.2</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>然后用对应的值替换掉$x_0$的值:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[&apos;x_0&apos;] = df[&apos;x_0&apos;].map(means)</span><br></pre></td></tr></table></figure><br>得到的数据帧:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>$x_0$</th>
+<th>$x_1$</th>
+<th>$y$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.8</td>
+<td>c</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0.8</td>
+<td>c</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0.8</td>
+<td>c</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0.8</td>
+<td>c</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0.8</td>
+<td>c</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0.2</td>
+<td>c</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0.2</td>
+<td>c</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0.2</td>
+<td>c</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0.2</td>
+<td>c</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0.2</td>
+<td>d</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>OK, 接下里对$x_1$列做同样的事:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[&apos;x_1&apos;] = df[&apos;x_1&apos;].map(df.groupby(&apos;x_1&apos;)[&apos;y&apos;].mean())</span><br></pre></td></tr></table></figure></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>$x_0$</th>
+<th>$x_1$</th>
+<th>$y$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.8</td>
+<td>0.444</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0.8</td>
+<td>0.444</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0.8</td>
+<td>0.444</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0.8</td>
+<td>0.444</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0.8</td>
+<td>0.444</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0.2</td>
+<td>0.444</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0.2</td>
+<td>0.444</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0.2</td>
+<td>0.444</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0.2</td>
+<td>0.444</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0.2</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>目标编码的好处就在于, 它选择的值具有可解释性. 在这个简单的例子里, 变量$x_0$的$a$值有平均目标值0.8, 这可以帮助后续机器学习算法的学习.<br>然而目标编码也带来一些问题, 比如过拟合. 实际上. 当平均值的数值很小时, 依赖平均值编码会产生不好的效果. 需要注意的一点是, 需要训练的数据集必须具有一定数量的样本(不能太少). 否则, 运用目标编码会带来严重的过拟合问题.<br>在这个例子里, $x_1$列的$d$仅有一个样本, 对应的$y$是0, 在这种情况下, 说明编码方式过拟合. 因为这里没有足够的样本说明所有$d$对应的$y$都是0, 因此直接取平均值是不合适的.<br>把目标编码的数学表达式写一下:</p>
 <script type="math/tex; mode=display">
-q_1q_2 = \\
- (ae − b f − cg − dh)+\\
- (be + a f − dg + ch)i+\\
- (ce + d f + ag − bh)j+\\
- (de − c f + bg + ah)k \tag{2}</script><p>&ensp;&ensp;&ensp;&ensp;从前面可以发现, 四元数的相乘其实也是一个线性组合, 我们同样可以将它写成矩阵形式:</p>
+\mu = \frac {n× \hat x + m × w}{n + m}\\
+\mu是试图计算的平均值(编码)\\
+n是数值的数量\\
+\hat x 是估计平均值\\
+m 是分配给总体均值的权重\\
+w 是总体均值</script><p>$m$是唯一需要选择的参数, 意思是$m$越高, 越依赖于$w$的总体均值, 如果$m$等于0, 你只需要计算估计均值, 也就是:</p>
 <script type="math/tex; mode=display">
-q_1q_2 = \left[ \begin{matrix} a&-b&-c&-d\\b&a&-d&c\\c&d&a&-b\\d&-c&b&a \end{matrix} \right] \left[ \begin{matrix} e\\f\\g\\h \end{matrix} \right]</script><p>&ensp;&ensp;&ensp;&ensp;注意这里是$q_1q_2$, 由于不符合交换律, $q_2q_1$的结果可以自己推, 这里就不写了.<br>&ensp;&ensp;&ensp;&ensp;现在将公式(2)写成这样的形式:</p>
+\mu = \frac {n× \hat x + 0 × w}{n + 0} = \hat x</script><p>也就是说, $m=0$时不做任何平滑处理(smoothing).<br>写成代码:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">def calc_smooth_mean(df, by, on, m):</span><br><span class="line">    # Compute the global mean</span><br><span class="line">    mean = df[on].mean()</span><br><span class="line"></span><br><span class="line">    # Compute the number of values and the mean of each group</span><br><span class="line">    agg = df.groupby(by)[on].agg([&apos;count&apos;, &apos;mean&apos;])</span><br><span class="line">    counts = agg[&apos;count&apos;]</span><br><span class="line">    means = agg[&apos;mean&apos;]</span><br><span class="line"></span><br><span class="line">    # Compute the &quot;smoothed&quot; means</span><br><span class="line">    smooth = (counts * means + m * mean) / (counts + m)</span><br><span class="line"></span><br><span class="line">    # Replace each value by the according smoothed mean</span><br><span class="line">    return df[by].map(smooth)</span><br></pre></td></tr></table></figure><br>$m=10$时, 编码的结果:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df[&apos;x_0&apos;] = calc_smooth_mean(df, by=&apos;x_0&apos;, on=&apos;y&apos;, m=10)</span><br><span class="line">df[&apos;x_1&apos;] = calc_smooth_mean(df, by=&apos;x_1&apos;, on=&apos;y&apos;, m=10)</span><br></pre></td></tr></table></figure></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>$x_0$</th>
+<th>$x_1$</th>
+<th>$y$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.6</td>
+<td>0.526316</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0.6</td>
+<td>0.526316</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0.6</td>
+<td>0.526316</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0.6</td>
+<td>0.526316</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0.6</td>
+<td>0.526316</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0.4</td>
+<td>0.526316</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0.4</td>
+<td>0.526316</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0.4</td>
+<td>0.526316</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0.4</td>
+<td>0.526316</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0.4</td>
+<td>0.454545</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>每个编码都很接近, 这是因为$m=10$对于我们的数据集有点太高了:</p>
 <script type="math/tex; mode=display">
-q_1q_2 =  (ae − (b f + cg + dh))+\\
-(be + a f + ch − dg)i+\\
-(ce + ag + d f − bh)j+\\
-(de + ah + bg − c f)k</script><p>&ensp;&ensp;&ensp;&ensp;现在令$\mathbf v = [b,c,d]^T, \mathbf = [f,g,h]^T$, 可以得到:</p>
-<script type="math/tex; mode=display">
-\mathbf u \mathbf v = bf + cg + dh\\
-\mathbf u × \mathbf v = \left| \begin{matrix} 
-\mathbf i & \mathbf j & \mathbf k\\ 
-b & c & d\\
-f & g & h
-\end{matrix} \right|= (ch − dg)\mathbf i − (bh − d f)\mathbf j + (bg − c f)\mathbf k</script><p>&ensp;&ensp;&ensp;&ensp;$\mathbf u, \mathbf v$是向量, $\mathbf i, \mathbf j, \mathbf k$是向量的基, 如果用标量向量有序对来表示, 就写成如下形式:  </p>
-<script type="math/tex; mode=display">
-q_1q_2 = [ae - \mathbf v · \mathbf u, a\mathbf u + e\mathbf v + \mathbf v × \mathbf u] \tag{3}</script><p>&ensp;&ensp;&ensp;&ensp;公式(3)给出的也就是<strong>Graßmann积</strong>(Graßmann Product).</p>
-<h4 id="3-1-3-纯四元数"><a href="#3-1-3-纯四元数" class="headerlink" title="3.1.3 纯四元数"></a>3.1.3 纯四元数</h4><p>&ensp;&ensp;&ensp;&ensp;仅有虚部的四元数被称为纯四元数, 纯四元数被表示为如下形式:</p>
-<script type="math/tex; mode=display">
-v = [0, \mathbf v]</script><p>&ensp;&ensp;&ensp;&ensp;纯四元数的一条比较重要的特性, 假设有两个纯四元数$v=[0, \mathbf v], u=[0, \mathbf u]$, 那么:</p>
-<script type="math/tex; mode=display">
-vu = [0 - \mathbf v · \mathbf u, 0 + \mathbf v × \mathbf u] = [-\mathbf v · \mathbf u, \mathbf v × \mathbf u]</script><h4 id="3-1-4-逆与共轭"><a href="#3-1-4-逆与共轭" class="headerlink" title="3.1.4 逆与共轭"></a>3.1.4 逆与共轭</h4><p>&ensp;&ensp;&ensp;&ensp;假设一个四元数$q$, 那么它的逆就是$q^{-1}$, 可以得到$qq^{-1}=q^{-1}q=1(q \neq 0)$, 也就是说:  </p>
-<script type="math/tex; mode=display">
-(pq)q^−1 = p(qq^−1) = p · 1 = p\\
-q^−1(qp) = (q^−1q)p = 1 · p = p</script><p>&ensp;&ensp;&ensp;&ensp;所以, 右乘$q$的逆运算为右乘$q^{-1}$, 左乘$q$的逆运算为左乘$q^{-1}$, 这与矩阵的性质十分相似.<br>&ensp;&ensp;&ensp;&ensp;事实上, 四元数要满足$qq^{-1}=q^{-1}q=1$是非常困难的, 我们可以使用四元数共轭的一些性质来获得$q^{-1}$.<br>&ensp;&ensp;&ensp;&ensp;假设一个四元数$q=a+bi+ck+dj$的共轭为  </p>
-<script type="math/tex; mode=display">
-q^*=a-bi- cj-dk</script><p>&ensp;&ensp;&ensp;&ensp;用标量向量有序对来定义</p>
-<script type="math/tex; mode=display">
-q=[s, \mathbf v]</script><p>&ensp;&ensp;&ensp;&ensp;共轭为 </p>
-<script type="math/tex; mode=display">
-q^*=[s, -\mathbf v]</script><p>共轭四元数的一个重要性质是:  </p>
-<script type="math/tex; mode=display">
-qq^*=[s, \mathbf v]·[s, -\mathbf v]\\
-=[s^2-\mathbf v ·(-\mathbf v), s(-\mathbf v)+s\mathbf v + \mathbf v ×(- \mathbf v)]\\
-=[s^2+\mathbf v · \mathbf v, \mathbf 0] (平行向量叉乘为0)</script><p>&ensp;&ensp;&ensp;&ensp;可以发现最后得到的结果是一个实数, 并且是四元数模长的平方:  </p>
-<script type="math/tex; mode=display">
-qq^*=[s^2+\mathbf v · \mathbf v, \mathbf 0]\\
-=s^2 + x^2 + y^2 + z^2\\
-=\Vert q \Vert ^2\\
-又因为(q^*)^*=[s, -(-\mathbf v)] = [s, \mathbf v] = q,\\
-q^*q=(q^*)(q^*)^*\\
-=\Vert q^* \Vert ^2\\
-=s^2+x^2+y^2+z^2\\
-=\Vert q \Vert ^2\\
-=qq^*</script><p>&ensp;&ensp;&ensp;&ensp;至此, 得出$q^<em> q = q q^</em>$, 想想四元数逆的定义:  </p>
-<script type="math/tex; mode=display">
-qq^{-1} = 1\\
-q^*qq^{-1}=q^*\\
-(q^*q)q^{-1}=q^*\\
-\Vert q \Vert ^2 · q^{-1} = q^*\\
-q^{-1} = \frac {q^*}{\Vert q \Vert ^2}</script><p>&ensp;&ensp;&ensp;&ensp;利用这种方式可以高效得到一个四元数的逆, 总的来说, 如果$\Vert q \Vert = 1$, 则$q$是一个单位四元数, 可以得到:  </p>
-<script type="math/tex; mode=display">
-q^{-1} = \frac {q^*}{1^2} = q^*</script><h3 id="3-2-四元数与3D旋转"><a href="#3-2-四元数与3D旋转" class="headerlink" title="3.2 四元数与3D旋转"></a>3.2 四元数与3D旋转</h3><p>  &ensp;&ensp;&ensp;&ensp;终于, 千辛万苦来到正题, 四元数如何表示一个3D旋转.<br>  &ensp;&ensp;&ensp;&ensp;如果我们需要将一个向量$\mathbf v$沿着一个用单位向量所定义的旋转轴$\mathbf u$旋转$\theta$度, 那么需要对向量做分量变换, 对分量进行旋转(第一部分过的), 所以我们拥有几个向量, $\mathbf u, \mathbf v, \mathbf v_\bot, \mathbf v_\Vert, \mathbf v^′, \mathbf v^′_\bot, \mathbf v_\Vert^′$ 将它们表示为纯四元数:  </p>
-<script type="math/tex; mode=display">
-  v = [0, \mathbf v]\\
-  ...(其他的也是一样的, 不写了)</script><p>  &ensp;&ensp;&ensp;&ensp;没有加粗的都表示是纯四元数, 所以:  </p>
-<script type="math/tex; mode=display">
-  v=v_\Vert + v_\bot\\
-  v^′=v_\Vert^′+v_\bot^′</script><p>&ensp;&ensp;&ensp;&ensp;OK, 和之前一样, 对$v_\bot, v_\Vert$分别讨论.</p>
-<h4 id="3-2-1-v-bot-的旋转"><a href="#3-2-1-v-bot-的旋转" class="headerlink" title="3.2.1 $v_\bot$的旋转"></a>3.2.1 $v_\bot$的旋转</h4><p>  &ensp;&ensp;&ensp;&ensp;同样, $v_\bot$正交与旋转轴$\mathbf u$, 因此(不记得的可以看下第一部分):  </p>
-<script type="math/tex; mode=display">
-  \mathbf v^′ = \cos({\theta})\mathbf v_\bot + \sin({\theta})(\mathbf u × \mathbf v_\bot)</script><p>  &ensp;&ensp;&ensp;&ensp;直接将对应的虚四元数替换后, 还剩一个$\mathbf u × \mathbf v_\bot$. 不过利用四元数的性质, 可以将它写成四元数积的形式. </p>
-<script type="math/tex; mode=display">
-  由vu=[-\mathbf v · \mathbf u, \mathbf v ×\mathbf u],\\
-  uv_\bot=[-\mathbf u · \mathbf v_\bot, \mathbf u × \mathbf v_\bot]\\
-  因为\mathbf v_\bot 正交于\mathbf u, 所以\mathbf u · \mathbf v_\bot=0,\\
-  uv_\bot=[0, \mathbf u × \mathbf v_\bot]\\
-  =\mathbf u × \mathbf v_\bot</script><p>  &ensp;&ensp;&ensp;&ensp;这里$uv_\bot$仍然是纯四元数, 将这个等式与之前的定义的纯四元数联系起来, 得到:</p>
-<script type="math/tex; mode=display">
-  v_\bot^′=\cos({\theta})v_\bot+\sin({\theta})(uv_\bot)\\
-  =(\cos({\theta})+\sin({\theta})u)v_\bot</script><p>  &ensp;&ensp;&ensp;&ensp;至此, 如果将$((\cos({\theta})+\sin({\theta})u))$看做一个四元数, 就已经将旋转与四元数的积联系起来了. 令$q=\cos({\theta})+\sin({\theta})u$, 有</p>
-<script type="math/tex; mode=display">
-  v_\bot^′=qv_\bot</script><p>  &ensp;&ensp;&ensp;&ensp;构造一个$q$, 就能对$q$进行变形:</p>
-<script type="math/tex; mode=display">
-  q = \cos({\theta}) + \sin({\theta})u\\
-  =[\cos({\theta}), \mathbf 0]+[0, \sin({\theta})\mathbf u]\\
-  =[\cos({\theta}), \sin({\theta})\mathbf u]</script><p>  &ensp;&ensp;&ensp;&ensp;也就是说, 如果旋转轴$\mathbf u$的坐标为$[u_x, u_y, y_z]^T$,旋转角为$\theta$, 那么完成这一旋转所需要的四元数$q$可以构造为:</p>
-<script type="math/tex; mode=display">
-  q = \cos({\theta}) + \sin({\theta})u_xi+\sin({\theta})u_yj+\sin({\theta})u_zk</script><p>  &ensp;&ensp;&ensp;&ensp;总结起来, 当$\mathbf v_\bot$正交与旋转$\mathbf u$时, 旋转$\theta$角度之后的$\mathbf v_\bot^′$可以用四元数惩罚来获得, 令$v_\bot=[0, \mathbf v_\bot], q=[\cos({\theta}), \sin({\theta})\mathbf u]$, 那么:</p>
-<script type="math/tex; mode=display">
-  v_\bot^′=qv_\bot</script><h4 id="3-2-2-v-Vert-的旋转"><a href="#3-2-2-v-Vert-的旋转" class="headerlink" title="3.2.2 $v_\Vert$的旋转"></a>3.2.2 $v_\Vert$的旋转</h4><p> &ensp;&ensp;&ensp;&ensp;同样, 由于$\mathbf v_\Vert$与旋转轴$\mathbf u$平行, 旋转不会对它做任何变换, 也就是说:  </p>
-<script type="math/tex; mode=display">
- v^′_\Vert = v_\Vert</script><h4 id="3-2-3-v-的旋转"><a href="#3-2-3-v-的旋转" class="headerlink" title="3.2.3 $v$的旋转"></a>3.2.3 $v$的旋转</h4><p> &ensp;&ensp;&ensp;&ensp;所以, 现在我们知道一般情况下, 对于$v^′$:</p>
-<script type="math/tex; mode=display">
- v^′ = v^′_\Vert + v^′_\bot\\
- =v_\Vert + qv_\bot</script><p> &ensp;&ensp;&ensp;&ensp;注意, $q=[\cos({\theta}), \sin({\theta})\mathbf u]$.<br> &ensp;&ensp;&ensp;&ensp;按照以前的做法, 我们会把$v_\Vert$和$v_\bot$拆开继续化简, 但是这里不会这么做, 因为有更好的办法.<br> &ensp;&ensp;&ensp;&ensp;首先介绍几个引理:  </p>
-<blockquote>
-<p>Lemma 1. 如果$q=[\cos({\theta}), \sin({\theta})\mathbf u]$, 而且$\mathbf u$为单位向量, 那么$q^2=qq=[\cos({2\theta}), \sin({2\theta})\mathbf u]$.</p>
-</blockquote>
-<p>&ensp;&ensp;&ensp;&ensp;证明不难:  </p>
-<script type="math/tex; mode=display">
-q^2 = [\cos({\theta}), sin({\theta})\mathbf u]·[cos({\theta}), sin({\theta})\mathbf u]\\
-=[\cos^2({\theta}) - (\sin({\theta})\mathbf u · \sin({\theta})\mathbf u), \\(\cos({\theta})\sin({\theta})+\sin({\theta})\cos({\theta}))\mathbf u + (\sin({\theta})\mathbf u × \sin({\theta})\mathbf u)]\\
-=[\cos^2({\theta}) - \sin^2({\theta})\Vert \mathbf u \Vert^2, 2\sin({\theta})\cos({\theta})\mathbf u + \mathbf 0]\\
-=[\cos^2({\theta}) - \sin^2({\theta}), 2\sin({\theta})\cos({\theta})\mathbf u]\\
-=[\cos({2\theta}), \sin({2\theta})\mathbf u]</script><p>&ensp;&ensp;&ensp;简单解释一下, 如果绕着同一个轴$\mathbf u$连续旋转$\theta$度两次, 那么所做出的变换等同于直接绕着$\mathbf u$旋转$2\theta$度.<br>&ensp;&ensp;&ensp;基于这个引理, 同时根据四元数逆的定义$qq^{-1}=1$, 对旋转公式变形:</p>
-<script type="math/tex; mode=display">
-v^′ = v_\Vert + qv_\bot\\
-= 1·v_\Vert + qv_\bot\\
-(令q=p^2, 则p=[\cos({\frac {\theta}{2}}), \sin({\frac {\theta}{2}})\mathbf u])\\
-=pp^{-1}v_\Vert + ppv_\bot</script><p>&ensp;&ensp;&ensp;这里又引入了新的四元数$p=[\cos({\frac {\theta}{2}}), \sin({\frac {\theta}{2}})\mathbf u])$, 根据前面的引理, 可以验证:  </p>
-<script type="math/tex; mode=display">
-pp=p^2\\
-=[\cos({2·\frac {\theta}{2}}), \sin({2·\frac {\theta}{2}})\mathbf u])\\
-=q</script><p>&ensp;&ensp;&ensp;这里注意到, 和$q$一样, $\Vert p \Vert=1$, $p$也是一个单位四元数, 所以:</p>
-<script type="math/tex; mode=display">
-p^{-1} = p^*</script><p>&ensp;&ensp;&ensp;将这个结果代入之前的等式中:</p>
-<script type="math/tex; mode=display">
-v^′ = pp^{-1}v_\Vert + ppv_\bot\\
-=pp^*v_\Vert + ppv_\bot</script><p>&ensp;&ensp;&ensp;这个等式还能继续化简, 至此再引入两个定理(证明的过程就不写了, 都是利用Graßmann 积来证)  </p>
-<blockquote>
-<p>Lemma 2. 假设$v_\Vert$=[0, $\mathbf v_\Vert$]是一个纯四元数, 而$q=[\alpha, \beta \mathbf u]$, 其中$\mathbf u$是一个单位向量, $\alpha, \beta \in \mathbb R$. 在这样的条件下, 如果$\mathbf v_\Vert$平行于$\mathbf u$, 那么$qv_\Vert=v_\Vert q$<br>Lemma 3. 假设$v_\bot = [0, \mathbf v_\bot]$是一个纯四元数, 而$q=[\alpha, \beta \mathbf u]$, 其中$\mathbf u$是一个单位向量, $\alpha, \beta \in \mathbb R$. 该情况下, 如果$\mathbf v_\bot$正交于$\mathbf u$, 那么$qv_\bot=v_\bot q^*$</p>
-</blockquote>
-<p>&ensp;&ensp;&ensp;有了以上两条引理, 对等式进一步化简:</p>
-<script type="math/tex; mode=display">
-v^′ = pp^*v_\Vert + ppv_\bot\\
-=pv_\Vert p^* + pv_\bot p^*\\
-=p(v_\Vert + v_\bot)p^*</script><p>&ensp;&ensp;&ensp;显然, $(v_\Vert + v_\bot)$其实就是$v$, 所以:</p>
-<script type="math/tex; mode=display">
-v^′=pvp^*</script><p>&ensp;&ensp;&ensp;至此, 3D空间中任意一个旋转都能够用三个四元数相乘的形式表达出来, 尽管推理过程十分漫长, 但是结论却非常简洁.换句话说, 如果我们有$q=[\cos({\theta}), \sin({\theta})\mathbf u]$, 那么$v^′ = qvq^*$可以将$\mathbf v$沿着$\mathbf u$旋转$2\theta$度.</p>
-<h3 id="3-3-3D旋转的矩阵形式"><a href="#3-3-3D旋转的矩阵形式" class="headerlink" title="3.3 3D旋转的矩阵形式"></a>3.3 3D旋转的矩阵形式</h3><p>&ensp;&ensp;&ensp;在实际应用中, 通常将旋转和平移缩放进行复合, 所以需要用到四元数旋转的矩阵形式, 推导过程并不困难:<br>&ensp;&ensp;&ensp;左乘一个四元数$q=a+bi+cj+dk等同于$:</p>
-<script type="math/tex; mode=display">
-L(q)=\left[ \begin{matrix} a&-b&-c&-d\\b&a&-d&c\\c&d&a&-b\\d&-c&b&a \end{matrix}\right]</script><p>&ensp;&ensp;&ensp;右乘$q$等同于:</p>
-<script type="math/tex; mode=display">
-R(q)=\left[ \begin{matrix} a&-b&-c&-d\\b&a&d&-c\\c&-d&a&b\\d&c&-b&a \end{matrix}\right]</script><p>&ensp;&ensp;&ensp;所以, 利用这两个公式将$v^′ = qvq^<em>$写成矩阵形式. 假设$a=\cos({\frac {\theta}{2}}), b=\sin({\frac {\theta}{2}})u_x, c=\sin({\frac {\theta}{2}})u_y, d=\sin({\frac {\theta}{2}})u_z, q = a+bi+cj+dk$, 并且$R(q^</em>)=R(q)^T$, 那么剩下的就是套公式就行了(请记住, $a^2+b^2+c^2+d^2=1$), 直接写出结论:</p>
-<script type="math/tex; mode=display">
-qvq^*=\\
-\left[ \begin{matrix}
-1 & 0 & 0 & 0\\
-0 & 1-2c^2-2d^2 & 2bc-2ad & 2ac+2bd\\
-0 & 2bc+2ad & 1-2b^2-2d^2 & 2cd-2ab\\
-0 & 2bd-2ac & 2ab+2cd & 1-2b^2-2c^2
-\end{matrix} \right]v</script><p>&ensp;&ensp;&ensp;这就是3D旋转的矩阵形式, 因为最外圈不会对$v$有任何变换, 所以可以压缩成$3×3$矩阵.<br>&ensp;&ensp;&ensp;总结一下,任意向量$\mathbf v$沿着以单位向量定义的旋转轴$\mathbf u$旋转$\theta$角度之后的$\mathbf v^′$可以用矩阵乘法来获得. 令$a=\cos({\frac {\theta}{2}}), b=\sin({\frac {\theta}{2}})u_x, c=\sin({\frac {\theta}{2}})u_y, d=\sin({\frac {\theta}{2}})u_z$:</p>
-<script type="math/tex; mode=display">
-\mathbf v^′ = \\
-\left[ \begin{matrix}
-1-2c^2-2d^2 & 2bc-2ad & 2ac+2bd\\
-2bc+2ad & 1-2b^2-2d^2 & 2cd-2ab\\
-2bd-2ac & 2ab+2cd & 1-2b^2-2c^2
-\end{matrix} \right] \mathbf v</script><h3 id="3-4-Coding-欧拉角到四元数的转换"><a href="#3-4-Coding-欧拉角到四元数的转换" class="headerlink" title="3.4 Coding 欧拉角到四元数的转换."></a>3.4 Coding 欧拉角到四元数的转换.</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">struct ​Quaternion</span><br><span class="line">&#123;</span><br><span class="line">   ​double w, x, y, z;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Quaternion ToQuaternion(double yaw, double pitch, double roll) // yaw (Z), pitch (Y), roll (X)</span><br><span class="line">&#123;</span><br><span class="line">   ​// Abbreviations for the various angular functions</span><br><span class="line">   ​double cy = cos(yaw * 0.5);</span><br><span class="line">   ​double sy = sin(yaw * 0.5);</span><br><span class="line">   ​double cp = cos(pitch * 0.5);</span><br><span class="line">   ​double sp = sin(pitch * 0.5);</span><br><span class="line">   ​double cr = cos(roll * 0.5);</span><br><span class="line">   ​double sr = sin(roll * 0.5);</span><br><span class="line"></span><br><span class="line">   ​Quaternion q;</span><br><span class="line">   ​q.w = cy * cp * cr + sy * sp * sr;</span><br><span class="line">   ​q.x = cy * cp * sr - sy * sp * cr;</span><br><span class="line">   ​q.y = sy * cp * sr + cy * sp * cr;</span><br><span class="line">   ​q.z = sy * cp * cr - cy * sp * sr;</span><br><span class="line"></span><br><span class="line">   ​return q;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>四元数到欧拉角:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">struct EulerAngles</span><br><span class="line">&#123;</span><br><span class="line">    double roll, pitch, yaw;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">EulerAngles ToEulerAngles(Quaternion q)</span><br><span class="line">&#123;</span><br><span class="line">    EulerAngles angles;</span><br><span class="line"></span><br><span class="line">    // roll (x-axis rotation)</span><br><span class="line">    double sinr_cosp = +2.0 * (q.w * q.x + q.y * q.z);</span><br><span class="line">    double cosr_cosp = +1.0 - 2.0 * (q.x * q.x + q.y * q.y);</span><br><span class="line">    angles.roll = atan2(sinr_cosp, cosr_cosp);</span><br><span class="line"></span><br><span class="line">    // pitch (y-axis rotation)</span><br><span class="line">    double sinp = +2.0 * (q.w * q.y - q.z * q.x);</span><br><span class="line">    if (fabs(sinp) &gt;= 1)</span><br><span class="line">        angles.pitch = copysign(M_PI / 2, sinp); // use 90 degrees if out of range</span><br><span class="line">    else</span><br><span class="line">        angles.pitch = asin(sinp);</span><br><span class="line"></span><br><span class="line">    // yaw (z-axis rotation)</span><br><span class="line">    double siny_cosp = +2.0 * (q.w * q.z + q.x * q.y);</span><br><span class="line">    double cosy_cosp = +1.0 - 2.0 * (q.y * q.y + q.z * q.z);  </span><br><span class="line">    angles.yaw = atan2(siny_cosp, cosy_cosp);</span><br><span class="line"></span><br><span class="line">    return angles;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>python中有一个库pyquaternion, 可以帮助我们进行类似这样的变换, 其中给出一个例子, 在点云标注中往往会标注出物体的偏航角(yaw):<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">from pyquaternion import Quaternion</span><br><span class="line">quat = Quaternion(scalar=np.cos(yaw / 2), vector=[0, 0, np.sin(yaw / 2)]) # 从偏航角到四元数</span><br><span class="line"></span><br><span class="line">def quaternion_yaw(q: Quaternion) -&gt; float:  # 从四元数到偏航角</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    Calculate the yaw angle from a quaternion.</span><br><span class="line">    Note that this only works for a quaternion that represents a box in lidar or global coordinate frame.</span><br><span class="line">    It does not work for a box in the camera frame.</span><br><span class="line">    :param q: Quaternion of interest.</span><br><span class="line">    :return: Yaw angle in radians.</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">    # Project into xy plane.</span><br><span class="line">    v = np.dot(q.rotation_matrix, np.array([1, 0, 0]))</span><br><span class="line"></span><br><span class="line">    # Measure yaw using arctan.</span><br><span class="line">    yaw = np.arctan2(v[1], v[0])</span><br><span class="line"></span><br><span class="line">    return yaw</span><br></pre></td></tr></table></figure><br>这里再推荐一个视频, 比我写的要生动一些…<a href="https://www.youtube.com/watch?v=3BR8tK-LuB0" target="_blank" rel="noopener">Fantastic Quaternions - Numberphile </a></p>
+d = \frac {1×0+10×0.5}{1+10} \approx 0.454545</script><p>这种编码方式非常快速, 只需要调整一个参数$m$.<br>这只是一种非常简单基础的目标编码, 不建议直接用, 建议用<a href="https://www.wikiwand.com/en/Additive_smoothing" target="_blank" rel="noopener">贝叶斯目标编码</a>:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; import pandas as pd</span><br><span class="line">&gt;&gt;&gt; import xam</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; X = pd.DataFrame(&#123;&apos;x_0&apos;: [&apos;a&apos;] * 5 + [&apos;b&apos;] * 5, &apos;x_1&apos;: [&apos;a&apos;] * 9 + [&apos;b&apos;] * 1&#125;)</span><br><span class="line">&gt;&gt;&gt; y = pd.Series([1, 1, 1, 1, 0, 1, 0, 0, 0, 0])</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; encoder = xam.feature_extraction.BayesianTargetEncoder(</span><br><span class="line">...     columns=[&apos;x_0&apos;, &apos;x_1&apos;],</span><br><span class="line">...     prior_weight=3,</span><br><span class="line">...     suffix=&apos;&apos;</span><br><span class="line">... )</span><br><span class="line">&gt;&gt;&gt; encoder.fit_transform(X, y)</span><br><span class="line">      x_0       x_1</span><br><span class="line">0  0.6875  0.541667</span><br><span class="line">1  0.6875  0.541667</span><br><span class="line">2  0.6875  0.541667</span><br><span class="line">3  0.6875  0.541667</span><br><span class="line">4  0.6875  0.541667</span><br><span class="line">5  0.3125  0.541667</span><br><span class="line">6  0.3125  0.541667</span><br><span class="line">7  0.3125  0.541667</span><br><span class="line">8  0.3125  0.541667</span><br><span class="line">9  0.3125  0.375000</span><br></pre></td></tr></table></figure></p>
 
       
 
@@ -437,7 +503,7 @@ qvq^*=\\
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://gakkiri.github.io/2019/10/18/%E5%9B%9B%E5%85%83%E6%95%B0-%E4%BA%8C/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://gakkiri.github.io/2019/10/18/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%A6%BB%E6%95%A3%E5%80%BC%E7%BC%96%E7%A0%81-%E7%9B%AE%E6%A0%87%E7%BC%96%E7%A0%81-Target-Encoding/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -451,18 +517,18 @@ qvq^*=\\
   
 <nav id="article-nav">
   
-    <a href="/2019/10/19/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-AdaptIS-Adaptive-Instance-Selection-Network-%E8%87%AA%E9%80%82%E5%BA%94%E5%AE%9E%E4%BE%8B%E9%80%89%E6%8B%A9%E7%BD%91%E7%BB%9C/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/10/19/%E8%AE%BA%E6%96%87-%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-Gated-SCNN-Gated-Shape-CNNs-for-Semantic-Segmentation/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          论文阅读: AdaptIS: Adaptive Instance Selection Network 自适应实例选择网络
+          论文+源码阅读: Gated-SCNN: Gated Shape CNNs for Semantic Segmentation
         
       </div>
     </a>
   
   
-    <a href="/2019/10/18/%E5%9B%9B%E5%85%83%E6%95%B0-%E4%B8%80/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">四元数(一)</div>
+    <a href="/2019/10/17/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-AdaptIS-Adaptive-Instance-Selection-Network-%E8%87%AA%E9%80%82%E5%BA%94%E5%AE%9E%E4%BE%8B%E9%80%89%E6%8B%A9%E7%BD%91%E7%BB%9C/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">论文阅读: AdaptIS: Adaptive Instance Selection Network 自适应实例选择网络</div>
       <i class="icon-circle-right"></i>
     </a>
   

@@ -6,20 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://gakkiri.github.io">
-  <title>论文阅读: AdaptIS: Adaptive Instance Selection Network 自适应实例选择网络 | gakkiri&#39;s blog</title>
+  <title>四元数(二) | gakkiri&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="AdaptIS: Adaptive Instance Selection Network 论文地址: https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;1909.07829?context=cs代码: https:&#x2F;&#x2F;github.com&#x2F;saic-vul&#x2F;adaptis  &amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;本文提出了自适应实例选择网络（Adaptive Instance Selectio">
+  <meta name="description" content="四元数（Quaternion）(二)四元数(一) 3. 四元数3.1 性质3.1.1 模长(范数)&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;仿照复数的定义, 可以暂时将一个四元数$q=a+bi+cj+dk$的模长定义为:    \Vert q \Vert = \sqrt{a^2+b^2+c^2+d^2}&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;若用标量向量有序对的形式进行表示的话, $">
 <meta property="og:type" content="article">
-<meta property="og:title" content="论文阅读: AdaptIS: Adaptive Instance Selection Network 自适应实例选择网络">
-<meta property="og:url" content="http:&#x2F;&#x2F;gakkiri.github.io&#x2F;2019&#x2F;10&#x2F;19&#x2F;%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-AdaptIS-Adaptive-Instance-Selection-Network-%E8%87%AA%E9%80%82%E5%BA%94%E5%AE%9E%E4%BE%8B%E9%80%89%E6%8B%A9%E7%BD%91%E7%BB%9C&#x2F;index.html">
+<meta property="og:title" content="四元数(二)">
+<meta property="og:url" content="http:&#x2F;&#x2F;gakkiri.github.io&#x2F;2019&#x2F;10&#x2F;16&#x2F;%E5%9B%9B%E5%85%83%E6%95%B0-%E4%BA%8C&#x2F;index.html">
 <meta property="og:site_name" content="gakkiri&#39;s blog">
-<meta property="og:description" content="AdaptIS: Adaptive Instance Selection Network 论文地址: https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;1909.07829?context=cs代码: https:&#x2F;&#x2F;github.com&#x2F;saic-vul&#x2F;adaptis  &amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;本文提出了自适应实例选择网络（Adaptive Instance Selectio">
+<meta property="og:description" content="四元数（Quaternion）(二)四元数(一) 3. 四元数3.1 性质3.1.1 模长(范数)&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;仿照复数的定义, 可以暂时将一个四元数$q=a+bi+cj+dk$的模长定义为:    \Vert q \Vert = \sqrt{a^2+b^2+c^2+d^2}&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;若用标量向量有序对的形式进行表示的话, $">
 <meta property="og:locale" content="zn">
-<meta property="og:image" content="https:&#x2F;&#x2F;storage.googleapis.com&#x2F;groundai-web-prod&#x2F;media%2Fusers%2Fuser_290457%2Fproject_390518%2Fimages%2Fimages%2Fdiagrams%2FAdaInSegmentation-diagram-final_3.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;gakkiri&#x2F;gakkiri.github.io&#x2F;master&#x2F;img&#x2F;paper1.png">
-<meta property="og:updated_time" content="2019-10-19T06:04:40.651Z">
+<meta property="og:updated_time" content="2019-10-19T15:35:06.459Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;storage.googleapis.com&#x2F;groundai-web-prod&#x2F;media%2Fusers%2Fuser_290457%2Fproject_390518%2Fimages%2Fimages%2Fdiagrams%2FAdaInSegmentation-diagram-final_3.png">
   
     <link rel="alternative" href="/atom.xml" title="gakkiri&#39;s blog" type="application/atom+xml">
   
@@ -151,48 +148,237 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-论文阅读-AdaptIS-Adaptive-Instance-Selection-Network-自适应实例选择网络" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-四元数-二" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      论文阅读: AdaptIS: Adaptive Instance Selection Network 自适应实例选择网络
+      四元数(二)
     </h1>
   
 
         
-        <a href="/2019/10/19/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-AdaptIS-Adaptive-Instance-Selection-Network-%E8%87%AA%E9%80%82%E5%BA%94%E5%AE%9E%E4%BE%8B%E9%80%89%E6%8B%A9%E7%BD%91%E7%BB%9C/" class="archive-article-date">
-  	<time datetime="2019-10-19T05:56:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-19</time>
+        <a href="/2019/10/16/%E5%9B%9B%E5%85%83%E6%95%B0-%E4%BA%8C/" class="archive-article-date">
+  	<time datetime="2019-10-16T11:29:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-16</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="AdaptIS-Adaptive-Instance-Selection-Network"><a href="#AdaptIS-Adaptive-Instance-Selection-Network" class="headerlink" title="AdaptIS: Adaptive Instance Selection Network"></a>AdaptIS: Adaptive Instance Selection Network</h1><blockquote>
-<p>论文地址: <a href="https://arxiv.org/abs/1909.07829?context=cs" target="_blank" rel="noopener">https://arxiv.org/abs/1909.07829?context=cs</a><br>代码: <a href="https://github.com/saic-vul/adaptis" target="_blank" rel="noopener">https://github.com/saic-vul/adaptis</a></p>
-</blockquote>
-<p>&ensp;&ensp;&ensp;&ensp;本文提出了自适应实例选择网络（Adaptive Instance Selection Network），给定图像和其中任意像素的坐标，AdaptIS即可精准输出这个像素处任意物体的mask。与目前流行的先检测后分割的方法不同，AdaptIS直接从像素点出发，达到对任意类别、任意形状物体的精准分割。 AdaptIS不使用COCO预训练即可在全景分割数据集Cityscapes和Mapillary上达到了state-of-the-art的效果，PQ（Panoptic Quality）指标分别为62.0和35.9，在COCO数据集上也有不错的效果。<br><a id="more"></a> &gt;&gt;  </p>
-<p>&ensp;&ensp;&ensp;&ensp;文章前面介绍了一些全景分割(Panoptic Segmentation)和一些相关工作, 那么这里直接进入正题.</p>
-<h2 id="Architecture-overview"><a href="#Architecture-overview" class="headerlink" title="Architecture overview"></a>Architecture overview</h2><p><img src="https://storage.googleapis.com/groundai-web-prod/media%2Fusers%2Fuser_290457%2Fproject_390518%2Fimages%2Fimages%2Fdiagrams%2FAdaInSegmentation-diagram-final_3.png" alt="在这里插入图片描述"><br>&ensp;&ensp;&ensp;&ensp;网络结构如上图所示, 以一个图像和一个点提议(point proposal)(x,y)作为输入和输出位于位置(x,y)的一个object的mask, 几个亮点:</p>
-<ul>
-<li>利用AdaIN机制构建出实例选择网络.(把风格迁移的东西搬到分割来了)</li>
-<li>利用控制器网络(controller network)为AdaIN层提供输入, 该输入包含提议点(x, y)位置的特征, 由一系列全连接层组成.  </li>
-<li>还有一个CoordConv块, 作用是帮助消除在不同位置上的相似目标的歧义(不难理解, 毕竟只输出提议点对象的mask嘛).</li>
-</ul>
-<h2 id="实例选择网络-instance-selection-network"><a href="#实例选择网络-instance-selection-network" class="headerlink" title="实例选择网络(instance selection network)"></a>实例选择网络(instance selection network)</h2><p>&ensp;&ensp;&ensp;&ensp;简单的说, 我们有一个向量(或者”特征”向量, 直接叫特征向量不太严谨, 该向量只是描述某个物体), 这个向量描述了某个物体, 利用这个向量可以把不同物体区分开来. 于是问题来了, 如何利用这个向量来生成mask呢? 作者的灵感来自于风格迁移领域的Adaptive Instance Normalization (AdaIN). 关于AdaIN是如何工作的, 可以去看一下相关的资料, 是一篇不太新的paper所以资料很多.<br>&ensp;&ensp;&ensp;&ensp;作者提出了一个轻量级的实例选择网络, 按作者的说法是该网络是被AdaIN参数化的(说白了就是用AdaIN调整过参数呗), 因此, “特征”向量包含实例选择层的主要参数, 利用backbone和”特征”向量提取的特征生成对象的mask.<br>&ensp;&ensp;&ensp;&ensp;于是问题就变成了如何提取好的向量.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">def _get_instance_maps(self, points, adaptive_input, controller_input):</span><br><span class="line">    self.num_points = points.size(1)</span><br><span class="line">    if getattr(self.controller, &apos;return_map&apos;, False):</span><br><span class="line">        w = self.EQF(controller_input, points)</span><br><span class="line">    else:</span><br><span class="line">        w = self.EQF(controller_input, points)</span><br><span class="line">        w = self.controller(w)</span><br><span class="line"></span><br><span class="line">    points = points.view(-1, 2)</span><br><span class="line">    x = adaptive_input.repeat_interleave(self.num_points, dim=0)</span><br><span class="line">    if self.with_coord_features:</span><br><span class="line">        x = self.add_coord_features(x, points)</span><br><span class="line">    x = self.block0(x)</span><br><span class="line">    x = self.adain(x, w)</span><br><span class="line">    x = self.block1(x)</span><br><span class="line"></span><br><span class="line">    if self.rescale_output:</span><br><span class="line">        scale, bias = self.rescale_output</span><br><span class="line">        x = scale * x + bias</span><br><span class="line"></span><br><span class="line">    return x</span><br></pre></td></tr></table></figure></p>
-<h2 id="点提议和控制器网络-point-proposal-and-controller-network"><a href="#点提议和控制器网络-point-proposal-and-controller-network" class="headerlink" title="点提议和控制器网络(point proposal and controller network)"></a>点提议和控制器网络(point proposal and controller network)</h2><p>&ensp;&ensp;&ensp;&ensp;说到特征向量, 大家的第一反应往往都是嵌入空间, 相同对象的距离近, 不同对象距离远. 作者的嵌入思想有一些不同:</p>
+        <h1 id="四元数（Quaternion）-二"><a href="#四元数（Quaternion）-二" class="headerlink" title="四元数（Quaternion）(二)"></a>四元数（Quaternion）(二)</h1><p><a href="https://gakkiri.github.io/2019/10/18/%E5%9B%9B%E5%85%83%E6%95%B0/#more">四元数(一)</a></p>
+<h2 id="3-四元数"><a href="#3-四元数" class="headerlink" title="3. 四元数"></a>3. 四元数</h2><h3 id="3-1-性质"><a href="#3-1-性质" class="headerlink" title="3.1 性质"></a>3.1 性质</h3><h4 id="3-1-1-模长-范数"><a href="#3-1-1-模长-范数" class="headerlink" title="3.1.1 模长(范数)"></a>3.1.1 模长(范数)</h4><p>&ensp;&ensp;&ensp;&ensp;仿照复数的定义, 可以暂时将一个四元数$q=a+bi+cj+dk$的模长定义为:  </p>
+<script type="math/tex; mode=display">
+\Vert q \Vert = \sqrt{a^2+b^2+c^2+d^2}</script><p>&ensp;&ensp;&ensp;&ensp;若用标量向量有序对的形式进行表示的话, $q = [s, \mathbf v]$的模长为:  </p>
+<script type="math/tex; mode=display">
+\Vert q \Vert = \sqrt{s^2 + \Vert \mathbf v \Vert ^2}\\
+= \sqrt{s^2 + \mathbf  v · \mathbf v}</script><p>&ensp;&ensp;&ensp;&ensp;四元数很难用几何的方法进行理解, 因为它代表四维长度. 但是, 和高维向量的模长一样, 这只是类比复数模长进行衍生定义的结果.<br><a id="more"></a> &gt;&gt;  </p>
+<h4 id="3-1-2-四元数的加减法"><a href="#3-1-2-四元数的加减法" class="headerlink" title="3.1.2 四元数的加减法"></a>3.1.2 四元数的加减法</h4><p>&ensp;&ensp;&ensp;&ensp;跟复数一样, 直接相加(减), 假设我们有$q_1=a+bi+cj+dk$和$q_2=e+fi+gj+hk$, 求和(减法也一样):  </p>
+<script type="math/tex; mode=display">
+q_1 \pm q_2 = a \pm bi \pm cj \pm dk \pm e \pm fi \pm gj \pm hk\\
+= (a \pm e) \pm (b \pm f)i \pm (c \pm g)j \pm (d \pm h)k</script><p>&ensp;&ensp;&ensp;&ensp;写成标量向量有序对, $q_1=[s, \mathbf v], q_2=[t, \mathbf u]$, 那么有:</p>
+<script type="math/tex; mode=display">
+q_1 \pm q_2 = [s \pm t, \mathbf v \pm \mathbf u]</script><h4 id="3-1-3-四元数的乘法"><a href="#3-1-3-四元数的乘法" class="headerlink" title="3.1.3 四元数的乘法"></a>3.1.3 四元数的乘法</h4><p>&ensp;&ensp;&ensp;&ensp;首先说四元数与标量之间的乘法, 假设有四元数$q=a+bi+cj+dk$和标量$s$, 它们的乘积表示为: $sq=s(a+bi+cj+dk)$, 并且遵守交换律.<br>&ensp;&ensp;&ensp;&ensp;而四元数与四元数的乘法不同, 不遵守交换律, 即$q_1q_2 \neq q_2q_2$, 而结合律和分配律都是成立的.<br>&ensp;&ensp;&ensp;&ensp;同样, 假设有两个四元数$q_1=a+bi+cj+dk$和$q_2=e+fi+gj+hk$, 它们的乘积表示为:  </p>
+<script type="math/tex; mode=display">
+q1q2 = (a + bi + cj + dk)(e + f i + gj + hk)\\
+= ae + a f i + agj \\+ ahk+ bei + b f i^2 \\+ bgij + bhik+cej \\+ c f ji + cgj^2 + chjk\\+dek + d f ki + dgkj \\+ dhk^2 \tag{1}</script><p>&ensp;&ensp;&ensp;&ensp;尽管结果很混乱, 但是别忘了复数的性质, 由于$i^2 = j^2 = k^2 = ijk = -1$, 可以得出  </p>
+<script type="math/tex; mode=display">
+ijk = -1\\
+iijk = -i\\
+-jk = -i\\
+jk = i</script><p>&ensp;&ensp;&ensp;&ensp;这里只写4种情况, 用同样的思路可以得到更多等式, 最终得到这样一张表格:  </p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>×</th>
+<th>1</th>
+<th>i</th>
+<th>j</th>
+<th>k</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>i</td>
+<td>j</td>
+<td>k</td>
+</tr>
+<tr>
+<td>i</td>
+<td>i</td>
+<td>-1</td>
+<td>k</td>
+<td>-j</td>
+</tr>
+<tr>
+<td>j</td>
+<td>j</td>
+<td>-k</td>
+<td>-1</td>
+<td>i</td>
+</tr>
+<tr>
+<td>k</td>
+<td>k</td>
+<td>j</td>
+<td>-i</td>
+<td>-1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>&ensp;&ensp;&ensp;&ensp;利用这张表格将公式(1)化简, 得到:  </p>
+<script type="math/tex; mode=display">
+q_1q_2 = \\
+ (ae − b f − cg − dh)+\\
+ (be + a f − dg + ch)i+\\
+ (ce + d f + ag − bh)j+\\
+ (de − c f + bg + ah)k \tag{2}</script><p>&ensp;&ensp;&ensp;&ensp;从前面可以发现, 四元数的相乘其实也是一个线性组合, 我们同样可以将它写成矩阵形式:</p>
+<script type="math/tex; mode=display">
+q_1q_2 = \left[ \begin{matrix} a&-b&-c&-d\\b&a&-d&c\\c&d&a&-b\\d&-c&b&a \end{matrix} \right] \left[ \begin{matrix} e\\f\\g\\h \end{matrix} \right]</script><p>&ensp;&ensp;&ensp;&ensp;注意这里是$q_1q_2$, 由于不符合交换律, $q_2q_1$的结果可以自己推, 这里就不写了.<br>&ensp;&ensp;&ensp;&ensp;现在将公式(2)写成这样的形式:</p>
+<script type="math/tex; mode=display">
+q_1q_2 =  (ae − (b f + cg + dh))+\\
+(be + a f + ch − dg)i+\\
+(ce + ag + d f − bh)j+\\
+(de + ah + bg − c f)k</script><p>&ensp;&ensp;&ensp;&ensp;现在令$\mathbf v = [b,c,d]^T, \mathbf = [f,g,h]^T$, 可以得到:</p>
+<script type="math/tex; mode=display">
+\mathbf u \mathbf v = bf + cg + dh\\
+\mathbf u × \mathbf v = \left| \begin{matrix} 
+\mathbf i & \mathbf j & \mathbf k\\ 
+b & c & d\\
+f & g & h
+\end{matrix} \right|= (ch − dg)\mathbf i − (bh − d f)\mathbf j + (bg − c f)\mathbf k</script><p>&ensp;&ensp;&ensp;&ensp;$\mathbf u, \mathbf v$是向量, $\mathbf i, \mathbf j, \mathbf k$是向量的基, 如果用标量向量有序对来表示, 就写成如下形式:  </p>
+<script type="math/tex; mode=display">
+q_1q_2 = [ae - \mathbf v · \mathbf u, a\mathbf u + e\mathbf v + \mathbf v × \mathbf u] \tag{3}</script><p>&ensp;&ensp;&ensp;&ensp;公式(3)给出的也就是<strong>Graßmann积</strong>(Graßmann Product).</p>
+<h4 id="3-1-3-纯四元数"><a href="#3-1-3-纯四元数" class="headerlink" title="3.1.3 纯四元数"></a>3.1.3 纯四元数</h4><p>&ensp;&ensp;&ensp;&ensp;仅有虚部的四元数被称为纯四元数, 纯四元数被表示为如下形式:</p>
+<script type="math/tex; mode=display">
+v = [0, \mathbf v]</script><p>&ensp;&ensp;&ensp;&ensp;纯四元数的一条比较重要的特性, 假设有两个纯四元数$v=[0, \mathbf v], u=[0, \mathbf u]$, 那么:</p>
+<script type="math/tex; mode=display">
+vu = [0 - \mathbf v · \mathbf u, 0 + \mathbf v × \mathbf u] = [-\mathbf v · \mathbf u, \mathbf v × \mathbf u]</script><h4 id="3-1-4-逆与共轭"><a href="#3-1-4-逆与共轭" class="headerlink" title="3.1.4 逆与共轭"></a>3.1.4 逆与共轭</h4><p>&ensp;&ensp;&ensp;&ensp;假设一个四元数$q$, 那么它的逆就是$q^{-1}$, 可以得到$qq^{-1}=q^{-1}q=1(q \neq 0)$, 也就是说:  </p>
+<script type="math/tex; mode=display">
+(pq)q^−1 = p(qq^−1) = p · 1 = p\\
+q^−1(qp) = (q^−1q)p = 1 · p = p</script><p>&ensp;&ensp;&ensp;&ensp;所以, 右乘$q$的逆运算为右乘$q^{-1}$, 左乘$q$的逆运算为左乘$q^{-1}$, 这与矩阵的性质十分相似.<br>&ensp;&ensp;&ensp;&ensp;事实上, 四元数要满足$qq^{-1}=q^{-1}q=1$是非常困难的, 我们可以使用四元数共轭的一些性质来获得$q^{-1}$.<br>&ensp;&ensp;&ensp;&ensp;假设一个四元数$q=a+bi+ck+dj$的共轭为  </p>
+<script type="math/tex; mode=display">
+q^*=a-bi- cj-dk</script><p>&ensp;&ensp;&ensp;&ensp;用标量向量有序对来定义</p>
+<script type="math/tex; mode=display">
+q=[s, \mathbf v]</script><p>&ensp;&ensp;&ensp;&ensp;共轭为 </p>
+<script type="math/tex; mode=display">
+q^*=[s, -\mathbf v]</script><p>共轭四元数的一个重要性质是:  </p>
+<script type="math/tex; mode=display">
+qq^*=[s, \mathbf v]·[s, -\mathbf v]\\
+=[s^2-\mathbf v ·(-\mathbf v), s(-\mathbf v)+s\mathbf v + \mathbf v ×(- \mathbf v)]\\
+=[s^2+\mathbf v · \mathbf v, \mathbf 0] (平行向量叉乘为0)</script><p>&ensp;&ensp;&ensp;&ensp;可以发现最后得到的结果是一个实数, 并且是四元数模长的平方:  </p>
+<script type="math/tex; mode=display">
+qq^*=[s^2+\mathbf v · \mathbf v, \mathbf 0]\\
+=s^2 + x^2 + y^2 + z^2\\
+=\Vert q \Vert ^2\\
+又因为(q^*)^*=[s, -(-\mathbf v)] = [s, \mathbf v] = q,\\
+q^*q=(q^*)(q^*)^*\\
+=\Vert q^* \Vert ^2\\
+=s^2+x^2+y^2+z^2\\
+=\Vert q \Vert ^2\\
+=qq^*</script><p>&ensp;&ensp;&ensp;&ensp;至此, 得出$q^<em> q = q q^</em>$, 想想四元数逆的定义:  </p>
+<script type="math/tex; mode=display">
+qq^{-1} = 1\\
+q^*qq^{-1}=q^*\\
+(q^*q)q^{-1}=q^*\\
+\Vert q \Vert ^2 · q^{-1} = q^*\\
+q^{-1} = \frac {q^*}{\Vert q \Vert ^2}</script><p>&ensp;&ensp;&ensp;&ensp;利用这种方式可以高效得到一个四元数的逆, 总的来说, 如果$\Vert q \Vert = 1$, 则$q$是一个单位四元数, 可以得到:  </p>
+<script type="math/tex; mode=display">
+q^{-1} = \frac {q^*}{1^2} = q^*</script><h3 id="3-2-四元数与3D旋转"><a href="#3-2-四元数与3D旋转" class="headerlink" title="3.2 四元数与3D旋转"></a>3.2 四元数与3D旋转</h3><p>  &ensp;&ensp;&ensp;&ensp;终于, 千辛万苦来到正题, 四元数如何表示一个3D旋转.<br>  &ensp;&ensp;&ensp;&ensp;如果我们需要将一个向量$\mathbf v$沿着一个用单位向量所定义的旋转轴$\mathbf u$旋转$\theta$度, 那么需要对向量做分量变换, 对分量进行旋转(第一部分过的), 所以我们拥有几个向量, $\mathbf u, \mathbf v, \mathbf v_\bot, \mathbf v_\Vert, \mathbf v^′, \mathbf v^′_\bot, \mathbf v_\Vert^′$ 将它们表示为纯四元数:  </p>
+<script type="math/tex; mode=display">
+  v = [0, \mathbf v]\\
+  ...(其他的也是一样的, 不写了)</script><p>  &ensp;&ensp;&ensp;&ensp;没有加粗的都表示是纯四元数, 所以:  </p>
+<script type="math/tex; mode=display">
+  v=v_\Vert + v_\bot\\
+  v^′=v_\Vert^′+v_\bot^′</script><p>&ensp;&ensp;&ensp;&ensp;OK, 和之前一样, 对$v_\bot, v_\Vert$分别讨论.</p>
+<h4 id="3-2-1-v-bot-的旋转"><a href="#3-2-1-v-bot-的旋转" class="headerlink" title="3.2.1 $v_\bot$的旋转"></a>3.2.1 $v_\bot$的旋转</h4><p>  &ensp;&ensp;&ensp;&ensp;同样, $v_\bot$正交与旋转轴$\mathbf u$, 因此(不记得的可以看下第一部分):  </p>
+<script type="math/tex; mode=display">
+  \mathbf v^′ = \cos({\theta})\mathbf v_\bot + \sin({\theta})(\mathbf u × \mathbf v_\bot)</script><p>  &ensp;&ensp;&ensp;&ensp;直接将对应的虚四元数替换后, 还剩一个$\mathbf u × \mathbf v_\bot$. 不过利用四元数的性质, 可以将它写成四元数积的形式. </p>
+<script type="math/tex; mode=display">
+  由vu=[-\mathbf v · \mathbf u, \mathbf v ×\mathbf u],\\
+  uv_\bot=[-\mathbf u · \mathbf v_\bot, \mathbf u × \mathbf v_\bot]\\
+  因为\mathbf v_\bot 正交于\mathbf u, 所以\mathbf u · \mathbf v_\bot=0,\\
+  uv_\bot=[0, \mathbf u × \mathbf v_\bot]\\
+  =\mathbf u × \mathbf v_\bot</script><p>  &ensp;&ensp;&ensp;&ensp;这里$uv_\bot$仍然是纯四元数, 将这个等式与之前的定义的纯四元数联系起来, 得到:</p>
+<script type="math/tex; mode=display">
+  v_\bot^′=\cos({\theta})v_\bot+\sin({\theta})(uv_\bot)\\
+  =(\cos({\theta})+\sin({\theta})u)v_\bot</script><p>  &ensp;&ensp;&ensp;&ensp;至此, 如果将$((\cos({\theta})+\sin({\theta})u))$看做一个四元数, 就已经将旋转与四元数的积联系起来了. 令$q=\cos({\theta})+\sin({\theta})u$, 有</p>
+<script type="math/tex; mode=display">
+  v_\bot^′=qv_\bot</script><p>  &ensp;&ensp;&ensp;&ensp;构造一个$q$, 就能对$q$进行变形:</p>
+<script type="math/tex; mode=display">
+  q = \cos({\theta}) + \sin({\theta})u\\
+  =[\cos({\theta}), \mathbf 0]+[0, \sin({\theta})\mathbf u]\\
+  =[\cos({\theta}), \sin({\theta})\mathbf u]</script><p>  &ensp;&ensp;&ensp;&ensp;也就是说, 如果旋转轴$\mathbf u$的坐标为$[u_x, u_y, y_z]^T$,旋转角为$\theta$, 那么完成这一旋转所需要的四元数$q$可以构造为:</p>
+<script type="math/tex; mode=display">
+  q = \cos({\theta}) + \sin({\theta})u_xi+\sin({\theta})u_yj+\sin({\theta})u_zk</script><p>  &ensp;&ensp;&ensp;&ensp;总结起来, 当$\mathbf v_\bot$正交与旋转$\mathbf u$时, 旋转$\theta$角度之后的$\mathbf v_\bot^′$可以用四元数惩罚来获得, 令$v_\bot=[0, \mathbf v_\bot], q=[\cos({\theta}), \sin({\theta})\mathbf u]$, 那么:</p>
+<script type="math/tex; mode=display">
+  v_\bot^′=qv_\bot</script><h4 id="3-2-2-v-Vert-的旋转"><a href="#3-2-2-v-Vert-的旋转" class="headerlink" title="3.2.2 $v_\Vert$的旋转"></a>3.2.2 $v_\Vert$的旋转</h4><p> &ensp;&ensp;&ensp;&ensp;同样, 由于$\mathbf v_\Vert$与旋转轴$\mathbf u$平行, 旋转不会对它做任何变换, 也就是说:  </p>
+<script type="math/tex; mode=display">
+ v^′_\Vert = v_\Vert</script><h4 id="3-2-3-v-的旋转"><a href="#3-2-3-v-的旋转" class="headerlink" title="3.2.3 $v$的旋转"></a>3.2.3 $v$的旋转</h4><p> &ensp;&ensp;&ensp;&ensp;所以, 现在我们知道一般情况下, 对于$v^′$:</p>
+<script type="math/tex; mode=display">
+ v^′ = v^′_\Vert + v^′_\bot\\
+ =v_\Vert + qv_\bot</script><p> &ensp;&ensp;&ensp;&ensp;注意, $q=[\cos({\theta}), \sin({\theta})\mathbf u]$.<br> &ensp;&ensp;&ensp;&ensp;按照以前的做法, 我们会把$v_\Vert$和$v_\bot$拆开继续化简, 但是这里不会这么做, 因为有更好的办法.<br> &ensp;&ensp;&ensp;&ensp;首先介绍几个引理:  </p>
 <blockquote>
-<p>The output of a backbone Q may have lower spatial resolution compared to the input image. Thus, for each point (x,y) we obtain corresponding embedding Q(x,y) with the use of bilinear interpolation. The resulting embedding Q(x,y) is then processed in a controller network, that consists of a few fully connected layers. Controller network outputs a ”characteristic” vector, which is then passed to AdaIN layers in instance selection network. Using this mechanism the instance selection network adapts to the selected object.</p>
+<p>Lemma 1. 如果$q=[\cos({\theta}), \sin({\theta})\mathbf u]$, 而且$\mathbf u$为单位向量, 那么$q^2=qq=[\cos({2\theta}), \sin({2\theta})\mathbf u]$.</p>
 </blockquote>
-<p>&ensp;&ensp;&ensp;&ensp;由于主干输出的分辨率较低(经过卷积嘛), 因此对于每个点, 使用双线性插值来得到嵌入$Q(x, y)$, 并输入到控制器网络中, 经过几个全连接层(不过作者在代码里似乎用的是卷积层), 输出一个”特征”向量, 并传递给实例选择网络的AdaIN层.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">class SimpleConvController(nn.Module):</span><br><span class="line">    def __init__(self, num_layers, in_channels, latent_channels,</span><br><span class="line">                 kernel_size=1, activation=&apos;relu&apos;, norm_layer=nn.BatchNorm2d):</span><br><span class="line">        super(SimpleConvController, self).__init__()</span><br><span class="line"></span><br><span class="line">        # flag that indicates whether we use fully convolutional controller or not</span><br><span class="line">        self.return_map = True</span><br><span class="line"></span><br><span class="line">        # select activation function</span><br><span class="line">        _activation = ops.select_activation_function(activation)</span><br><span class="line"></span><br><span class="line">        controller = []</span><br><span class="line">        for i in range(num_layers):</span><br><span class="line">            controller.extend([</span><br><span class="line">                nn.Conv2d(in_channels, latent_channels, kernel_size),</span><br><span class="line">                _activation(),</span><br><span class="line">                norm_layer(latent_channels) if norm_layer is not None else nn.Identity()</span><br><span class="line">            ])</span><br><span class="line">        self.controller = nn.Sequential(*controller)</span><br><span class="line"></span><br><span class="line">    def forward(self, x):</span><br><span class="line">        x = self.controller(x)</span><br><span class="line">        return x</span><br></pre></td></tr></table></figure><br>&ensp;&ensp;&ensp;&ensp;没有直接优化嵌入之间的距离, 而是: </p>
+<p>&ensp;&ensp;&ensp;&ensp;证明不难:  </p>
+<script type="math/tex; mode=display">
+q^2 = [\cos({\theta}), sin({\theta})\mathbf u]·[cos({\theta}), sin({\theta})\mathbf u]\\
+=[\cos^2({\theta}) - (\sin({\theta})\mathbf u · \sin({\theta})\mathbf u), \\(\cos({\theta})\sin({\theta})+\sin({\theta})\cos({\theta}))\mathbf u + (\sin({\theta})\mathbf u × \sin({\theta})\mathbf u)]\\
+=[\cos^2({\theta}) - \sin^2({\theta})\Vert \mathbf u \Vert^2, 2\sin({\theta})\cos({\theta})\mathbf u + \mathbf 0]\\
+=[\cos^2({\theta}) - \sin^2({\theta}), 2\sin({\theta})\cos({\theta})\mathbf u]\\
+=[\cos({2\theta}), \sin({2\theta})\mathbf u]</script><p>&ensp;&ensp;&ensp;简单解释一下, 如果绕着同一个轴$\mathbf u$连续旋转$\theta$度两次, 那么所做出的变换等同于直接绕着$\mathbf u$旋转$2\theta$度.<br>&ensp;&ensp;&ensp;基于这个引理, 同时根据四元数逆的定义$qq^{-1}=1$, 对旋转公式变形:</p>
+<script type="math/tex; mode=display">
+v^′ = v_\Vert + qv_\bot\\
+= 1·v_\Vert + qv_\bot\\
+(令q=p^2, 则p=[\cos({\frac {\theta}{2}}), \sin({\frac {\theta}{2}})\mathbf u])\\
+=pp^{-1}v_\Vert + ppv_\bot</script><p>&ensp;&ensp;&ensp;这里又引入了新的四元数$p=[\cos({\frac {\theta}{2}}), \sin({\frac {\theta}{2}})\mathbf u])$, 根据前面的引理, 可以验证:  </p>
+<script type="math/tex; mode=display">
+pp=p^2\\
+=[\cos({2·\frac {\theta}{2}}), \sin({2·\frac {\theta}{2}})\mathbf u])\\
+=q</script><p>&ensp;&ensp;&ensp;这里注意到, 和$q$一样, $\Vert p \Vert=1$, $p$也是一个单位四元数, 所以:</p>
+<script type="math/tex; mode=display">
+p^{-1} = p^*</script><p>&ensp;&ensp;&ensp;将这个结果代入之前的等式中:</p>
+<script type="math/tex; mode=display">
+v^′ = pp^{-1}v_\Vert + ppv_\bot\\
+=pp^*v_\Vert + ppv_\bot</script><p>&ensp;&ensp;&ensp;这个等式还能继续化简, 至此再引入两个定理(证明的过程就不写了, 都是利用Graßmann 积来证)  </p>
 <blockquote>
-<p>the controller network connects backbone and instance selection network in a feedback loop, thus enforcing backbone to produce rich features characterizing each particular object.</p>
+<p>Lemma 2. 假设$v_\Vert$=[0, $\mathbf v_\Vert$]是一个纯四元数, 而$q=[\alpha, \beta \mathbf u]$, 其中$\mathbf u$是一个单位向量, $\alpha, \beta \in \mathbb R$. 在这样的条件下, 如果$\mathbf v_\Vert$平行于$\mathbf u$, 那么$qv_\Vert=v_\Vert q$<br>Lemma 3. 假设$v_\bot = [0, \mathbf v_\bot]$是一个纯四元数, 而$q=[\alpha, \beta \mathbf u]$, 其中$\mathbf u$是一个单位向量, $\alpha, \beta \in \mathbb R$. 该情况下, 如果$\mathbf v_\bot$正交于$\mathbf u$, 那么$qv_\bot=v_\bot q^*$</p>
 </blockquote>
-<p>&ensp;&ensp;&ensp;&ensp;作者说这样做比使用辅助损失更好, 后面提到这是因为在网络会为属于同一个对象的点提议生成类似的输出, 相当于直接优化mask, 比使用优化嵌入距离作为.<br>&ensp;&ensp;&ensp;&ensp;关于Relative CoordConv, 其实就是一个坐标转换的过程, 把归一化到$[-1, 1]$的像素坐标加入到输入特征里.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">def _get_instance_maps(self, points, adaptive_input, controller_input):</span><br><span class="line">    self.num_points = points.size(1)</span><br><span class="line">    if getattr(self.controller, &apos;return_map&apos;, False):</span><br><span class="line">        w = self.EQF(controller_input, points)</span><br><span class="line">    else:</span><br><span class="line">        w = self.EQF(controller_input, points)</span><br><span class="line">        w = self.controller(w)</span><br><span class="line"></span><br><span class="line">    points = points.view(-1, 2)</span><br><span class="line">    x = adaptive_input.repeat_interleave(self.num_points, dim=0)</span><br><span class="line">    if self.with_coord_features:</span><br><span class="line">        x = self.add_coord_features(x, points)</span><br><span class="line">    x = self.block0(x)</span><br><span class="line">    x = self.adain(x, w)</span><br><span class="line">    x = self.block1(x)</span><br><span class="line"></span><br><span class="line">    if self.rescale_output:</span><br><span class="line">        scale, bias = self.rescale_output</span><br><span class="line">        x = scale * x + bias</span><br><span class="line"></span><br><span class="line">    return x</span><br></pre></td></tr></table></figure><br>&ensp;&ensp;&ensp;&ensp;我们需要向网络提供对象的坐标, 但是不希望在backbone中使用坐标, 这是考虑到预训练所以不希望改变backbone的结构. 因此另外使用一个CoordConv块, 接在backbone的后面, 并依赖于点提议, 生成两个map, map的值被归一化到$[-1, 1]$, 代表了的是CoordConv的半径R内的坐标值, R是一个超参数, 大致代表了被检测对象的大小. 将其输出与backbone得到的feature一起输入到实例选择网络.<br>&ensp;&ensp;&ensp;&ensp;采样时对每个批次中的图像在对象级层面上取K个点. 随机选择一个对象, 并在该对象上随机取一个点. 采样到K个点后, 训练网络来预测K个mask, 为此, 作者对像素级损失函数做出一个调整, 调整后的损失函数可以比较网络的输入和GT Mask, paper里说最后使用了一种改进的焦点损失, 该损失具有最好的效果. 梯度后传至整个网络包括backbone.<br><img src="https://raw.githubusercontent.com/gakkiri/gakkiri.github.io/master/img/paper1.png" alt="在这里插入图片描述"><br>&ensp;&ensp;&ensp;&ensp;每次迭代的点提议都显示为浅绿色, 不同的实例用不同的颜色标记. 图像的“未知”区域显示为灰色. 在每次迭代中, 一个新的点提议被采样, 一个相应的实例被分割. </p>
-<p>&ensp;&ensp;&ensp;&ensp;整个网络的内容差不多就这样, paper里还有更多内容, 包括实际在数据集上使用时是怎么样的, 已经实验结果, 这里就不写了. 在paper里展示的效果图在复杂情况下能准确地分割出对象, 看起来还是不错的.</p>
+<p>&ensp;&ensp;&ensp;有了以上两条引理, 对等式进一步化简:</p>
+<script type="math/tex; mode=display">
+v^′ = pp^*v_\Vert + ppv_\bot\\
+=pv_\Vert p^* + pv_\bot p^*\\
+=p(v_\Vert + v_\bot)p^*</script><p>&ensp;&ensp;&ensp;显然, $(v_\Vert + v_\bot)$其实就是$v$, 所以:</p>
+<script type="math/tex; mode=display">
+v^′=pvp^*</script><p>&ensp;&ensp;&ensp;至此, 3D空间中任意一个旋转都能够用三个四元数相乘的形式表达出来, 尽管推理过程十分漫长, 但是结论却非常简洁.换句话说, 如果我们有$q=[\cos({\theta}), \sin({\theta})\mathbf u]$, 那么$v^′ = qvq^*$可以将$\mathbf v$沿着$\mathbf u$旋转$2\theta$度.</p>
+<h3 id="3-3-3D旋转的矩阵形式"><a href="#3-3-3D旋转的矩阵形式" class="headerlink" title="3.3 3D旋转的矩阵形式"></a>3.3 3D旋转的矩阵形式</h3><p>&ensp;&ensp;&ensp;在实际应用中, 通常将旋转和平移缩放进行复合, 所以需要用到四元数旋转的矩阵形式, 推导过程并不困难:<br>&ensp;&ensp;&ensp;左乘一个四元数$q=a+bi+cj+dk等同于$:</p>
+<script type="math/tex; mode=display">
+L(q)=\left[ \begin{matrix} a&-b&-c&-d\\b&a&-d&c\\c&d&a&-b\\d&-c&b&a \end{matrix}\right]</script><p>&ensp;&ensp;&ensp;右乘$q$等同于:</p>
+<script type="math/tex; mode=display">
+R(q)=\left[ \begin{matrix} a&-b&-c&-d\\b&a&d&-c\\c&-d&a&b\\d&c&-b&a \end{matrix}\right]</script><p>&ensp;&ensp;&ensp;所以, 利用这两个公式将$v^′ = qvq^<em>$写成矩阵形式. 假设$a=\cos({\frac {\theta}{2}}), b=\sin({\frac {\theta}{2}})u_x, c=\sin({\frac {\theta}{2}})u_y, d=\sin({\frac {\theta}{2}})u_z, q = a+bi+cj+dk$, 并且$R(q^</em>)=R(q)^T$, 那么剩下的就是套公式就行了(请记住, $a^2+b^2+c^2+d^2=1$), 直接写出结论:</p>
+<script type="math/tex; mode=display">
+qvq^*=\\
+\left[ \begin{matrix}
+1 & 0 & 0 & 0\\
+0 & 1-2c^2-2d^2 & 2bc-2ad & 2ac+2bd\\
+0 & 2bc+2ad & 1-2b^2-2d^2 & 2cd-2ab\\
+0 & 2bd-2ac & 2ab+2cd & 1-2b^2-2c^2
+\end{matrix} \right]v</script><p>&ensp;&ensp;&ensp;这就是3D旋转的矩阵形式, 因为最外圈不会对$v$有任何变换, 所以可以压缩成$3×3$矩阵.<br>&ensp;&ensp;&ensp;总结一下,任意向量$\mathbf v$沿着以单位向量定义的旋转轴$\mathbf u$旋转$\theta$角度之后的$\mathbf v^′$可以用矩阵乘法来获得. 令$a=\cos({\frac {\theta}{2}}), b=\sin({\frac {\theta}{2}})u_x, c=\sin({\frac {\theta}{2}})u_y, d=\sin({\frac {\theta}{2}})u_z$:</p>
+<script type="math/tex; mode=display">
+\mathbf v^′ = \\
+\left[ \begin{matrix}
+1-2c^2-2d^2 & 2bc-2ad & 2ac+2bd\\
+2bc+2ad & 1-2b^2-2d^2 & 2cd-2ab\\
+2bd-2ac & 2ab+2cd & 1-2b^2-2c^2
+\end{matrix} \right] \mathbf v</script><h3 id="3-4-Coding-欧拉角到四元数的转换"><a href="#3-4-Coding-欧拉角到四元数的转换" class="headerlink" title="3.4 Coding 欧拉角到四元数的转换."></a>3.4 Coding 欧拉角到四元数的转换.</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">struct ​Quaternion</span><br><span class="line">&#123;</span><br><span class="line">   ​double w, x, y, z;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Quaternion ToQuaternion(double yaw, double pitch, double roll) // yaw (Z), pitch (Y), roll (X)</span><br><span class="line">&#123;</span><br><span class="line">   ​// Abbreviations for the various angular functions</span><br><span class="line">   ​double cy = cos(yaw * 0.5);</span><br><span class="line">   ​double sy = sin(yaw * 0.5);</span><br><span class="line">   ​double cp = cos(pitch * 0.5);</span><br><span class="line">   ​double sp = sin(pitch * 0.5);</span><br><span class="line">   ​double cr = cos(roll * 0.5);</span><br><span class="line">   ​double sr = sin(roll * 0.5);</span><br><span class="line"></span><br><span class="line">   ​Quaternion q;</span><br><span class="line">   ​q.w = cy * cp * cr + sy * sp * sr;</span><br><span class="line">   ​q.x = cy * cp * sr - sy * sp * cr;</span><br><span class="line">   ​q.y = sy * cp * sr + cy * sp * cr;</span><br><span class="line">   ​q.z = sy * cp * cr - cy * sp * sr;</span><br><span class="line"></span><br><span class="line">   ​return q;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>四元数到欧拉角:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">struct EulerAngles</span><br><span class="line">&#123;</span><br><span class="line">    double roll, pitch, yaw;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">EulerAngles ToEulerAngles(Quaternion q)</span><br><span class="line">&#123;</span><br><span class="line">    EulerAngles angles;</span><br><span class="line"></span><br><span class="line">    // roll (x-axis rotation)</span><br><span class="line">    double sinr_cosp = +2.0 * (q.w * q.x + q.y * q.z);</span><br><span class="line">    double cosr_cosp = +1.0 - 2.0 * (q.x * q.x + q.y * q.y);</span><br><span class="line">    angles.roll = atan2(sinr_cosp, cosr_cosp);</span><br><span class="line"></span><br><span class="line">    // pitch (y-axis rotation)</span><br><span class="line">    double sinp = +2.0 * (q.w * q.y - q.z * q.x);</span><br><span class="line">    if (fabs(sinp) &gt;= 1)</span><br><span class="line">        angles.pitch = copysign(M_PI / 2, sinp); // use 90 degrees if out of range</span><br><span class="line">    else</span><br><span class="line">        angles.pitch = asin(sinp);</span><br><span class="line"></span><br><span class="line">    // yaw (z-axis rotation)</span><br><span class="line">    double siny_cosp = +2.0 * (q.w * q.z + q.x * q.y);</span><br><span class="line">    double cosy_cosp = +1.0 - 2.0 * (q.y * q.y + q.z * q.z);  </span><br><span class="line">    angles.yaw = atan2(siny_cosp, cosy_cosp);</span><br><span class="line"></span><br><span class="line">    return angles;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>python中有一个库pyquaternion, 可以帮助我们进行类似这样的变换, 其中给出一个例子, 在点云标注中往往会标注出物体的偏航角(yaw):<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">from pyquaternion import Quaternion</span><br><span class="line">quat = Quaternion(scalar=np.cos(yaw / 2), vector=[0, 0, np.sin(yaw / 2)]) # 从偏航角到四元数</span><br><span class="line"></span><br><span class="line">def quaternion_yaw(q: Quaternion) -&gt; float:  # 从四元数到偏航角</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    Calculate the yaw angle from a quaternion.</span><br><span class="line">    Note that this only works for a quaternion that represents a box in lidar or global coordinate frame.</span><br><span class="line">    It does not work for a box in the camera frame.</span><br><span class="line">    :param q: Quaternion of interest.</span><br><span class="line">    :return: Yaw angle in radians.</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">    # Project into xy plane.</span><br><span class="line">    v = np.dot(q.rotation_matrix, np.array([1, 0, 0]))</span><br><span class="line"></span><br><span class="line">    # Measure yaw using arctan.</span><br><span class="line">    yaw = np.arctan2(v[1], v[0])</span><br><span class="line"></span><br><span class="line">    return yaw</span><br></pre></td></tr></table></figure><br>这里再推荐一个视频, 比我写的要生动一些…<a href="https://www.youtube.com/watch?v=3BR8tK-LuB0" target="_blank" rel="noopener">Fantastic Quaternions - Numberphile </a></p>
 
       
 
@@ -251,7 +437,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://gakkiri.github.io/2019/10/19/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-AdaptIS-Adaptive-Instance-Selection-Network-%E8%87%AA%E9%80%82%E5%BA%94%E5%AE%9E%E4%BE%8B%E9%80%89%E6%8B%A9%E7%BD%91%E7%BB%9C/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://gakkiri.github.io/2019/10/16/%E5%9B%9B%E5%85%83%E6%95%B0-%E4%BA%8C/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -265,18 +451,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/10/19/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%A6%BB%E6%95%A3%E5%80%BC%E7%BC%96%E7%A0%81-%E7%9B%AE%E6%A0%87%E7%BC%96%E7%A0%81-Target-Encoding/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/10/17/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-AdaptIS-Adaptive-Instance-Selection-Network-%E8%87%AA%E9%80%82%E5%BA%94%E5%AE%9E%E4%BE%8B%E9%80%89%E6%8B%A9%E7%BD%91%E7%BB%9C/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          机器学习离散值编码 - 目标编码(Target Encoding)
+          论文阅读: AdaptIS: Adaptive Instance Selection Network 自适应实例选择网络
         
       </div>
     </a>
   
   
-    <a href="/2019/10/18/%E5%9B%9B%E5%85%83%E6%95%B0-%E4%BA%8C/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">四元数(二)</div>
+    <a href="/2019/10/15/%E5%9B%9B%E5%85%83%E6%95%B0-%E4%B8%80/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">四元数(一)</div>
       <i class="icon-circle-right"></i>
     </a>
   

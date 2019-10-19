@@ -6,16 +6,16 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://gakkiri.github.io">
-  <title>机器学习离散值编码 - 目标编码(Target Encoding) | gakkiri&#39;s blog</title>
+  <title>一些实用的pytorch脚本 | gakkiri&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;当进行监督学习时, 经常要处理离散变量. 也就是说, 变量没有一个自然的数值表示. 问题是大多数机器学习算法要求输入的数据是数值的. 在某种程度上, 数据科学需要将离散变量转换为数值变量。">
+  <meta name="description" content="一些在使用pytorch时可能会用到的比较有用的脚本归一化1234def normalize_channels(img):      _min, _max = img.min(axis=(0,1)), img.std(axis=(0,1))      img = (img - _min) &#x2F; (_max - _min)      return img">
 <meta property="og:type" content="article">
-<meta property="og:title" content="机器学习离散值编码 - 目标编码(Target Encoding)">
-<meta property="og:url" content="http:&#x2F;&#x2F;gakkiri.github.io&#x2F;2019&#x2F;10&#x2F;19&#x2F;%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%A6%BB%E6%95%A3%E5%80%BC%E7%BC%96%E7%A0%81-%E7%9B%AE%E6%A0%87%E7%BC%96%E7%A0%81-Target-Encoding&#x2F;index.html">
+<meta property="og:title" content="一些实用的pytorch脚本">
+<meta property="og:url" content="http:&#x2F;&#x2F;gakkiri.github.io&#x2F;2019&#x2F;10&#x2F;10&#x2F;%E4%B8%80%E4%BA%9B%E5%AE%9E%E7%94%A8%E7%9A%84pytorch%E8%84%9A%E6%9C%AC&#x2F;index.html">
 <meta property="og:site_name" content="gakkiri&#39;s blog">
-<meta property="og:description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;当进行监督学习时, 经常要处理离散变量. 也就是说, 变量没有一个自然的数值表示. 问题是大多数机器学习算法要求输入的数据是数值的. 在某种程度上, 数据科学需要将离散变量转换为数值变量。">
+<meta property="og:description" content="一些在使用pytorch时可能会用到的比较有用的脚本归一化1234def normalize_channels(img):      _min, _max = img.min(axis=(0,1)), img.std(axis=(0,1))      img = (img - _min) &#x2F; (_max - _min)      return img">
 <meta property="og:locale" content="zn">
-<meta property="og:updated_time" content="2019-10-19T08:36:33.903Z">
+<meta property="og:updated_time" content="2019-10-19T15:34:57.731Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="gakkiri&#39;s blog" type="application/atom+xml">
@@ -148,304 +148,143 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-机器学习离散值编码-目标编码-Target-Encoding" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-一些实用的pytorch脚本" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      机器学习离散值编码 - 目标编码(Target Encoding)
+      一些实用的pytorch脚本
     </h1>
   
 
         
-        <a href="/2019/10/19/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%A6%BB%E6%95%A3%E5%80%BC%E7%BC%96%E7%A0%81-%E7%9B%AE%E6%A0%87%E7%BC%96%E7%A0%81-Target-Encoding/" class="archive-article-date">
-  	<time datetime="2019-10-19T08:28:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-19</time>
+        <a href="/2019/10/10/%E4%B8%80%E4%BA%9B%E5%AE%9E%E7%94%A8%E7%9A%84pytorch%E8%84%9A%E6%9C%AC/" class="archive-article-date">
+  	<time datetime="2019-10-10T15:59:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-10</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>&ensp;&ensp;&ensp;&ensp;当进行监督学习时, 经常要处理离散变量. 也就是说, 变量没有一个自然的数值表示. 问题是大多数机器学习算法要求输入的数据是数值的. 在某种程度上, 数据科学需要将离散变量转换为数值变量。<br><a id="more"></a> &gt;&gt; </p>
-<h4 id="分类特征编码有许多方式"><a href="#分类特征编码有许多方式" class="headerlink" title="分类特征编码有许多方式:"></a>分类特征编码有许多方式:</h4><ul>
-<li><a href="https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.LabelEncoder.html" target="_blank" rel="noopener">Label encoding(标签编码)</a></li>
-<li><a href="https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html" target="_blank" rel="noopener">One-hot encoding(独热码)</a></li>
-<li><a href="https://www.tensorflow.org/tutorials/text/word_embeddings" target="_blank" rel="noopener">Vector representation(向量表示法)</a></li>
-<li><a href="https://github.com/Microsoft/LightGBM/blob/master/docs/Advanced-Topics.rst#categorical-feature-support" target="_blank" rel="noopener">Optimal binning(最佳合并? 不知道怎么翻)</a></li>
-<li><a href="http://www.saedsayad.com/encoding.htm" target="_blank" rel="noopener">Target Encoding(目标编码)</a></li>
-</ul>
-<p>&ensp;&ensp;&ensp;&ensp;每种方法都有其优缺点, 通常取决于数据和需求. 如果一个变量有很多类别, 那么独热码将产生许多冗余列, 这可能会导致内存问题. 根据我的经验, LightGBM/CatBoost自带的编码方式很不错. 标签编码没什么用. 不过, 如果离散变量恰好是有序的, 可以用递增的数字来表示它(比如说, “cold”-&gt;0，“mild”-&gt;1，“hot”-&gt;2). 词嵌入(word2vec)也还不错, 但是需要一些微调, 有点麻烦.<br>&ensp;&ensp;&ensp;&ensp;目标编码比较简单实用, 本质非常简单, 当你有一个分类变量$x$和目标label $y$, label可以是离散值也可以是连续值, 对于$x$里的每个不同的样本, 你要计算对应的$y$的平均值, 然后用相应的均值替换$x_i$. 在python和python的pandas库里很容易实现.  </p>
-<h4 id="来试试"><a href="#来试试" class="headerlink" title="来试试"></a>来试试</h4><p>随意生成一些数据样本.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import pandas as pd</span><br><span class="line"></span><br><span class="line">df = pd.DataFrame(&#123;</span><br><span class="line">    &apos;x_0&apos;: [&apos;a&apos;] * 5 + [&apos;b&apos;] * 5,</span><br><span class="line">    &apos;x_1&apos;: [&apos;a&apos;] * 9 + [&apos;b&apos;] * 1,</span><br><span class="line">    &apos;y&apos;: [1, 1, 1, 1, 0, 1, 0, 0, 0, 0]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><br>得到的数据帧是这样的:</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>$x_0$</th>
-<th>$x_1$</th>
-<th>$y$</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>a</td>
-<td>c</td>
-<td>1</td>
-</tr>
-<tr>
-<td>a</td>
-<td>c</td>
-<td>1</td>
-</tr>
-<tr>
-<td>a</td>
-<td>c</td>
-<td>1</td>
-</tr>
-<tr>
-<td>a</td>
-<td>c</td>
-<td>1</td>
-</tr>
-<tr>
-<td>a</td>
-<td>c</td>
-<td>0</td>
-</tr>
-<tr>
-<td>b</td>
-<td>c</td>
-<td>1</td>
-</tr>
-<tr>
-<td>b</td>
-<td>c</td>
-<td>0</td>
-</tr>
-<tr>
-<td>b</td>
-<td>c</td>
-<td>0</td>
-</tr>
-<tr>
-<td>b</td>
-<td>c</td>
-<td>0</td>
-</tr>
-<tr>
-<td>b</td>
-<td>d</td>
-<td>0</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>计算$x_0$列的均值:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">means = df.groupby(&apos;x_0&apos;)[&apos;y&apos;].mean()</span><br></pre></td></tr></table></figure><br>得到一个字典:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &apos;a&apos;: 0.8,</span><br><span class="line">    &apos;b&apos;: 0.2</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>然后用对应的值替换掉$x_0$的值:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[&apos;x_0&apos;] = df[&apos;x_0&apos;].map(means)</span><br></pre></td></tr></table></figure><br>得到的数据帧:</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>$x_0$</th>
-<th>$x_1$</th>
-<th>$y$</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0.8</td>
-<td>c</td>
-<td>1</td>
-</tr>
-<tr>
-<td>0.8</td>
-<td>c</td>
-<td>1</td>
-</tr>
-<tr>
-<td>0.8</td>
-<td>c</td>
-<td>1</td>
-</tr>
-<tr>
-<td>0.8</td>
-<td>c</td>
-<td>1</td>
-</tr>
-<tr>
-<td>0.8</td>
-<td>c</td>
-<td>0</td>
-</tr>
-<tr>
-<td>0.2</td>
-<td>c</td>
-<td>1</td>
-</tr>
-<tr>
-<td>0.2</td>
-<td>c</td>
-<td>0</td>
-</tr>
-<tr>
-<td>0.2</td>
-<td>c</td>
-<td>0</td>
-</tr>
-<tr>
-<td>0.2</td>
-<td>c</td>
-<td>0</td>
-</tr>
-<tr>
-<td>0.2</td>
-<td>d</td>
-<td>0</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>OK, 接下里对$x_1$列做同样的事:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[&apos;x_1&apos;] = df[&apos;x_1&apos;].map(df.groupby(&apos;x_1&apos;)[&apos;y&apos;].mean())</span><br></pre></td></tr></table></figure></p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>$x_0$</th>
-<th>$x_1$</th>
-<th>$y$</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0.8</td>
-<td>0.444</td>
-<td>1</td>
-</tr>
-<tr>
-<td>0.8</td>
-<td>0.444</td>
-<td>1</td>
-</tr>
-<tr>
-<td>0.8</td>
-<td>0.444</td>
-<td>1</td>
-</tr>
-<tr>
-<td>0.8</td>
-<td>0.444</td>
-<td>1</td>
-</tr>
-<tr>
-<td>0.8</td>
-<td>0.444</td>
-<td>0</td>
-</tr>
-<tr>
-<td>0.2</td>
-<td>0.444</td>
-<td>1</td>
-</tr>
-<tr>
-<td>0.2</td>
-<td>0.444</td>
-<td>0</td>
-</tr>
-<tr>
-<td>0.2</td>
-<td>0.444</td>
-<td>0</td>
-</tr>
-<tr>
-<td>0.2</td>
-<td>0.444</td>
-<td>0</td>
-</tr>
-<tr>
-<td>0.2</td>
-<td>0</td>
-<td>0</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>目标编码的好处就在于, 它选择的值具有可解释性. 在这个简单的例子里, 变量$x_0$的$a$值有平均目标值0.8, 这可以帮助后续机器学习算法的学习.<br>然而目标编码也带来一些问题, 比如过拟合. 实际上. 当平均值的数值很小时, 依赖平均值编码会产生不好的效果. 需要注意的一点是, 需要训练的数据集必须具有一定数量的样本(不能太少). 否则, 运用目标编码会带来严重的过拟合问题.<br>在这个例子里, $x_1$列的$d$仅有一个样本, 对应的$y$是0, 在这种情况下, 说明编码方式过拟合. 因为这里没有足够的样本说明所有$d$对应的$y$都是0, 因此直接取平均值是不合适的.<br>把目标编码的数学表达式写一下:</p>
-<script type="math/tex; mode=display">
-\mu = \frac {n× \hat x + m × w}{n + m}\\
-\mu是试图计算的平均值(编码)\\
-n是数值的数量\\
-\hat x 是估计平均值\\
-m 是分配给总体均值的权重\\
-w 是总体均值</script><p>$m$是唯一需要选择的参数, 意思是$m$越高, 越依赖于$w$的总体均值, 如果$m$等于0, 你只需要计算估计均值, 也就是:</p>
-<script type="math/tex; mode=display">
-\mu = \frac {n× \hat x + 0 × w}{n + 0} = \hat x</script><p>也就是说, $m=0$时不做任何平滑处理(smoothing).<br>写成代码:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">def calc_smooth_mean(df, by, on, m):</span><br><span class="line">    # Compute the global mean</span><br><span class="line">    mean = df[on].mean()</span><br><span class="line"></span><br><span class="line">    # Compute the number of values and the mean of each group</span><br><span class="line">    agg = df.groupby(by)[on].agg([&apos;count&apos;, &apos;mean&apos;])</span><br><span class="line">    counts = agg[&apos;count&apos;]</span><br><span class="line">    means = agg[&apos;mean&apos;]</span><br><span class="line"></span><br><span class="line">    # Compute the &quot;smoothed&quot; means</span><br><span class="line">    smooth = (counts * means + m * mean) / (counts + m)</span><br><span class="line"></span><br><span class="line">    # Replace each value by the according smoothed mean</span><br><span class="line">    return df[by].map(smooth)</span><br></pre></td></tr></table></figure><br>$m=10$时, 编码的结果:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df[&apos;x_0&apos;] = calc_smooth_mean(df, by=&apos;x_0&apos;, on=&apos;y&apos;, m=10)</span><br><span class="line">df[&apos;x_1&apos;] = calc_smooth_mean(df, by=&apos;x_1&apos;, on=&apos;y&apos;, m=10)</span><br></pre></td></tr></table></figure></p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>$x_0$</th>
-<th>$x_1$</th>
-<th>$y$</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0.6</td>
-<td>0.526316</td>
-<td>1</td>
-</tr>
-<tr>
-<td>0.6</td>
-<td>0.526316</td>
-<td>1</td>
-</tr>
-<tr>
-<td>0.6</td>
-<td>0.526316</td>
-<td>1</td>
-</tr>
-<tr>
-<td>0.6</td>
-<td>0.526316</td>
-<td>1</td>
-</tr>
-<tr>
-<td>0.6</td>
-<td>0.526316</td>
-<td>0</td>
-</tr>
-<tr>
-<td>0.4</td>
-<td>0.526316</td>
-<td>1</td>
-</tr>
-<tr>
-<td>0.4</td>
-<td>0.526316</td>
-<td>0</td>
-</tr>
-<tr>
-<td>0.4</td>
-<td>0.526316</td>
-<td>0</td>
-</tr>
-<tr>
-<td>0.4</td>
-<td>0.526316</td>
-<td>0</td>
-</tr>
-<tr>
-<td>0.4</td>
-<td>0.454545</td>
-<td>0</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>每个编码都很接近, 这是因为$m=10$对于我们的数据集有点太高了:</p>
-<script type="math/tex; mode=display">
-d = \frac {1×0+10×0.5}{1+10} \approx 0.454545</script><p>这种编码方式非常快速, 只需要调整一个参数$m$.<br>这只是一种非常简单基础的目标编码, 不建议直接用, 建议用<a href="https://www.wikiwand.com/en/Additive_smoothing" target="_blank" rel="noopener">贝叶斯目标编码</a>:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; import pandas as pd</span><br><span class="line">&gt;&gt;&gt; import xam</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; X = pd.DataFrame(&#123;&apos;x_0&apos;: [&apos;a&apos;] * 5 + [&apos;b&apos;] * 5, &apos;x_1&apos;: [&apos;a&apos;] * 9 + [&apos;b&apos;] * 1&#125;)</span><br><span class="line">&gt;&gt;&gt; y = pd.Series([1, 1, 1, 1, 0, 1, 0, 0, 0, 0])</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; encoder = xam.feature_extraction.BayesianTargetEncoder(</span><br><span class="line">...     columns=[&apos;x_0&apos;, &apos;x_1&apos;],</span><br><span class="line">...     prior_weight=3,</span><br><span class="line">...     suffix=&apos;&apos;</span><br><span class="line">... )</span><br><span class="line">&gt;&gt;&gt; encoder.fit_transform(X, y)</span><br><span class="line">      x_0       x_1</span><br><span class="line">0  0.6875  0.541667</span><br><span class="line">1  0.6875  0.541667</span><br><span class="line">2  0.6875  0.541667</span><br><span class="line">3  0.6875  0.541667</span><br><span class="line">4  0.6875  0.541667</span><br><span class="line">5  0.3125  0.541667</span><br><span class="line">6  0.3125  0.541667</span><br><span class="line">7  0.3125  0.541667</span><br><span class="line">8  0.3125  0.541667</span><br><span class="line">9  0.3125  0.375000</span><br></pre></td></tr></table></figure></p>
+        <h2 id="一些在使用pytorch时可能会用到的比较有用的脚本"><a href="#一些在使用pytorch时可能会用到的比较有用的脚本" class="headerlink" title="一些在使用pytorch时可能会用到的比较有用的脚本"></a>一些在使用pytorch时可能会用到的比较有用的脚本</h2><h3 id="归一化"><a href="#归一化" class="headerlink" title="归一化"></a>归一化</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">def normalize_channels(img):  </span><br><span class="line">    _min, _max = img.min(axis=(0,1)), img.std(axis=(0,1))  </span><br><span class="line">    img = (img - _min) / (_max - _min)  </span><br><span class="line">    return img</span><br></pre></td></tr></table></figure>
+<p><a id="more"></a> &gt;&gt;</p>
+<h3 id="绘制第一个filter"><a href="#绘制第一个filter" class="headerlink" title="绘制第一个filter"></a>绘制第一个filter</h3><pre><code>def plot_first_kernels(weight):  
+    with torch.no_grad():  
+        filters = weight.detach().cpu().float().numpy().transpose([0,2,3,1])  # channels last  
+        filters = normalize_channels(filters)  
+        filters /= filters.max()  
+    n = filters.shape[0]  
+    cols = math.ceil(math.sqrt(n))  
+    rows = math.ceil(n / cols)  
 
+    fig, axs = plt.subplots(rows, cols)  
+    for c in range(cols):  
+        for r in range(rows):  
+            idx = r + c * rows  
+            if idx &lt; n:  
+                axs[r,c].imshow(filters[idx])  
+            axs[r,c].set_axis_off()
+</code></pre><h3 id="绘制给定参数各层的l2范数分布"><a href="#绘制给定参数各层的l2范数分布" class="headerlink" title="绘制给定参数各层的l2范数分布"></a>绘制给定参数各层的l2范数分布</h3><pre><code>def plot_norms(named_parameters, figsize=None):  
+    from matplotlib import cm  
+    p = [0, 25, 50, 75, 100]  
+    with torch.no_grad():  
+        norms, names = [], []  
+        for name, param in named_parameters:  
+                param_flat = param.view(param.shape[0], -1)  
+                norms.append(np.percentile(torch.norm(param_flat, p=2, dim=1).cpu().numpy(), p))  
+                names.append(name)  
+
+    n = len(norms)  
+    inv_p = np.arange(len(p)-1,-1,-1)  
+    norms = np.array(norms)  
+    if figsize is None:  
+        figsize = (np.min([16, n]), 6)  
+    plt.figure(figsize=figsize)  
+    plt.yscale(&#39;log&#39;)  
+    for i,c in zip(inv_p, cm.get_cmap(&#39;inferno&#39;)(0.1+inv_p/len(p))):  
+        plt.bar(np.arange(n), norms[:,i], lw=1, color=c)  
+    plt.xticks(range(n), names, rotation=&quot;vertical&quot;)  
+    plt.xlabel(&quot;layers&quot;)  
+    plt.ylabel(&quot;norm distribution&quot;)  
+    plt.title(&quot;Kernel L2 Norms&quot;)  
+    plt.grid(True)  
+    plt.legend(labels=[f&#39;{i}%&#39; for i in p[::-1]])
+</code></pre><h3 id="绘制不同层的梯度"><a href="#绘制不同层的梯度" class="headerlink" title="绘制不同层的梯度"></a>绘制不同层的梯度</h3><pre><code>def plot_grad_flow(named_parameters, figsize=None):  
+    from matplotlib.lines import Line2D  
+    avg_grads = []  
+    max_grads= []  
+    layers = []  
+    for n, p in named_parameters:  
+        if (p.grad is not None) and (&quot;bias&quot; not in n):  
+            layers.append(n)  
+            avg_grads.append(p.grad.abs().mean())  
+            max_grads.append(p.grad.abs().max())  
+    if figsize is None:  
+        figsize = (np.min([16, len(avg_grads)]), 6)  
+    plt.figure(figsize=figsize)  
+    plt.bar(np.arange(len(max_grads)), max_grads, alpha=0.1, lw=1, color=&quot;c&quot;)  
+    plt.bar(np.arange(len(max_grads)), avg_grads, alpha=0.1, lw=1, color=&quot;b&quot;)  
+    plt.hlines(0, 0, len(layers)+1, lw=2, color=&quot;k&quot; )  
+    plt.xticks(range(0, len(layers), 1), layers, rotation=&quot;vertical&quot;)  
+    plt.xlim(left=-1, right=len(layers))  
+    plt.xlabel(&quot;Layers&quot;)  
+    plt.ylabel(&quot;Gradient Magnitude&quot;)  
+    plt.yscale(&#39;log&#39;)  
+    plt.title(&quot;Gradient flow&quot;)  
+    plt.grid(True)  
+    plt.legend([Line2D([0], [0], color=&quot;c&quot;, lw=4),  
+                Line2D([0], [0], color=&quot;b&quot;, lw=4),  
+                Line2D([0], [0], color=&quot;k&quot;, lw=4)], [&#39;max-gradient&#39;, &#39;mean-gradient&#39;, &#39;zero-gradient&#39;])
+</code></pre><h3 id="Metrics"><a href="#Metrics" class="headerlink" title="Metrics"></a>Metrics</h3><pre><code>class Metrics(RunningAverage):  
+    def __init__(self, evaluator, eval_loader, output_transform, interactive=False):  
+        super().__init__(alpha=0.9, output_transform=output_transform)  
+        self.evaluator = evaluator  
+        self.eval_loader = eval_loader  
+        self.interactive = interactive  
+        self.validation_history = {}  
+        self.loss_history = []  
+
+    def attach(self, engine, name):  
+        super().attach(engine, name)  
+        engine.add_event_handler(Events.EPOCH_COMPLETED, self.run_evaluation)  
+
+    def compute(self):  
+        loss = super().compute()  
+        self.loss_history.append(loss)  
+        return loss  
+
+    def run_evaluation(self, engine=None):  
+        self.evaluator.run(self.eval_loader)  
+        if self.interactive:  
+            print(self.evaluator.state.metrics)  
+        # save validation_history  
+        for k,v in self.evaluator.state.metrics.items():  
+            if k not in self.validation_history.keys():  
+                self.validation_history[k] = [v]  
+            else:  
+                self.validation_history[k].append(v)  
+
+    def plot(self, epoch_size=None, figsize=(16, 4)):  
+        plt.figure(figsize=figsize)  
+        ax = plt.subplot()  
+        ax.set_yscale(&#39;log&#39;)  
+        ax.set_xlabel(&#39;Batches processed&#39;)  
+        ax.set_ylabel(&quot;loss&quot;)  
+        ax.plot(self.loss_history, label=&#39;Train Loss&#39;)  
+        ax2 = ax.twinx()  
+        ax2.set_ylabel(&quot;score&quot;)  
+        for k,v in self.validation_history.items():  
+            if epoch_size is None:  
+                epoch_size = len(self.loss_history) // len(v)  
+            iters = np.arange(1, len(v)+1) * epoch_size  
+            if k == &#39;Loss&#39;:  
+                  ax.plot(iters, v, label=&#39;Valid Loss&#39;)  
+            else: ax2.plot(iters, v, label=k, ls=&#39;--&#39;)  
+        ax.legend(frameon=False, loc=&#39;upper left&#39;)  
+        ax2.legend(frameon=False, loc=&#39;lower left&#39;)
+</code></pre>
       
 
       
@@ -503,7 +342,7 @@ d = \frac {1×0+10×0.5}{1+10} \approx 0.454545</script><p>这种编码方式非
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://gakkiri.github.io/2019/10/19/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%A6%BB%E6%95%A3%E5%80%BC%E7%BC%96%E7%A0%81-%E7%9B%AE%E6%A0%87%E7%BC%96%E7%A0%81-Target-Encoding/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://gakkiri.github.io/2019/10/10/%E4%B8%80%E4%BA%9B%E5%AE%9E%E7%94%A8%E7%9A%84pytorch%E8%84%9A%E6%9C%AC/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -517,20 +356,15 @@ d = \frac {1×0+10×0.5}{1+10} \approx 0.454545</script><p>这种编码方式非
   
 <nav id="article-nav">
   
-    <a href="/2019/10/19/%E8%AE%BA%E6%96%87-%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-Gated-SCNN-Gated-Shape-CNNs-for-Semantic-Segmentation/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/10/15/%E5%9B%9B%E5%85%83%E6%95%B0-%E4%B8%80/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          论文+源码阅读: Gated-SCNN: Gated Shape CNNs for Semantic Segmentation
+          四元数(一)
         
       </div>
     </a>
   
-  
-    <a href="/2019/10/19/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-AdaptIS-Adaptive-Instance-Selection-Network-%E8%87%AA%E9%80%82%E5%BA%94%E5%AE%9E%E4%BE%8B%E9%80%89%E6%8B%A9%E7%BD%91%E7%BB%9C/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">论文阅读: AdaptIS: Adaptive Instance Selection Network 自适应实例选择网络</div>
-      <i class="icon-circle-right"></i>
-    </a>
   
 </nav>
 
