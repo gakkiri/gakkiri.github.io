@@ -6,16 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://gakkiri.github.io">
-  <title>Archives | gakkiri&#39;s blog</title>
+  <title>论文+源码阅读: Gated-SCNN: Gated Shape CNNs for Semantic Segmentation | gakkiri&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="CV, NLP, SLAM(a little) and KAGGLEER!!! my kaggle page: www.kaggle.com&#x2F;sdeagggg">
-<meta property="og:type" content="website">
-<meta property="og:title" content="gakkiri&#39;s blog">
-<meta property="og:url" content="http:&#x2F;&#x2F;gakkiri.github.io&#x2F;archives&#x2F;index.html">
+  <meta name="description" content="这篇论文是2019年语义分割领域的最新成果, 采用双流CNN和ASPP进行语义分割处理, 在细小的物体上有着很大的提升. paper: https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;1907.05740code: https:&#x2F;&#x2F;github.com&#x2F;nv-tlabs&#x2F;GSCNN">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文+源码阅读: Gated-SCNN: Gated Shape CNNs for Semantic Segmentation">
+<meta property="og:url" content="http:&#x2F;&#x2F;gakkiri.github.io&#x2F;2019&#x2F;10&#x2F;19&#x2F;%E8%AE%BA%E6%96%87-%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-Gated-SCNN-Gated-Shape-CNNs-for-Semantic-Segmentation&#x2F;index.html">
 <meta property="og:site_name" content="gakkiri&#39;s blog">
-<meta property="og:description" content="CV, NLP, SLAM(a little) and KAGGLEER!!! my kaggle page: www.kaggle.com&#x2F;sdeagggg">
+<meta property="og:description" content="这篇论文是2019年语义分割领域的最新成果, 采用双流CNN和ASPP进行语义分割处理, 在细小的物体上有着很大的提升. paper: https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;1907.05740code: https:&#x2F;&#x2F;github.com&#x2F;nv-tlabs&#x2F;GSCNN">
 <meta property="og:locale" content="zn">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20190812113310342.jpg?x-oss-process=image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3OTM1NTE2,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20190812113435584.jpg?x-oss-process=image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3OTM1NTE2,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20191019232207563.png?x-oss-process=image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDk3ODQ1,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https:&#x2F;&#x2F;imgconvert.csdnimg.cn&#x2F;aHR0cHM6Ly9waWM0LnpoaW1nLmNvbS84MC92Mi03ZjVkZWZlZmNjNWUwMWZhYzAzODNhODRmM2FlNjg0Zl9oZC5wbmc?x-oss-process=image&#x2F;format,png#pic_center">
+<meta property="og:updated_time" content="2019-10-19T15:32:33.292Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20190812113310342.jpg?x-oss-process=image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3OTM1NTE2,size_16,color_FFFFFF,t_70">
   
     <link rel="alternative" href="/atom.xml" title="gakkiri&#39;s blog" type="application/atom+xml">
   
@@ -147,184 +153,148 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-论文-源码阅读-Gated-SCNN-Gated-Shape-CNNs-for-Semantic-Segmentation" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      论文+源码阅读: Gated-SCNN: Gated Shape CNNs for Semantic Segmentation
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/19/%E8%AE%BA%E6%96%87-%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-Gated-SCNN-Gated-Shape-CNNs-for-Semantic-Segmentation/" class="archive-article-date">
+
+        
+        <a href="/2019/10/19/%E8%AE%BA%E6%96%87-%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-Gated-SCNN-Gated-Shape-CNNs-for-Semantic-Segmentation/" class="archive-article-date">
   	<time datetime="2019-10-19T15:30:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-19</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/19/%E8%AE%BA%E6%96%87-%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-Gated-SCNN-Gated-Shape-CNNs-for-Semantic-Segmentation/">论文+源码阅读: Gated-SCNN: Gated Shape CNNs for Semantic Segmentation</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="这篇论文是2019年语义分割领域的最新成果-采用双流CNN和ASPP进行语义分割处理-在细小的物体上有着很大的提升"><a href="#这篇论文是2019年语义分割领域的最新成果-采用双流CNN和ASPP进行语义分割处理-在细小的物体上有着很大的提升" class="headerlink" title="这篇论文是2019年语义分割领域的最新成果, 采用双流CNN和ASPP进行语义分割处理, 在细小的物体上有着很大的提升."></a>这篇论文是2019年语义分割领域的最新成果, 采用双流CNN和ASPP进行语义分割处理, 在细小的物体上有着很大的提升.</h5><blockquote>
+<p>paper: <a href="https://arxiv.org/abs/1907.05740" target="_blank" rel="noopener">https://arxiv.org/abs/1907.05740</a><br>code: <a href="https://github.com/nv-tlabs/GSCNN" target="_blank" rel="noopener">https://github.com/nv-tlabs/GSCNN</a><br><a id="more"></a> &gt;&gt; </p>
+</blockquote>
+<p>关于论文的内容, 我就只解释模型和损失部分, 其他的直接在原文里看就好了, OK那么直接上结构图.<br><img src="https://img-blog.csdnimg.cn/20190812113310342.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3OTM1NTE2,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>这是模型的整体结构图, 非常简洁的描绘了模型的工作原理, 当然要想做进一步分析, 这张图是远远不够的, 因此还需要下面这张图:<br><img src="https://img-blog.csdnimg.cn/20190812113435584.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3OTM1NTE2,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>文章亮点:</p>
+<ul>
+<li>采用双流(two stream)结构, 这个stream是作者命名的, 大概意思就是, 我们的这个模型分为两个部分, 一部分是传统的语义分割(regular stream), 另一个部分是专门处理具有边缘(或者边界)信息的shape stream.</li>
+<li>Shape stream中使用gated convolutional layer, 简称GCL, 帮助shape stream只处理和边界相关的信息而滤除其他的信息.  </li>
+</ul>
+<p>大家从图里也发现了, 两个stream分开工作, 甚至专门设计了一个辅助损失edge bce loss来单独监督shape stream.<br>GCL在图中就是带有星号的模块, 一共有三层, 在论文中, GCL首先将不同层的regular stream和shape stream的特征图进行concatenate, 然后通过1x1的标准卷积, 最后通过sigmoid函数得到attenion map, 用公式来表达:</p>
+<script type="math/tex; mode=display">
+α_t = \sigma(C_{1×1}(s_t||r_t))\\</script><p>其中||就是拼接操作.<br>得到attention map之后,GCL用于将shape stream的输出特征图st和attention map($α_t$)的元素点积, 卷积之后通过一次残差网络且通道加权值为$w_t$, 这个公式的符号不会打…没关系, 原文里很好找!  </p>
+<h3 id="模型和代码"><a href="#模型和代码" class="headerlink" title="模型和代码"></a>模型和代码</h3><p>OK, 来通过代码彻底分析一下这个模型, 各个部分关键的层我会直接写在注释里:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br></pre></td><td class="code"><pre><span class="line">class GSCNN(nn.Module):</span><br><span class="line">    def __init__(self, num_classes, trunk=None, criterion=None):</span><br><span class="line">        </span><br><span class="line">        super(GSCNN, self).__init__()</span><br><span class="line">        self.criterion = criterion</span><br><span class="line">        self.num_classes = num_classes</span><br><span class="line"></span><br><span class="line">		# 特征提取网络,使用预训练权重和空洞卷积</span><br><span class="line">        wide_resnet = wider_resnet38_a2(classes=1000, dilation=True) </span><br><span class="line">        wide_resnet = torch.nn.DataParallel(wide_resnet)</span><br><span class="line">        </span><br><span class="line">        # ------------------</span><br><span class="line">        #  这部分都是regular stream, 图里展示4个feature map, 在这里是mod1, mod3, mod4, mod7</span><br><span class="line">        wide_resnet = wide_resnet.module</span><br><span class="line">        self.mod1 = wide_resnet.mod1</span><br><span class="line">        self.mod2 = wide_resnet.mod2</span><br><span class="line">        self.mod3 = wide_resnet.mod3</span><br><span class="line">        self.mod4 = wide_resnet.mod4</span><br><span class="line">        self.mod5 = wide_resnet.mod5</span><br><span class="line">        self.mod6 = wide_resnet.mod6</span><br><span class="line">        self.mod7 = wide_resnet.mod7</span><br><span class="line">        self.pool2 = wide_resnet.pool2</span><br><span class="line">        self.pool3 = wide_resnet.pool3</span><br><span class="line">        self.interpolate = F.interpolate</span><br><span class="line">        del wide_resnet</span><br><span class="line">        # ------------------</span><br><span class="line"></span><br><span class="line">		# -------------------</span><br><span class="line">		# 对应图里的四个1x1卷积</span><br><span class="line">        self.dsn1 = nn.Conv2d(64, 1, 1)</span><br><span class="line">        self.dsn3 = nn.Conv2d(256, 1, 1)</span><br><span class="line">        self.dsn4 = nn.Conv2d(512, 1, 1)</span><br><span class="line">        self.dsn7 = nn.Conv2d(4096, 1, 1)</span><br><span class="line">        # ------------------</span><br><span class="line"></span><br><span class="line">		# ------------------</span><br><span class="line">		# 这个应该不用多说了吧..图里直接写的res1, res2, res3就是这块</span><br><span class="line">        self.res1 = Resnet.BasicBlock(64, 64, stride=1, downsample=None)</span><br><span class="line">        self.d1 = nn.Conv2d(64, 32, 1)</span><br><span class="line">        self.res2 = Resnet.BasicBlock(32, 32, stride=1, downsample=None)</span><br><span class="line">        self.d2 = nn.Conv2d(32, 16, 1)</span><br><span class="line">        self.res3 = Resnet.BasicBlock(16, 16, stride=1, downsample=None)</span><br><span class="line">        self.d3 = nn.Conv2d(16, 8, 1)</span><br><span class="line">        self.fuse = nn.Conv2d(8, 1, kernel_size=1, padding=0, bias=False)</span><br><span class="line">        # ------------------</span><br><span class="line"></span><br><span class="line">		# 这一层对应图中image gradients后接的1x1卷积</span><br><span class="line">        self.cw = nn.Conv2d(2, 1, kernel_size=1, padding=0, bias=False)</span><br><span class="line"></span><br><span class="line">		# ------------------</span><br><span class="line">		# 3个门卷积</span><br><span class="line">        self.gate1 = gsc.GatedSpatialConv2d(32, 32)</span><br><span class="line">        self.gate2 = gsc.GatedSpatialConv2d(16, 16)</span><br><span class="line">        self.gate3 = gsc.GatedSpatialConv2d(8, 8)</span><br><span class="line">        # -----------------</span><br><span class="line">         </span><br><span class="line">        self.aspp = _AtrousSpatialPyramidPoolingModule(4096, 256,</span><br><span class="line">                                                       output_stride=8)</span><br><span class="line"></span><br><span class="line">        self.bot_fine = nn.Conv2d(128, 48, kernel_size=1, bias=False)</span><br><span class="line">        self.bot_aspp = nn.Conv2d(1280 + 256, 256, kernel_size=1, bias=False)</span><br><span class="line"></span><br><span class="line">        self.final_seg = nn.Sequential(</span><br><span class="line">            nn.Conv2d(256 + 48, 256, kernel_size=3, padding=1, bias=False),</span><br><span class="line">            Norm2d(256),</span><br><span class="line">            nn.ReLU(inplace=True),</span><br><span class="line">            nn.Conv2d(256, 256, kernel_size=3, padding=1, bias=False),</span><br><span class="line">            Norm2d(256),</span><br><span class="line">            nn.ReLU(inplace=True),</span><br><span class="line">            nn.Conv2d(256, num_classes, kernel_size=1, bias=False))</span><br><span class="line"></span><br><span class="line">        self.sigmoid = nn.Sigmoid()</span><br><span class="line">        initialize_weights(self.final_seg)</span><br><span class="line"></span><br><span class="line">    def forward(self, inp, gts=None):</span><br><span class="line"></span><br><span class="line">        x_size = inp.size() </span><br><span class="line"></span><br><span class="line">		# ----------------------------</span><br><span class="line">		# 提特征</span><br><span class="line">        # res 1</span><br><span class="line">        m1 = self.mod1(inp)</span><br><span class="line"></span><br><span class="line">        # res 2</span><br><span class="line">        m2 = self.mod2(self.pool2(m1))</span><br><span class="line"></span><br><span class="line">        # res 3</span><br><span class="line">        m3 = self.mod3(self.pool3(m2))</span><br><span class="line"></span><br><span class="line">        # res 4-7</span><br><span class="line">        m4 = self.mod4(m3)</span><br><span class="line">        m5 = self.mod5(m4)</span><br><span class="line">        m6 = self.mod6(m5)</span><br><span class="line">        m7 = self.mod7(m6) </span><br><span class="line">		# ----------------------------</span><br><span class="line">		</span><br><span class="line">		# ----------------------------</span><br><span class="line">		# 从regular stream得到的feature map在1x1卷积后双线性插值以拼接</span><br><span class="line">		# 一共传递4个feature map, 不过s1没用到, 和图里似乎不一样?</span><br><span class="line">        s1 = F.interpolate(self.dsn1(m1), x_size[2:],</span><br><span class="line">                            mode=&apos;bilinear&apos;, align_corners=True)</span><br><span class="line">        s3 = F.interpolate(self.dsn3(m3), x_size[2:],</span><br><span class="line">                            mode=&apos;bilinear&apos;, align_corners=True)</span><br><span class="line">        s4 = F.interpolate(self.dsn4(m4), x_size[2:],</span><br><span class="line">                            mode=&apos;bilinear&apos;, align_corners=True)</span><br><span class="line">        s7 = F.interpolate(self.dsn7(m7), x_size[2:],</span><br><span class="line">                            mode=&apos;bilinear&apos;, align_corners=True)</span><br><span class="line">        # ----------------------------</span><br><span class="line">        </span><br><span class="line">        # 对应图里res1前, 不经过1x1卷积直接插值</span><br><span class="line">        m1f = F.interpolate(m1, x_size[2:], mode=&apos;bilinear&apos;, align_corners=True)</span><br><span class="line"></span><br><span class="line">		# ----------------------------</span><br><span class="line">		# 取image gradients</span><br><span class="line">        im_arr = inp.cpu().numpy().transpose((0,2,3,1)).astype(np.uint8)</span><br><span class="line">        canny = np.zeros((x_size[0], 1, x_size[2], x_size[3]))</span><br><span class="line">        for i in range(x_size[0]):</span><br><span class="line">            canny[i] = cv2.Canny(im_arr[i],10,100)</span><br><span class="line">        canny = torch.from_numpy(canny).cuda().float()</span><br><span class="line"> 		# ----------------------------</span><br><span class="line"></span><br><span class="line">        cs = self.res1(m1f)</span><br><span class="line">        cs = F.interpolate(cs, x_size[2:],</span><br><span class="line">                           mode=&apos;bilinear&apos;, align_corners=True)</span><br><span class="line">        cs = self.d1(cs)</span><br><span class="line">        cs = self.gate1(cs, s3)</span><br><span class="line">        cs = self.res2(cs)</span><br><span class="line">        cs = F.interpolate(cs, x_size[2:],</span><br><span class="line">                           mode=&apos;bilinear&apos;, align_corners=True)</span><br><span class="line">        cs = self.d2(cs)</span><br><span class="line">        cs = self.gate2(cs, s4)</span><br><span class="line">        cs = self.res3(cs)</span><br><span class="line">        cs = F.interpolate(cs, x_size[2:],</span><br><span class="line">                           mode=&apos;bilinear&apos;, align_corners=True)</span><br><span class="line">        cs = self.d3(cs)</span><br><span class="line">        cs = self.gate3(cs, s7)</span><br><span class="line">        cs = self.fuse(cs)</span><br><span class="line">        cs = F.interpolate(cs, x_size[2:],</span><br><span class="line">                           mode=&apos;bilinear&apos;, align_corners=True)</span><br><span class="line">        edge_out = self.sigmoid(cs)</span><br><span class="line">        cat = torch.cat((edge_out, canny), dim=1)</span><br><span class="line">        acts = self.cw(cat)</span><br><span class="line">        acts = self.sigmoid(acts)</span><br><span class="line"></span><br><span class="line">        # aspp</span><br><span class="line">        x = self.aspp(m7, acts)</span><br><span class="line">        dec0_up = self.bot_aspp(x)</span><br><span class="line"></span><br><span class="line">        dec0_fine = self.bot_fine(m2)</span><br><span class="line">        dec0_up = self.interpolate(dec0_up, m2.size()[2:], mode=&apos;bilinear&apos;,align_corners=True)</span><br><span class="line">        dec0 = [dec0_fine, dec0_up]</span><br><span class="line">        dec0 = torch.cat(dec0, 1)</span><br><span class="line"></span><br><span class="line">        dec1 = self.final_seg(dec0)  </span><br><span class="line">        seg_out = self.interpolate(dec1, x_size[2:], mode=&apos;bilinear&apos;)            </span><br><span class="line">       </span><br><span class="line">        if self.training:</span><br><span class="line">            return self.criterion((seg_out, edge_out), gts)              </span><br><span class="line">        else:</span><br><span class="line">            return seg_out, edge_out</span><br></pre></td></tr></table></figure><br>没有注释的部分都很直接明了, 就不多写了, 来看看GCL:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">class GatedSpatialConv2d(_ConvNd):</span><br><span class="line">    def __init__(self, in_channels, out_channels, kernel_size=1, stride=1,</span><br><span class="line">                 padding=0, dilation=1, groups=1, bias=False):</span><br><span class="line">                 </span><br><span class="line">        kernel_size = _pair(kernel_size)</span><br><span class="line">        stride = _pair(stride)</span><br><span class="line">        padding = _pair(padding)</span><br><span class="line">        dilation = _pair(dilation)</span><br><span class="line">        super(GatedSpatialConv2d, self).__init__(</span><br><span class="line">            in_channels, out_channels, kernel_size, stride, padding, dilation,</span><br><span class="line">            False, _pair(0), groups, bias, &apos;zeros&apos;)</span><br><span class="line"></span><br><span class="line">		# GCL的组成, 作者自己写的norm层, 接1x1卷积, 激活, 1x1卷积输出一维feat map, 再sigmoid.</span><br><span class="line">		# 得到attention map.</span><br><span class="line">		# 用边界信息去给区域进行加权.</span><br><span class="line">        self._gate_conv = nn.Sequential(</span><br><span class="line">            mynn.Norm2d(in_channels+1),</span><br><span class="line">            nn.Conv2d(in_channels+1, in_channels+1, 1),</span><br><span class="line">            nn.ReLU(), </span><br><span class="line">            nn.Conv2d(in_channels+1, 1, 1),</span><br><span class="line">            mynn.Norm2d(1),</span><br><span class="line">            nn.Sigmoid()</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    def forward(self, input_features, gating_features):</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        :param input_features:  [NxCxHxW]  featuers comming from the shape branch (canny branch).</span><br><span class="line">        :param gating_features: [Nx1xHxW] features comming from the texture branch (resnet). Only one channel feature map.</span><br><span class="line">        :return:</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        alphas = self._gate_conv(torch.cat([input_features, gating_features], dim=1))</span><br><span class="line"></span><br><span class="line">        input_features = (input_features * (alphas + 1)) </span><br><span class="line">        return F.conv2d(input_features, self.weight, self.bias, self.stride,</span><br><span class="line">                        self.padding, self.dilation, self.groups)</span><br></pre></td></tr></table></figure><br>关于图像的edgemap和image gradient, 随便找了张VOC的样本和mask可视化了一下, 大概是这么个效果:<br><img src="https://img-blog.csdnimg.cn/20191019232207563.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDk3ODQ1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>从左上到右下分别是原图, edgemap和image gradient.</p>
+<h3 id="损失"><a href="#损失" class="headerlink" title="损失"></a>损失</h3><p>多任务学习的损失函数:<br>该误差函数包括BCE(binary cross entropy)和CE(cross entropy).$λ_1, λ_2$是二者的权重. $\hat s$是预测的真值边框, $\hat y$是预测的真值语义标签.<br><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9waWM0LnpoaW1nLmNvbS84MC92Mi03ZjVkZWZlZmNjNWUwMWZhYzAzODNhODRmM2FlNjg0Zl9oZC5wbmc?x-oss-process=image/format,png#pic_center" alt="在这里插入图片描述"><br>dual task regularizer:<br>最后的输出结构是得到two-stream的误差函数, 为了不过拟合, 在误差函数中依旧加入正则化项.</p>
+<script type="math/tex; mode=display">
+\zeta = \frac {1}{2}||\nabla(G * \argmax_k p(y^k|r, s))||</script>
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://gakkiri.github.io/2019/10/19/%E8%AE%BA%E6%96%87-%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-Gated-SCNN-Gated-Shape-CNNs-for-Semantic-Segmentation/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/19/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%A6%BB%E6%95%A3%E5%80%BC%E7%BC%96%E7%A0%81-%E7%9B%AE%E6%A0%87%E7%BC%96%E7%A0%81-Target-Encoding/" class="archive-article-date">
-  	<time datetime="2019-10-19T08:28:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-19</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/10/19/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%A6%BB%E6%95%A3%E5%80%BC%E7%BC%96%E7%A0%81-%E7%9B%AE%E6%A0%87%E7%BC%96%E7%A0%81-Target-Encoding/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">机器学习离散值编码 - 目标编码(Target Encoding)</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/19/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%A6%BB%E6%95%A3%E5%80%BC%E7%BC%96%E7%A0%81-%E7%9B%AE%E6%A0%87%E7%BC%96%E7%A0%81-Target-Encoding/">机器学习离散值编码 - 目标编码(Target Encoding)</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/19/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-AdaptIS-Adaptive-Instance-Selection-Network-%E8%87%AA%E9%80%82%E5%BA%94%E5%AE%9E%E4%BE%8B%E9%80%89%E6%8B%A9%E7%BD%91%E7%BB%9C/" class="archive-article-date">
-  	<time datetime="2019-10-19T05:56:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/19/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-AdaptIS-Adaptive-Instance-Selection-Network-%E8%87%AA%E9%80%82%E5%BA%94%E5%AE%9E%E4%BE%8B%E9%80%89%E6%8B%A9%E7%BD%91%E7%BB%9C/">论文阅读: AdaptIS: Adaptive Instance Selection Network 自适应实例选择网络</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/18/%E5%9B%9B%E5%85%83%E6%95%B0-%E4%BA%8C/" class="archive-article-date">
-  	<time datetime="2019-10-18T11:29:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/18/%E5%9B%9B%E5%85%83%E6%95%B0-%E4%BA%8C/">四元数(二)</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/18/%E5%9B%9B%E5%85%83%E6%95%B0-%E4%B8%80/" class="archive-article-date">
-  	<time datetime="2019-10-18T02:16:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/18/%E5%9B%9B%E5%85%83%E6%95%B0-%E4%B8%80/">四元数(一)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/17/%E4%B8%80%E4%BA%9B%E5%AE%9E%E7%94%A8%E7%9A%84pytorch%E8%84%9A%E6%9C%AC/" class="archive-article-date">
-  	<time datetime="2019-10-17T15:59:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-17</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/17/%E4%B8%80%E4%BA%9B%E5%AE%9E%E7%94%A8%E7%9A%84pytorch%E8%84%9A%E6%9C%AC/">一些实用的pytorch脚本</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -347,8 +317,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
