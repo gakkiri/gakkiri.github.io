@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="gakkiri&#39;s blog">
 <meta property="og:description" content="四元数（Quaternion）(二)四元数(一) 3. 四元数3.1 性质3.1.1 模长(范数)&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;仿照复数的定义, 可以暂时将一个四元数$q=a+bi+cj+dk$的模长定义为:    \Vert q \Vert = \sqrt{a^2+b^2+c^2+d^2}&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;若用标量向量有序对的形式进行表示的话, $">
 <meta property="og:locale" content="zn">
-<meta property="og:updated_time" content="2019-10-19T03:28:39.481Z">
+<meta property="og:updated_time" content="2019-10-19T03:44:07.259Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="gakkiri&#39;s blog" type="application/atom+xml">
@@ -259,14 +259,20 @@ q_1q_2 = [ae - \mathbf v · \mathbf u, a\mathbf u + e\mathbf v + \mathbf v × \m
 <script type="math/tex; mode=display">
 v = [0, \mathbf v]</script><p>&ensp;&ensp;&ensp;&ensp;纯四元数的一条比较重要的特性, 假设有两个纯四元数$v=[0, \mathbf v], u=[0, \mathbf u]$, 那么:</p>
 <script type="math/tex; mode=display">
-vu = [0 - \mathbf v · \mathbf u, 0 + \mathbf v × \mathbf u] = [-\mathbf v · \mathbf u, \mathbf v × \mathbf u]</script><h4 id="3-1-4-逆与共轭"><a href="#3-1-4-逆与共轭" class="headerlink" title="3.1.4 逆与共轭"></a>3.1.4 逆与共轭</h4><p>&ensp;&ensp;&ensp;&ensp;假设一个四元数$q$, 那么它的逆就是$q^-1$, 可以得到$qq^-1=q^-1q=1(q \neq 0)$, 也就是说:  </p>
+vu = [0 - \mathbf v · \mathbf u, 0 + \mathbf v × \mathbf u] = [-\mathbf v · \mathbf u, \mathbf v × \mathbf u]</script><h4 id="3-1-4-逆与共轭"><a href="#3-1-4-逆与共轭" class="headerlink" title="3.1.4 逆与共轭"></a>3.1.4 逆与共轭</h4><p>&ensp;&ensp;&ensp;&ensp;假设一个四元数$q$, 那么它的逆就是$q^{-1}$, 可以得到$qq^{-1}=q^{-1}q=1(q \neq 0)$, 也就是说:  </p>
 <script type="math/tex; mode=display">
 (pq)q^−1 = p(qq^−1) = p · 1 = p\\
-q^−1(qp) = (q^−1q)p = 1 · p = p</script><p>&ensp;&ensp;&ensp;&ensp;所以, 右乘$q$的逆运算为右乘$q^-1$, 左乘$q$的逆运算为左乘$q^-1$, 这与矩阵的性质十分相似.<br>&ensp;&ensp;&ensp;&ensp;事实上, 四元数要满足$qq^-1=q^-1q=1$是非常困难的, 我们可以使用四元数共轭的一些性质来获得$q^-1$.<br>&ensp;&ensp;&ensp;&ensp;假设一个四元数$q=a+bi+ck+dj$的共轭为$q^<em>=a-bi- cj-dk$, 用标量向量有序对来定义的话, $q=[s, \mathbf v]$的共轭为$q^</em>=[s, -\mathbf v]$. 共轭四元数的一个重要性质是:  </p>
+q^−1(qp) = (q^−1q)p = 1 · p = p</script><p>&ensp;&ensp;&ensp;&ensp;所以, 右乘$q$的逆运算为右乘$q^{-1}$, 左乘$q$的逆运算为左乘$q^{-1}$, 这与矩阵的性质十分相似.<br>&ensp;&ensp;&ensp;&ensp;事实上, 四元数要满足$qq^{-1}=q^{-1}q=1$是非常困难的, 我们可以使用四元数共轭的一些性质来获得$q^{-1}$.<br>&ensp;&ensp;&ensp;&ensp;假设一个四元数$q=a+bi+ck+dj$的共轭为  </p>
+<script type="math/tex; mode=display">
+q^*=a-bi- cj-dk</script><p>&ensp;&ensp;&ensp;&ensp;用标量向量有序对来定义</p>
+<script type="math/tex; mode=display">
+q=[s, \mathbf v]</script><p>&ensp;&ensp;&ensp;&ensp;共轭为 </p>
+<script type="math/tex; mode=display">
+q^*=[s, -\mathbf v]</script><p>共轭四元数的一个重要性质是:  </p>
 <script type="math/tex; mode=display">
 qq^*=[s, \mathbf v]·[s, -\mathbf v]\\
 =[s^2-\mathbf v ·(-\mathbf v), s(-\mathbf v)+s\mathbf v + \mathbf v ×(- \mathbf v)]\\
-=[s^2+\mathbf v · \mathbf v, \mathbf 0] (平行向量叉乘为0])</script><p>&ensp;&ensp;&ensp;&ensp;可以发现最后得到的结果是一个实数, 并且是四元数模长的平方:  </p>
+=[s^2+\mathbf v · \mathbf v, \mathbf 0] (平行向量叉乘为0)</script><p>&ensp;&ensp;&ensp;&ensp;可以发现最后得到的结果是一个实数, 并且是四元数模长的平方:  </p>
 <script type="math/tex; mode=display">
 qq^*=[s^2+\mathbf v · \mathbf v, \mathbf 0]\\
 =s^2 + x^2 + y^2 + z^2\\
@@ -278,13 +284,13 @@ q^*q=(q^*)(q^*)^*\\
 =\Vert q \Vert ^2\\
 =qq^*</script><p>&ensp;&ensp;&ensp;&ensp;至此, 得出$q^<em> q = q q^</em>$, 想想四元数逆的定义:  </p>
 <script type="math/tex; mode=display">
-qq^-1 = 1\\
-q^*qq^-1=q^*\\
-(q^*q)q^-1=q^*\\
-\Vert q \Vert ^2 · q^-1 = q^*\\
-q^-1 = \frac {q^*}{\Vert q \Vert ^2}</script><p>&ensp;&ensp;&ensp;&ensp;利用这种方式可以高效得到一个四元数的逆, 总的来说, 如果$\Vert q \Vert = 1$, 则$q$是一个单位四元数, 可以得到:  </p>
+qq^{-1} = 1\\
+q^*qq^{-1}=q^*\\
+(q^*q)q^{-1}=q^*\\
+\Vert q \Vert ^2 · q^{-1} = q^*\\
+q^{-1} = \frac {q^*}{\Vert q \Vert ^2}</script><p>&ensp;&ensp;&ensp;&ensp;利用这种方式可以高效得到一个四元数的逆, 总的来说, 如果$\Vert q \Vert = 1$, 则$q$是一个单位四元数, 可以得到:  </p>
 <script type="math/tex; mode=display">
-q^-1 = \frac {q^*}{1^2} = q^*</script><h3 id="3-2-四元数与3D旋转"><a href="#3-2-四元数与3D旋转" class="headerlink" title="3.2 四元数与3D旋转"></a>3.2 四元数与3D旋转</h3><p>  &ensp;&ensp;&ensp;&ensp;终于, 千辛万苦来到正题, 四元数如何表示一个3D旋转.<br>  &ensp;&ensp;&ensp;&ensp;如果我们需要将一个向量$\mathbf v$沿着一个用单位向量所定义的旋转轴$\mathbf u$旋转$\theta$度, 那么需要对向量做分量变换, 对分量进行旋转(第一部分过的), 所以我们拥有几个向量, $\mathbf u, \mathbf v, \mathbf v_\bot, \mathbf v_\Vert, \mathbf v^′, \mathbf v^′_\bot, \mathbf v_\Vert^′$ 将它们表示为纯四元数:  </p>
+q^{-1} = \frac {q^*}{1^2} = q^*</script><h3 id="3-2-四元数与3D旋转"><a href="#3-2-四元数与3D旋转" class="headerlink" title="3.2 四元数与3D旋转"></a>3.2 四元数与3D旋转</h3><p>  &ensp;&ensp;&ensp;&ensp;终于, 千辛万苦来到正题, 四元数如何表示一个3D旋转.<br>  &ensp;&ensp;&ensp;&ensp;如果我们需要将一个向量$\mathbf v$沿着一个用单位向量所定义的旋转轴$\mathbf u$旋转$\theta$度, 那么需要对向量做分量变换, 对分量进行旋转(第一部分过的), 所以我们拥有几个向量, $\mathbf u, \mathbf v, \mathbf v_\bot, \mathbf v_\Vert, \mathbf v^′, \mathbf v^′_\bot, \mathbf v_\Vert^′$ 将它们表示为纯四元数:  </p>
 <script type="math/tex; mode=display">
   v = [0, \mathbf v]\\
   ...(其他的也是一样的, 不写了)</script><p>  &ensp;&ensp;&ensp;&ensp;没有加粗的都表示是纯四元数, 所以:  </p>
@@ -327,20 +333,20 @@ q^2 = [\cos({\theta}), sin({\theta})\mathbf u]·[cos({\theta}), sin({\theta})\ma
 =[\cos^2({\theta}) - (\sin({\theta})\mathbf u · \sin({\theta})\mathbf u), \\(\cos({\theta})\sin({\theta})+\sin({\theta})\cos({\theta}))\mathbf u + (\sin({\theta})\mathbf u × \sin({\theta})\mathbf u)]\\
 =[\cos^2({\theta}) - \sin^2({\theta})\Vert \mathbf u \Vert^2, 2\sin({\theta})\cos({\theta})\mathbf u + \mathbf 0]\\
 =[\cos^2({\theta}) - \sin^2({\theta}), 2\sin({\theta})\cos({\theta})\mathbf u]\\
-=[\cos({2\theta}), \sin({2\theta})\mathbf u]</script><p>&ensp;&ensp;&ensp;简单解释一下, 如果绕着同一个轴$\mathbf u$连续旋转$\theta$度两次, 那么所做出的变换等同于直接绕着$\mathbf u$旋转$2\theta$度.<br>&ensp;&ensp;&ensp;基于这个引理, 同时根据四元数逆的定义$qq^-1=1$, 对旋转公式变形:</p>
+=[\cos({2\theta}), \sin({2\theta})\mathbf u]</script><p>&ensp;&ensp;&ensp;简单解释一下, 如果绕着同一个轴$\mathbf u$连续旋转$\theta$度两次, 那么所做出的变换等同于直接绕着$\mathbf u$旋转$2\theta$度.<br>&ensp;&ensp;&ensp;基于这个引理, 同时根据四元数逆的定义$qq^{-1}=1$, 对旋转公式变形:</p>
 <script type="math/tex; mode=display">
 v^′ = v_\Vert + qv_\bot\\
 = 1·v_\Vert + qv_\bot\\
 (令q=p^2, 则p=[\cos({\frac {\theta}{2}}), \sin({\frac {\theta}{2}})\mathbf u])\\
-=pp^-1v_\Vert + ppv_\bot</script><p>&ensp;&ensp;&ensp;这里又引入了新的四元数$p=[\cos({\frac {\theta}{2}}), \sin({\frac {\theta}{2}})\mathbf u])$, 根据前面的引理, 可以验证:  </p>
+=pp^{-1}v_\Vert + ppv_\bot</script><p>&ensp;&ensp;&ensp;这里又引入了新的四元数$p=[\cos({\frac {\theta}{2}}), \sin({\frac {\theta}{2}})\mathbf u])$, 根据前面的引理, 可以验证:  </p>
 <script type="math/tex; mode=display">
 pp=p^2\\
 =[\cos({2·\frac {\theta}{2}}), \sin({2·\frac {\theta}{2}})\mathbf u])\\
 =q</script><p>&ensp;&ensp;&ensp;这里注意到, 和$q$一样, $\Vert p \Vert=1$, $p$也是一个单位四元数, 所以:</p>
 <script type="math/tex; mode=display">
-p^-1 = p^*</script><p>&ensp;&ensp;&ensp;将这个结果代入之前的等式中:</p>
+p^{-1} = p^*</script><p>&ensp;&ensp;&ensp;将这个结果代入之前的等式中:</p>
 <script type="math/tex; mode=display">
-v^′ = pp^-1v_\Vert + ppv_\bot\\
+v^′ = pp^{-1}v_\Vert + ppv_\bot\\
 =pp^*v_\Vert + ppv_\bot</script><p>&ensp;&ensp;&ensp;这个等式还能继续化简, 至此再引入两个定理(证明的过程就不写了, 都是利用Graßmann 积来证)  </p>
 <blockquote>
 <p>Lemma 2. 假设$v_\Vert$=[0, $\mathbf v_\Vert$]是一个纯四元数, 而$q=[\alpha, \beta \mathbf u]$, 其中$\mathbf u$是一个单位向量, $\alpha, \beta \in \mathbb R$. 在这样的条件下, 如果$\mathbf v_\Vert$平行于$\mathbf u$, 那么$qv_\Vert=v_\Vert q$<br>Lemma 3. 假设$v_\bot = [0, \mathbf v_\bot]$是一个纯四元数, 而$q=[\alpha, \beta \mathbf u]$, 其中$\mathbf u$是一个单位向量, $\alpha, \beta \in \mathbb R$. 该情况下, 如果$\mathbf v_\bot$正交于$\mathbf u$, 那么$qv_\bot=v_\bot q^*$</p>
