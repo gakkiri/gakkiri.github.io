@@ -6,16 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://gakkiri.github.io">
-  <title>gakkiri&#39;s blog</title>
+  <title>机器学习 - 手撕朴素贝叶斯 | gakkiri&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="CV, NLP, SLAM(a little) and KAGGLEER!!! my kaggle page: www.kaggle.com&#x2F;sdeagggg">
-<meta property="og:type" content="website">
-<meta property="og:title" content="gakkiri&#39;s blog">
-<meta property="og:url" content="http:&#x2F;&#x2F;gakkiri.github.io&#x2F;index.html">
+  <meta name="description" content="朴素贝叶斯是经典的机器学习算法之一, 也是为数不多的基于概率论的分类算法. 朴素贝叶斯原理简单, 也很容易实现.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习 - 手撕朴素贝叶斯">
+<meta property="og:url" content="http:&#x2F;&#x2F;gakkiri.github.io&#x2F;2019&#x2F;10&#x2F;20&#x2F;%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%89%8B%E6%92%95%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF&#x2F;index.html">
 <meta property="og:site_name" content="gakkiri&#39;s blog">
-<meta property="og:description" content="CV, NLP, SLAM(a little) and KAGGLEER!!! my kaggle page: www.kaggle.com&#x2F;sdeagggg">
+<meta property="og:description" content="朴素贝叶斯是经典的机器学习算法之一, 也是为数不多的基于概率论的分类算法. 朴素贝叶斯原理简单, 也很容易实现.">
 <meta property="og:locale" content="zn">
+<meta property="og:image" content="https:&#x2F;&#x2F;imgconvert.csdnimg.cn&#x2F;aHR0cHM6Ly9waWMyLnpoaW1nLmNvbS84MC92Mi0zNzNlOTNkZTIwODFjZDllYjZkODZkMjE4ZjdjNGQ2ZF9oZC5qcGc?x-oss-process=image&#x2F;format,png#pic_center">
+<meta property="og:updated_time" content="2019-10-20T05:07:19.450Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;imgconvert.csdnimg.cn&#x2F;aHR0cHM6Ly9waWMyLnpoaW1nLmNvbS84MC92Mi0zNzNlOTNkZTIwODFjZDllYjZkODZkMjE4ZjdjNGQ2ZF9oZC5qcGc?x-oss-process=image&#x2F;format,png#pic_center">
   
     <link rel="alternative" href="/atom.xml" title="gakkiri&#39;s blog" type="application/atom+xml">
   
@@ -147,16 +150,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-机器学习-手撕朴素贝叶斯" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-机器学习-手撕朴素贝叶斯" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/20/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%89%8B%E6%92%95%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF/">机器学习 - 手撕朴素贝叶斯</a>
+    <h1 class="article-title" itemprop="name">
+      机器学习 - 手撕朴素贝叶斯
     </h1>
   
 
@@ -170,280 +171,43 @@
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p>朴素贝叶斯是经典的机器学习算法之一, 也是为数不多的基于概率论的分类算法. 朴素贝叶斯原理简单, 也很容易实现.<br>
-        
-          <a class="article-more-a" href="/2019/10/20/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%89%8B%E6%92%95%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/20/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%89%8B%E6%92%95%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-论文-源码阅读-Gated-SCNN-Gated-Shape-CNNs-for-Semantic-Segmentation" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/19/%E8%AE%BA%E6%96%87-%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-Gated-SCNN-Gated-Shape-CNNs-for-Semantic-Segmentation/">论文+源码阅读: Gated-SCNN: Gated Shape CNNs for Semantic Segmentation</a>
-    </h1>
-  
-
-        
-        <a href="/2019/10/19/%E8%AE%BA%E6%96%87-%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-Gated-SCNN-Gated-Shape-CNNs-for-Semantic-Segmentation/" class="archive-article-date">
-  	<time datetime="2019-10-19T15:30:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h5 id="这篇论文是2019年语义分割领域的最新成果-采用双流CNN和ASPP进行语义分割处理-在细小的物体上有着很大的提升"><a href="#这篇论文是2019年语义分割领域的最新成果-采用双流CNN和ASPP进行语义分割处理-在细小的物体上有着很大的提升" class="headerlink" title="这篇论文是2019年语义分割领域的最新成果, 采用双流CNN和ASPP进行语义分割处理, 在细小的物体上有着很大的提升."></a>这篇论文是2019年语义分割领域的最新成果, 采用双流CNN和ASPP进行语义分割处理, 在细小的物体上有着很大的提升.</h5><blockquote>
-<p>paper: <a href="https://arxiv.org/abs/1907.05740" target="_blank" rel="noopener">https://arxiv.org/abs/1907.05740</a><br>code: <a href="https://github.com/nv-tlabs/GSCNN" target="_blank" rel="noopener">https://github.com/nv-tlabs/GSCNN</a><br>
-        
-          <a class="article-more-a" href="/2019/10/19/%E8%AE%BA%E6%96%87-%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-Gated-SCNN-Gated-Shape-CNNs-for-Semantic-Segmentation/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/19/%E8%AE%BA%E6%96%87-%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-Gated-SCNN-Gated-Shape-CNNs-for-Semantic-Segmentation/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-机器学习离散值编码-目标编码-Target-Encoding" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/18/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%A6%BB%E6%95%A3%E5%80%BC%E7%BC%96%E7%A0%81-%E7%9B%AE%E6%A0%87%E7%BC%96%E7%A0%81-Target-Encoding/">机器学习离散值编码 - 目标编码(Target Encoding)</a>
-    </h1>
-  
-
-        
-        <a href="/2019/10/18/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%A6%BB%E6%95%A3%E5%80%BC%E7%BC%96%E7%A0%81-%E7%9B%AE%E6%A0%87%E7%BC%96%E7%A0%81-Target-Encoding/" class="archive-article-date">
-  	<time datetime="2019-10-18T08:28:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>&ensp;&ensp;&ensp;&ensp;当进行监督学习时, 经常要处理离散变量. 也就是说, 变量没有一个自然的数值表示. 问题是大多数机器学习算法要求输入的数据是数值的. 在某种程度上, 数据科学需要将离散变量转换为数值变量。<br>
-        
-          <a class="article-more-a" href="/2019/10/18/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%A6%BB%E6%95%A3%E5%80%BC%E7%BC%96%E7%A0%81-%E7%9B%AE%E6%A0%87%E7%BC%96%E7%A0%81-Target-Encoding/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/18/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%A6%BB%E6%95%A3%E5%80%BC%E7%BC%96%E7%A0%81-%E7%9B%AE%E6%A0%87%E7%BC%96%E7%A0%81-Target-Encoding/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-论文阅读-AdaptIS-Adaptive-Instance-Selection-Network-自适应实例选择网络" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/17/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-AdaptIS-Adaptive-Instance-Selection-Network-%E8%87%AA%E9%80%82%E5%BA%94%E5%AE%9E%E4%BE%8B%E9%80%89%E6%8B%A9%E7%BD%91%E7%BB%9C/">论文阅读: AdaptIS: Adaptive Instance Selection Network 自适应实例选择网络</a>
-    </h1>
-  
-
-        
-        <a href="/2019/10/17/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-AdaptIS-Adaptive-Instance-Selection-Network-%E8%87%AA%E9%80%82%E5%BA%94%E5%AE%9E%E4%BE%8B%E9%80%89%E6%8B%A9%E7%BD%91%E7%BB%9C/" class="archive-article-date">
-  	<time datetime="2019-10-17T05:56:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="AdaptIS-Adaptive-Instance-Selection-Network"><a href="#AdaptIS-Adaptive-Instance-Selection-Network" class="headerlink" title="AdaptIS: Adaptive Instance Selection Network"></a>AdaptIS: Adaptive Instance Selection Network</h1><blockquote>
-<p>论文地址: <a href="https://arxiv.org/abs/1909.07829?context=cs" target="_blank" rel="noopener">https://arxiv.org/abs/1909.07829?context=cs</a><br>代码: <a href="https://github.com/saic-vul/adaptis" target="_blank" rel="noopener">https://github.com/saic-vul/adaptis</a></p>
+<p>朴素贝叶斯是经典的机器学习算法之一, 也是为数不多的基于概率论的分类算法. 朴素贝叶斯原理简单, 也很容易实现.<br><a id="more"></a> &gt;&gt; </p>
 </blockquote>
-<p>&ensp;&ensp;&ensp;&ensp;本文提出了自适应实例选择网络（Adaptive Instance Selection Network），给定图像和其中任意像素的坐标，AdaptIS即可精准输出这个像素处任意物体的mask。与目前流行的先检测后分割的方法不同，AdaptIS直接从像素点出发，达到对任意类别、任意形状物体的精准分割。 AdaptIS不使用COCO预训练即可在全景分割数据集Cityscapes和Mapillary上达到了state-of-the-art的效果，PQ（Panoptic Quality）指标分别为62.0和35.9，在COCO数据集上也有不错的效果。<br>
-        
-          <a class="article-more-a" href="/2019/10/17/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-AdaptIS-Adaptive-Instance-Selection-Network-%E8%87%AA%E9%80%82%E5%BA%94%E5%AE%9E%E4%BE%8B%E9%80%89%E6%8B%A9%E7%BD%91%E7%BB%9C/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/17/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-AdaptIS-Adaptive-Instance-Selection-Network-%E8%87%AA%E9%80%82%E5%BA%94%E5%AE%9E%E4%BE%8B%E9%80%89%E6%8B%A9%E7%BD%91%E7%BB%9C/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-四元数-二" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/16/%E5%9B%9B%E5%85%83%E6%95%B0-%E4%BA%8C/">四元数(二)</a>
-    </h1>
-  
-
-        
-        <a href="/2019/10/16/%E5%9B%9B%E5%85%83%E6%95%B0-%E4%BA%8C/" class="archive-article-date">
-  	<time datetime="2019-10-16T11:29:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="四元数（Quaternion）-二"><a href="#四元数（Quaternion）-二" class="headerlink" title="四元数（Quaternion）(二)"></a>四元数（Quaternion）(二)</h1><p><a href="https://gakkiri.github.io/2019/10/18/%E5%9B%9B%E5%85%83%E6%95%B0/#more">四元数(一)</a></p>
-<h2 id="3-四元数"><a href="#3-四元数" class="headerlink" title="3. 四元数"></a>3. 四元数</h2><h3 id="3-1-性质"><a href="#3-1-性质" class="headerlink" title="3.1 性质"></a>3.1 性质</h3><h4 id="3-1-1-模长-范数"><a href="#3-1-1-模长-范数" class="headerlink" title="3.1.1 模长(范数)"></a>3.1.1 模长(范数)</h4><p>&ensp;&ensp;&ensp;&ensp;仿照复数的定义, 可以暂时将一个四元数$q=a+bi+cj+dk$的模长定义为:  </p>
+<h3 id="贝叶斯公式"><a href="#贝叶斯公式" class="headerlink" title="贝叶斯公式"></a>贝叶斯公式</h3><script type="math/tex; mode=display">
+P(A|B) = \frac {P(B|A)P(A)}{P(B)} \tag{1}</script><p>意思就是, 给定B事件(就是B时间发生)下A事件发生的概率, 等于给定A时B的概率乘以A的概率除以B的概率. \\<br>其中$P(B|A)P(A)$也可以写做$P(A \cap B)$, 前者是后者变形得到的.<br>再来看看全概率, 全概率就是如果事件$A_1, A_2, …, A_n$独立同分布, 那么对于任意一个事件B:</p>
 <script type="math/tex; mode=display">
-\Vert q \Vert = \sqrt{a^2+b^2+c^2+d^2}</script><p>&ensp;&ensp;&ensp;&ensp;若用标量向量有序对的形式进行表示的话, $q = [s, \mathbf v]$的模长为:  </p>
+P(B) = P(BA_1) + P(BA_2) + ... + P(BA_n)\\
+=P(B|A_1)P(A_1) + ... + P(B|A_n)P(A_n)\\
+=\sum_{i=1}^n P(A_i)P(B|A_i) \tag{2}</script><p>这就是全概率的公式.</p>
+<h3 id="推断"><a href="#推断" class="headerlink" title="推断"></a>推断</h3><ul>
+<li>P(A) 称为先验概率</li>
+<li>P(A|B)称为后验概率</li>
+<li>P(B|A)P(A)/P(B)称为调整因子, 目的是调整预估概率去接近真实概率</li>
+</ul>
 <script type="math/tex; mode=display">
-\Vert q \Vert = \sqrt{s^2 + \Vert \mathbf v \Vert ^2}\\
-= \sqrt{s^2 + \mathbf  v · \mathbf v}</script><p>&ensp;&ensp;&ensp;&ensp;四元数很难用几何的方法进行理解, 因为它代表四维长度. 但是, 和高维向量的模长一样, 这只是类比复数模长进行衍生定义的结果.<br>
-        
-          <a class="article-more-a" href="/2019/10/16/%E5%9B%9B%E5%85%83%E6%95%B0-%E4%BA%8C/#more">more >></a>
-        
+条件概率=先验概率*调整因子</script><h3 id="MNIST"><a href="#MNIST" class="headerlink" title="MNIST"></a>MNIST</h3><p>手写数据集, 具体不多说了, 反正每个样本图片大小为$28×28pix$, 展开就是784维, 就意味着一个样本, 它的特征维度是784.<br>数据集中每张图片的的每个像素采用灰度值, 我们为了方便下面处理将它变成二值图像. 即将非0的点置为1。这样处理后, 我们可以认为一个像素是否为1变成一个0-1分布.<br>我们计算这样一个概率值:</p>
+<script type="math/tex; mode=display">
+P(这个样本属于第j个类别的概率)=\\ \prod_{k=1}^{28×28} P(这个样本属于第j类的概率|样本的第k个像素)  \tag{3}</script><p>令$D={x^(i),y^(i)},i=1…n$ 表示数据集. $x^(i)$ 为一个28维的向量表示第i个样本, $y^(i)$ 为标注的类别, 取值范围为$0…9$, 表示该样本从属的分类. 上面的公式3可以写为:</p>
+<script type="math/tex; mode=display">
+P(y^{(i)}=j|x^{(i)})=∏_k P(y^{(i)} =j|x^{(i)}_k) \tag{4}</script><p>求解目标:</p>
+<script type="math/tex; mode=display">
+f=\arg\max_j P(y^{(i)}=j|x^{(i)}) \tag{5}</script><p>简单来说就是计算 $P(y^{(i)}=0|x^{(i)}) P(y^{(i)}=1|x^{(i)})… P(y^{(i)}=9|x^{(i)})$ , 从中找到一个最大的, 如果从属于第$j$个类的概率最大, 那么就认为这张图片从属于j这个类.<br>那么下面的任务就是要求解$p(y^{(i)}=j|x^{(i)})$,利用公式4, 可以将任务转变为求每个像素点的相应后验概率： $p(y^{(i)}=j|x^{(i)}_k)$ ,根据贝叶斯公式</p>
+<script type="math/tex; mode=display">
+P(y^{(i)}=j|x^{(i)}_k) = \frac {P(x^{(i)}_k|y^{(i)}=j)P(y^{(i)}=j)}{P(x^{(i)}_k)} \tag{6}</script><p>简单看一下这个公式.  如果从属于第0类的图片在像素20上是1 个概率较高/ 那么如果发现像素20为1. 则属于第0类的概率较高/ 在看分母. 如果对于所有图片. 在像素20上的1概率较高. 说明这个像素对于分类的区分能力低. 所以分母这个概率越高. 则总的概率越低.<br>第$i$个样本第$k$个像素为1的概率, 通过统计所有样本可以知道:</p>
+<script type="math/tex; mode=display">
+P(x_k = 1) = \frac {图片中第k像素为1的个数}{所有图片个数,即n}\\
+P(y=j)= \frac {属于j类的图像数}{所有图片个数，即n}\\
+P(x_k=1|y=j)= \frac {属于j类的图像中像素k为1的数量}{属于j类的图像的个数}</script><p>根据0-1分布</p>
+<script type="math/tex; mode=display">
+P(x^{(i)}_k|y^{(i)}=j)=P(x_k=1|y=j)^{x^{(i)}_k}(1−P(x_k=1|y=j))^{1−x^{(i)}_k}\\
+P(x^{(i)}_k)=P(x^{(i)}=1)^{x(i)}(1−P(x^{(i)}=1))^{1−x^{(i)}}</script><p>取对数</p>
+<script type="math/tex; mode=display">
+\log P(x^{(i)}_k)=x^{(i)}\log P(x^{(i)}=1)+(1−x^{(i)})\log (1−P(x^{(i)}=1))</script><p>到这就完事了, 得到条件概率的log, 那么全部总结起来:</p>
+<script type="math/tex; mode=display">
+\log P(y^{(i)}=j|x^{(i)}) = \log ∏_k P(y^{(i)}=j|x^{(i)}_k)\\
+=∑_k \log P(y^{(i)}=j|x^{(i)}_k)\\
+=∑_k x^{(i)}_k \log P(x_k=1|y=j) + (1−x^{(i)}_k) \log (1−P(x_k=1|y=j))\\ + \log P(y^{(i)}=j) − \log P(x^{(i)}_k)</script><p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9waWMyLnpoaW1nLmNvbS84MC92Mi0zNzNlOTNkZTIwODFjZDllYjZkODZkMjE4ZjdjNGQ2ZF9oZC5qcGc?x-oss-process=image/format,png#pic_center" alt="在这里插入图片描述"></p>
+
       
 
       
@@ -454,16 +218,75 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/16/%E5%9B%9B%E5%85%83%E6%95%B0-%E4%BA%8C/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://gakkiri.github.io/2019/10/20/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%89%8B%E6%92%95%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2019/10/19/%E8%AE%BA%E6%96%87-%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-Gated-SCNN-Gated-Shape-CNNs-for-Semantic-Segmentation/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">论文+源码阅读: Gated-SCNN: Gated Shape CNNs for Semantic Segmentation</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -483,140 +306,14 @@
 
 
 
-
   
-    <article id="post-四元数-一" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/15/%E5%9B%9B%E5%85%83%E6%95%B0-%E4%B8%80/">四元数(一)</a>
-    </h1>
   
 
-        
-        <a href="/2019/10/15/%E5%9B%9B%E5%85%83%E6%95%B0-%E4%B8%80/" class="archive-article-date">
-  	<time datetime="2019-10-15T02:16:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="四元数（Quaternion）-一"><a href="#四元数（Quaternion）-一" class="headerlink" title="四元数（Quaternion）(一)"></a>四元数（Quaternion）(一)</h1><p>&ensp;&ensp;&ensp;&ensp;最近在做的工作是深度点云, 在学习计算机图形学和刚体运动的过程中接触到四元数, 本身是一个比较抽象的概念, 我们都知道复数可以画成一个2维平面, 复数的乘法表示2维的拉伸和旋转, 那么四元数呢?  下面会一步步来学习四元数是如何表示三维旋转的.</p>
-<p>
-        
-          <a class="article-more-a" href="/2019/10/15/%E5%9B%9B%E5%85%83%E6%95%B0-%E4%B8%80/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/15/%E5%9B%9B%E5%85%83%E6%95%B0-%E4%B8%80/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-一些实用的pytorch脚本" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/10/%E4%B8%80%E4%BA%9B%E5%AE%9E%E7%94%A8%E7%9A%84pytorch%E8%84%9A%E6%9C%AC/">一些实用的pytorch脚本</a>
-    </h1>
   
 
-        
-        <a href="/2019/10/10/%E4%B8%80%E4%BA%9B%E5%AE%9E%E7%94%A8%E7%9A%84pytorch%E8%84%9A%E6%9C%AC/" class="archive-article-date">
-  	<time datetime="2019-10-10T15:59:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一些在使用pytorch时可能会用到的比较有用的脚本"><a href="#一些在使用pytorch时可能会用到的比较有用的脚本" class="headerlink" title="一些在使用pytorch时可能会用到的比较有用的脚本"></a>一些在使用pytorch时可能会用到的比较有用的脚本</h2><h3 id="归一化"><a href="#归一化" class="headerlink" title="归一化"></a>归一化</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">def normalize_channels(img):  </span><br><span class="line">    _min, _max = img.min(axis=(0,1)), img.std(axis=(0,1))  </span><br><span class="line">    img = (img - _min) / (_max - _min)  </span><br><span class="line">    return img</span><br></pre></td></tr></table></figure>
-<p>
-        
-          <a class="article-more-a" href="/2019/10/10/%E4%B8%80%E4%BA%9B%E5%AE%9E%E7%94%A8%E7%9A%84pytorch%E8%84%9A%E6%9C%AC/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/10/%E4%B8%80%E4%BA%9B%E5%AE%9E%E7%94%A8%E7%9A%84pytorch%E8%84%9A%E6%9C%AC/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
+
   
 
 
@@ -639,8 +336,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: true,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
