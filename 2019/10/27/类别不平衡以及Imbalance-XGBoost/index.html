@@ -6,20 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://gakkiri.github.io">
-  <title>论文阅读: AdaptIS: Adaptive Instance Selection Network 自适应实例选择网络 | gakkiri&#39;s blog</title>
+  <title>类别不平衡以及Imbalance-XGBoost | gakkiri&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="AdaptIS: Adaptive Instance Selection Network 论文地址: https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;1909.07829?context=cs代码: https:&#x2F;&#x2F;github.com&#x2F;saic-vul&#x2F;adaptis  &amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;本文提出了自适应实例选择网络（Adaptive Instance Selectio">
+  <meta name="description" content="使用加权(指各种损失的加权和, 典型的:加权交叉熵)和focal loss的主要原因是为了解决类别不平衡数据的问题, 原始的Xgboost程序提供了一种方便的方法来定制损失函数, 但是需要计算一阶和二阶导数来实现它们. 这个库提供了梯度推导和实现.  paper: Imbalance-XGBoost">
 <meta property="og:type" content="article">
-<meta property="og:title" content="论文阅读: AdaptIS: Adaptive Instance Selection Network 自适应实例选择网络">
-<meta property="og:url" content="http:&#x2F;&#x2F;gakkiri.github.io&#x2F;2019&#x2F;10&#x2F;17&#x2F;%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-AdaptIS-Adaptive-Instance-Selection-Network-%E8%87%AA%E9%80%82%E5%BA%94%E5%AE%9E%E4%BE%8B%E9%80%89%E6%8B%A9%E7%BD%91%E7%BB%9C&#x2F;index.html">
+<meta property="og:title" content="类别不平衡以及Imbalance-XGBoost">
+<meta property="og:url" content="http:&#x2F;&#x2F;gakkiri.github.io&#x2F;2019&#x2F;10&#x2F;27&#x2F;%E7%B1%BB%E5%88%AB%E4%B8%8D%E5%B9%B3%E8%A1%A1%E4%BB%A5%E5%8F%8AImbalance-XGBoost&#x2F;index.html">
 <meta property="og:site_name" content="gakkiri&#39;s blog">
-<meta property="og:description" content="AdaptIS: Adaptive Instance Selection Network 论文地址: https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;1909.07829?context=cs代码: https:&#x2F;&#x2F;github.com&#x2F;saic-vul&#x2F;adaptis  &amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;本文提出了自适应实例选择网络（Adaptive Instance Selectio">
+<meta property="og:description" content="使用加权(指各种损失的加权和, 典型的:加权交叉熵)和focal loss的主要原因是为了解决类别不平衡数据的问题, 原始的Xgboost程序提供了一种方便的方法来定制损失函数, 但是需要计算一阶和二阶导数来实现它们. 这个库提供了梯度推导和实现.  paper: Imbalance-XGBoost">
 <meta property="og:locale" content="zn">
-<meta property="og:image" content="https:&#x2F;&#x2F;storage.googleapis.com&#x2F;groundai-web-prod&#x2F;media%2Fusers%2Fuser_290457%2Fproject_390518%2Fimages%2Fimages%2Fdiagrams%2FAdaInSegmentation-diagram-final_3.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;gakkiri&#x2F;gakkiri.github.io&#x2F;master&#x2F;img&#x2F;paper1.png">
-<meta property="og:updated_time" content="2019-10-19T15:35:11.199Z">
+<meta property="og:updated_time" content="2019-10-27T03:57:02.884Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;storage.googleapis.com&#x2F;groundai-web-prod&#x2F;media%2Fusers%2Fuser_290457%2Fproject_390518%2Fimages%2Fimages%2Fdiagrams%2FAdaInSegmentation-diagram-final_3.png">
   
     <link rel="alternative" href="/atom.xml" title="gakkiri&#39;s blog" type="application/atom+xml">
   
@@ -147,48 +144,46 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-论文阅读-AdaptIS-Adaptive-Instance-Selection-Network-自适应实例选择网络" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-类别不平衡以及Imbalance-XGBoost" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      论文阅读: AdaptIS: Adaptive Instance Selection Network 自适应实例选择网络
+      类别不平衡以及Imbalance-XGBoost
     </h1>
   
 
         
-        <a href="/2019/10/17/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-AdaptIS-Adaptive-Instance-Selection-Network-%E8%87%AA%E9%80%82%E5%BA%94%E5%AE%9E%E4%BE%8B%E9%80%89%E6%8B%A9%E7%BD%91%E7%BB%9C/" class="archive-article-date">
-  	<time datetime="2019-10-17T05:56:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-17</time>
+        <a href="/2019/10/27/%E7%B1%BB%E5%88%AB%E4%B8%8D%E5%B9%B3%E8%A1%A1%E4%BB%A5%E5%8F%8AImbalance-XGBoost/" class="archive-article-date">
+  	<time datetime="2019-10-27T03:56:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-27</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="AdaptIS-Adaptive-Instance-Selection-Network"><a href="#AdaptIS-Adaptive-Instance-Selection-Network" class="headerlink" title="AdaptIS: Adaptive Instance Selection Network"></a>AdaptIS: Adaptive Instance Selection Network</h1><blockquote>
-<p>论文地址: <a href="https://arxiv.org/abs/1909.07829?context=cs" target="_blank" rel="noopener">https://arxiv.org/abs/1909.07829?context=cs</a><br>代码: <a href="https://github.com/saic-vul/adaptis" target="_blank" rel="noopener">https://github.com/saic-vul/adaptis</a></p>
+        <blockquote>
+<p>使用加权(指各种损失的加权和, 典型的:加权交叉熵)和focal loss的主要原因是为了解决类别不平衡数据的问题, 原始的Xgboost程序提供了一种方便的方法来定制损失函数, 但是需要计算一阶和二阶导数来实现它们. 这个库提供了梯度推导和实现.</p>
 </blockquote>
-<p>&ensp;&ensp;&ensp;&ensp;本文提出了自适应实例选择网络（Adaptive Instance Selection Network），给定图像和其中任意像素的坐标，AdaptIS即可精准输出这个像素处任意物体的mask。与目前流行的先检测后分割的方法不同，AdaptIS直接从像素点出发，达到对任意类别、任意形状物体的精准分割。 AdaptIS不使用COCO预训练即可在全景分割数据集Cityscapes和Mapillary上达到了state-of-the-art的效果，PQ（Panoptic Quality）指标分别为62.0和35.9，在COCO数据集上也有不错的效果。<br><a id="more"></a> &gt;&gt;  </p>
-<p>&ensp;&ensp;&ensp;&ensp;文章前面介绍了一些全景分割(Panoptic Segmentation)和一些相关工作, 那么这里直接进入正题.</p>
-<h2 id="Architecture-overview"><a href="#Architecture-overview" class="headerlink" title="Architecture overview"></a>Architecture overview</h2><p><img src="https://storage.googleapis.com/groundai-web-prod/media%2Fusers%2Fuser_290457%2Fproject_390518%2Fimages%2Fimages%2Fdiagrams%2FAdaInSegmentation-diagram-final_3.png" alt="在这里插入图片描述"><br>&ensp;&ensp;&ensp;&ensp;网络结构如上图所示, 以一个图像和一个点提议(point proposal)(x,y)作为输入和输出位于位置(x,y)的一个object的mask, 几个亮点:</p>
+<p>paper: <a href="https://arxiv.org/pdf/1908.01672v1.pdf" target="_blank" rel="noopener">Imbalance-XGBoost</a><br><a id="more"></a> &gt;&gt;</p>
+<h3 id="关于数据不平衡"><a href="#关于数据不平衡" class="headerlink" title="关于数据不平衡"></a>关于数据不平衡</h3><p>关于类别(数据)不平衡的问题几乎是必然发生的, 这里介绍一篇<a href="https://towardsdatascience.com/handling-imbalanced-datasets-in-machine-learning-7a0e84220f28" target="_blank" rel="noopener">文章</a>, 里面介绍了机器学习中处理类别不平衡的部分解决方法.<br>目前较为常用的方法:</p>
 <ul>
-<li>利用AdaIN机制构建出实例选择网络.(把风格迁移的东西搬到分割来了)</li>
-<li>利用控制器网络(controller network)为AdaIN层提供输入, 该输入包含提议点(x, y)位置的特征, 由一系列全连接层组成.  </li>
-<li>还有一个CoordConv块, 作用是帮助消除在不同位置上的相似目标的歧义(不难理解, 毕竟只输出提议点对象的mask嘛).</li>
+<li>Undersampling methods</li>
+<li>Oversampling methods</li>
+<li>Synthetic data generation</li>
+<li>Cost sensitive learning</li>
+<li>Ensemble methods</li>
+<li>Undersampling methods<h4 id="Undersampling-methods-欠采样"><a href="#Undersampling-methods-欠采样" class="headerlink" title="Undersampling methods - 欠采样"></a>Undersampling methods - 欠采样</h4>在这些方法中, 随机删除了占据主导地位(数量多)的类的样本. 这减少了来自主要类的观察样本, 以使数据集平衡. 然而这也会导致严重的信息丢失, 该方法适用于数据量较大且训练样本数量较少的情况. </li>
 </ul>
-<h2 id="实例选择网络-instance-selection-network"><a href="#实例选择网络-instance-selection-network" class="headerlink" title="实例选择网络(instance selection network)"></a>实例选择网络(instance selection network)</h2><p>&ensp;&ensp;&ensp;&ensp;简单的说, 我们有一个向量(或者”特征”向量, 直接叫特征向量不太严谨, 该向量只是描述某个物体), 这个向量描述了某个物体, 利用这个向量可以把不同物体区分开来. 于是问题来了, 如何利用这个向量来生成mask呢? 作者的灵感来自于风格迁移领域的Adaptive Instance Normalization (AdaIN). 关于AdaIN是如何工作的, 可以去看一下相关的资料, 是一篇不太新的paper所以资料很多.<br>&ensp;&ensp;&ensp;&ensp;作者提出了一个轻量级的实例选择网络, 按作者的说法是该网络是被AdaIN参数化的(说白了就是用AdaIN调整过参数呗), 因此, “特征”向量包含实例选择层的主要参数, 利用backbone和”特征”向量提取的特征生成对象的mask.<br>&ensp;&ensp;&ensp;&ensp;于是问题就变成了如何提取好的向量.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">def _get_instance_maps(self, points, adaptive_input, controller_input):</span><br><span class="line">    self.num_points = points.size(1)</span><br><span class="line">    if getattr(self.controller, &apos;return_map&apos;, False):</span><br><span class="line">        w = self.EQF(controller_input, points)</span><br><span class="line">    else:</span><br><span class="line">        w = self.EQF(controller_input, points)</span><br><span class="line">        w = self.controller(w)</span><br><span class="line"></span><br><span class="line">    points = points.view(-1, 2)</span><br><span class="line">    x = adaptive_input.repeat_interleave(self.num_points, dim=0)</span><br><span class="line">    if self.with_coord_features:</span><br><span class="line">        x = self.add_coord_features(x, points)</span><br><span class="line">    x = self.block0(x)</span><br><span class="line">    x = self.adain(x, w)</span><br><span class="line">    x = self.block1(x)</span><br><span class="line"></span><br><span class="line">    if self.rescale_output:</span><br><span class="line">        scale, bias = self.rescale_output</span><br><span class="line">        x = scale * x + bias</span><br><span class="line"></span><br><span class="line">    return x</span><br></pre></td></tr></table></figure></p>
-<h2 id="点提议和控制器网络-point-proposal-and-controller-network"><a href="#点提议和控制器网络-point-proposal-and-controller-network" class="headerlink" title="点提议和控制器网络(point proposal and controller network)"></a>点提议和控制器网络(point proposal and controller network)</h2><p>&ensp;&ensp;&ensp;&ensp;说到特征向量, 大家的第一反应往往都是嵌入空间, 相同对象的距离近, 不同对象距离远. 作者的嵌入思想有一些不同:</p>
-<blockquote>
-<p>The output of a backbone Q may have lower spatial resolution compared to the input image. Thus, for each point (x,y) we obtain corresponding embedding Q(x,y) with the use of bilinear interpolation. The resulting embedding Q(x,y) is then processed in a controller network, that consists of a few fully connected layers. Controller network outputs a ”characteristic” vector, which is then passed to AdaIN layers in instance selection network. Using this mechanism the instance selection network adapts to the selected object.</p>
-</blockquote>
-<p>&ensp;&ensp;&ensp;&ensp;由于主干输出的分辨率较低(经过卷积嘛), 因此对于每个点, 使用双线性插值来得到嵌入$Q(x, y)$, 并输入到控制器网络中, 经过几个全连接层(不过作者在代码里似乎用的是卷积层), 输出一个”特征”向量, 并传递给实例选择网络的AdaIN层.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">class SimpleConvController(nn.Module):</span><br><span class="line">    def __init__(self, num_layers, in_channels, latent_channels,</span><br><span class="line">                 kernel_size=1, activation=&apos;relu&apos;, norm_layer=nn.BatchNorm2d):</span><br><span class="line">        super(SimpleConvController, self).__init__()</span><br><span class="line"></span><br><span class="line">        # flag that indicates whether we use fully convolutional controller or not</span><br><span class="line">        self.return_map = True</span><br><span class="line"></span><br><span class="line">        # select activation function</span><br><span class="line">        _activation = ops.select_activation_function(activation)</span><br><span class="line"></span><br><span class="line">        controller = []</span><br><span class="line">        for i in range(num_layers):</span><br><span class="line">            controller.extend([</span><br><span class="line">                nn.Conv2d(in_channels, latent_channels, kernel_size),</span><br><span class="line">                _activation(),</span><br><span class="line">                norm_layer(latent_channels) if norm_layer is not None else nn.Identity()</span><br><span class="line">            ])</span><br><span class="line">        self.controller = nn.Sequential(*controller)</span><br><span class="line"></span><br><span class="line">    def forward(self, x):</span><br><span class="line">        x = self.controller(x)</span><br><span class="line">        return x</span><br></pre></td></tr></table></figure><br>&ensp;&ensp;&ensp;&ensp;没有直接优化嵌入之间的距离, 而是: </p>
-<blockquote>
-<p>the controller network connects backbone and instance selection network in a feedback loop, thus enforcing backbone to produce rich features characterizing each particular object.</p>
-</blockquote>
-<p>&ensp;&ensp;&ensp;&ensp;作者说这样做比使用辅助损失更好, 后面提到这是因为在网络会为属于同一个对象的点提议生成类似的输出, 相当于直接优化mask, 比使用优化嵌入距离作为.<br>&ensp;&ensp;&ensp;&ensp;关于Relative CoordConv, 其实就是一个坐标转换的过程, 把归一化到$[-1, 1]$的像素坐标加入到输入特征里.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">def _get_instance_maps(self, points, adaptive_input, controller_input):</span><br><span class="line">    self.num_points = points.size(1)</span><br><span class="line">    if getattr(self.controller, &apos;return_map&apos;, False):</span><br><span class="line">        w = self.EQF(controller_input, points)</span><br><span class="line">    else:</span><br><span class="line">        w = self.EQF(controller_input, points)</span><br><span class="line">        w = self.controller(w)</span><br><span class="line"></span><br><span class="line">    points = points.view(-1, 2)</span><br><span class="line">    x = adaptive_input.repeat_interleave(self.num_points, dim=0)</span><br><span class="line">    if self.with_coord_features:</span><br><span class="line">        x = self.add_coord_features(x, points)</span><br><span class="line">    x = self.block0(x)</span><br><span class="line">    x = self.adain(x, w)</span><br><span class="line">    x = self.block1(x)</span><br><span class="line"></span><br><span class="line">    if self.rescale_output:</span><br><span class="line">        scale, bias = self.rescale_output</span><br><span class="line">        x = scale * x + bias</span><br><span class="line"></span><br><span class="line">    return x</span><br></pre></td></tr></table></figure><br>&ensp;&ensp;&ensp;&ensp;我们需要向网络提供对象的坐标, 但是不希望在backbone中使用坐标, 这是考虑到预训练所以不希望改变backbone的结构. 因此另外使用一个CoordConv块, 接在backbone的后面, 并依赖于点提议, 生成两个map, map的值被归一化到$[-1, 1]$, 代表了的是CoordConv的半径R内的坐标值, R是一个超参数, 大致代表了被检测对象的大小. 将其输出与backbone得到的feature一起输入到实例选择网络.<br>&ensp;&ensp;&ensp;&ensp;采样时对每个批次中的图像在对象级层面上取K个点. 随机选择一个对象, 并在该对象上随机取一个点. 采样到K个点后, 训练网络来预测K个mask, 为此, 作者对像素级损失函数做出一个调整, 调整后的损失函数可以比较网络的输入和GT Mask, paper里说最后使用了一种改进的焦点损失, 该损失具有最好的效果. 梯度后传至整个网络包括backbone.<br><img src="https://raw.githubusercontent.com/gakkiri/gakkiri.github.io/master/img/paper1.png" alt="在这里插入图片描述"><br>&ensp;&ensp;&ensp;&ensp;每次迭代的点提议都显示为浅绿色, 不同的实例用不同的颜色标记. 图像的“未知”区域显示为灰色. 在每次迭代中, 一个新的点提议被采样, 一个相应的实例被分割. </p>
-<p>&ensp;&ensp;&ensp;&ensp;整个网络的内容差不多就这样, paper里还有更多内容, 包括实际在数据集上使用时是怎么样的, 已经实验结果, 这里就不写了. 在paper里展示的效果图在复杂情况下能准确地分割出对象, 看起来还是不错的.</p>
+<p>欠采样的策略有很多, 比如near miss undersampling, 只对来自多数类的数据样本进行采样, 这是区分多数类与其他类所必需的.</p>
+<p>NearMiss-1 sampling, NearMiss-2 sampling, 从多数类中选取样本, 其中少数类的N个最近样本的平均度量距离最小. </p>
+<p>Tomek links, 定义两个不同的类为Tomek links, 它们满足距离最小. 此时这两个类的其中一个很可能是噪声数据, 通过简单地将其删除可以建立一个更简单的分类问题, 尽管数据集可能仍然不平衡, 但也有助于提高分类(或者其他任务)的性能. (一句话总结: 难样本处理不来就扔掉好了~)</p>
+<h4 id="Oversampling-methods-过采样"><a href="#Oversampling-methods-过采样" class="headerlink" title="Oversampling methods - 过采样"></a>Oversampling methods - 过采样</h4><p>对少数类使用过采样方法, 在这个方法里, 直接复制少数类的样本以增加它们的数量. 该方法让模型对于少数类的观察次数增加, 它也被称为上采样. 由于数据点的重复, 可能会导致过拟合.<br>该方法还可以分为三种类型:随机采样、基于聚类的采样和信息采样. </p>
+<h4 id="Synthetic-data-generation-合成数据"><a href="#Synthetic-data-generation-合成数据" class="headerlink" title="Synthetic data generation - 合成数据"></a>Synthetic data generation - 合成数据</h4><p>在个方法中, 通过分析数据并人工生成数据来解决不平衡问题, 所以, 这也是一种过采样技术, 通常用Synthetic Minority Oversampling Technique(SMOTE)来形容这项技术. 可以找paper看看.</p>
+<h1 id="Imbalance-XGBoost"><a href="#Imbalance-XGBoost" class="headerlink" title="Imbalance-XGBoost"></a>Imbalance-XGBoost</h1><p>这个库实现了在XGBoost中使用加权损失和焦点损失, 具体的用法可以看一下原文.</p>
+<p>通过pypi安装<code>pip install imbalance-xgboost</code>.</p>
 
       
 
@@ -247,7 +242,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://gakkiri.github.io/2019/10/17/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-AdaptIS-Adaptive-Instance-Selection-Network-%E8%87%AA%E9%80%82%E5%BA%94%E5%AE%9E%E4%BE%8B%E9%80%89%E6%8B%A9%E7%BD%91%E7%BB%9C/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://gakkiri.github.io/2019/10/27/%E7%B1%BB%E5%88%AB%E4%B8%8D%E5%B9%B3%E8%A1%A1%E4%BB%A5%E5%8F%8AImbalance-XGBoost/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -261,18 +256,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/10/18/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%A6%BB%E6%95%A3%E5%80%BC%E7%BC%96%E7%A0%81-%E7%9B%AE%E6%A0%87%E7%BC%96%E7%A0%81-Target-Encoding/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          机器学习离散值编码 - 目标编码(Target Encoding)
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/10/16/%E5%9B%9B%E5%85%83%E6%95%B0-%E4%BA%8C/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">四元数(二)</div>
+    <a href="/2019/10/20/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%89%8B%E6%92%95%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">机器学习 - 手撕朴素贝叶斯</div>
       <i class="icon-circle-right"></i>
     </a>
   

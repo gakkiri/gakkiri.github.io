@@ -16,7 +16,7 @@
 <meta property="og:description" content="朴素贝叶斯是经典的机器学习算法之一, 也是为数不多的基于概率论的分类算法. 朴素贝叶斯原理简单, 也很容易实现.">
 <meta property="og:locale" content="zn">
 <meta property="og:image" content="https:&#x2F;&#x2F;imgconvert.csdnimg.cn&#x2F;aHR0cHM6Ly9waWMyLnpoaW1nLmNvbS84MC92Mi0zNzNlOTNkZTIwODFjZDllYjZkODZkMjE4ZjdjNGQ2ZF9oZC5qcGc?x-oss-process=image&#x2F;format,png#pic_center">
-<meta property="og:updated_time" content="2019-10-20T05:07:19.450Z">
+<meta property="og:updated_time" content="2019-10-20T13:44:22.141Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;imgconvert.csdnimg.cn&#x2F;aHR0cHM6Ly9waWMyLnpoaW1nLmNvbS84MC92Mi0zNzNlOTNkZTIwODFjZDllYjZkODZkMjE4ZjdjNGQ2ZF9oZC5qcGc?x-oss-process=image&#x2F;format,png#pic_center">
   
@@ -85,8 +85,6 @@
 		        
 					<a class="github" target="_blank" href="https://github.com/gakkiri" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/niu-bi-95-68" title="zhihu"><i class="icon-zhihu"></i></a>
-		        
 			</div>
 		</nav>
 	</header>		
@@ -123,8 +121,6 @@
 						<a class="kaggle" target="_blank" href="https://www.kaggle.com/sdeagggg" title="kaggle"><i class="icon-kaggle"></i></a>
 			        
 						<a class="github" target="_blank" href="https://github.com/gakkiri" title="github"><i class="icon-github"></i></a>
-			        
-						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/niu-bi-95-68" title="zhihu"><i class="icon-zhihu"></i></a>
 			        
 				</div>
 			</nav>
@@ -187,7 +183,7 @@ P(B) = P(BA_1) + P(BA_2) + ... + P(BA_n)\\
 <script type="math/tex; mode=display">
 条件概率=先验概率*调整因子</script><h3 id="MNIST"><a href="#MNIST" class="headerlink" title="MNIST"></a>MNIST</h3><p>手写数据集, 具体不多说了, 反正每个样本图片大小为$28×28pix$, 展开就是784维, 就意味着一个样本, 它的特征维度是784.<br>数据集中每张图片的的每个像素采用灰度值, 我们为了方便下面处理将它变成二值图像. 即将非0的点置为1。这样处理后, 我们可以认为一个像素是否为1变成一个0-1分布.<br>我们计算这样一个概率值:</p>
 <script type="math/tex; mode=display">
-P(这个样本属于第j个类别的概率)=\\ \prod_{k=1}^{28×28} P(这个样本属于第j类的概率|样本的第k个像素)  \tag{3}</script><p>令$D={x^(i),y^(i)},i=1…n$ 表示数据集. $x^(i)$ 为一个28维的向量表示第i个样本, $y^(i)$ 为标注的类别, 取值范围为$0…9$, 表示该样本从属的分类. 上面的公式3可以写为:</p>
+P(这个样本属于第j个类别的概率)=\\ \prod_{k=1}^{28×28} P(这个样本属于第j类的概率|样本的第k个像素)  \tag{3}</script><p>令$D={x^{(i)},y^{(i)}},i=1…n$ 表示数据集. $x^{(i)}$ 为一个28维的向量表示第i个样本, $y^{(i)}$ 为标注的类别, 取值范围为$0…9$, 表示该样本从属的分类. 上面的公式3可以写为:</p>
 <script type="math/tex; mode=display">
 P(y^{(i)}=j|x^{(i)})=∏_k P(y^{(i)} =j|x^{(i)}_k) \tag{4}</script><p>求解目标:</p>
 <script type="math/tex; mode=display">
@@ -278,6 +274,15 @@ P(x^{(i)}_k)=P(x^{(i)}=1)^{x(i)}(1−P(x^{(i)}=1))^{1−x^{(i)}}</script><p>取�
 
   
 <nav id="article-nav">
+  
+    <a href="/2019/10/27/%E7%B1%BB%E5%88%AB%E4%B8%8D%E5%B9%B3%E8%A1%A1%E4%BB%A5%E5%8F%8AImbalance-XGBoost/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          类别不平衡以及Imbalance-XGBoost
+        
+      </div>
+    </a>
   
   
     <a href="/2019/10/19/%E8%AE%BA%E6%96%87-%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-Gated-SCNN-Gated-Shape-CNNs-for-Semantic-Segmentation/" id="article-nav-older" class="article-nav-link-wrap">
