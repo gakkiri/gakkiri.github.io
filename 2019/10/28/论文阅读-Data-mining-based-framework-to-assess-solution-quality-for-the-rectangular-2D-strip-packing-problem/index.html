@@ -6,16 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://gakkiri.github.io">
-  <title>Archives | gakkiri&#39;s blog</title>
+  <title>论文阅读:Data mining based framework to assess solution quality for the rectangular 2D strip-packing problem | gakkiri&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="CV, NLP, SLAM(a little) and KAGGLEER!!! my kaggle page: www.kaggle.com&#x2F;sdeagggg">
-<meta property="og:type" content="website">
-<meta property="og:title" content="gakkiri&#39;s blog">
-<meta property="og:url" content="http:&#x2F;&#x2F;gakkiri.github.io&#x2F;archives&#x2F;index.html">
+  <meta name="description" content="Abstract: In this paper, we explore the use of reference values (predictors) for the optimal objective function value of hard combinatorial optimization problems, instead of bounds, obtained by data">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文阅读:Data mining based framework to assess solution quality for the rectangular 2D strip-packing problem">
+<meta property="og:url" content="http:&#x2F;&#x2F;gakkiri.github.io&#x2F;2019&#x2F;10&#x2F;28&#x2F;%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-Data-mining-based-framework-to-assess-solution-quality-for-the-rectangular-2D-strip-packing-problem&#x2F;index.html">
 <meta property="og:site_name" content="gakkiri&#39;s blog">
-<meta property="og:description" content="CV, NLP, SLAM(a little) and KAGGLEER!!! my kaggle page: www.kaggle.com&#x2F;sdeagggg">
+<meta property="og:description" content="Abstract: In this paper, we explore the use of reference values (predictors) for the optimal objective function value of hard combinatorial optimization problems, instead of bounds, obtained by data">
 <meta property="og:locale" content="zn">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;2019102812000322.png?x-oss-process=image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDk3ODQ1,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2019-10-28T06:06:32.436Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;2019102812000322.png?x-oss-process=image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDk3ODQ1,size_16,color_FFFFFF,t_70">
   
     <link rel="alternative" href="/atom.xml" title="gakkiri&#39;s blog" type="application/atom+xml">
   
@@ -143,265 +146,158 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-论文阅读-Data-mining-based-framework-to-assess-solution-quality-for-the-rectangular-2D-strip-packing-problem" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      论文阅读:Data mining based framework to assess solution quality for the rectangular 2D strip-packing problem
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/28/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-Data-mining-based-framework-to-assess-solution-quality-for-the-rectangular-2D-strip-packing-problem/" class="archive-article-date">
+
+        
+        <a href="/2019/10/28/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-Data-mining-based-framework-to-assess-solution-quality-for-the-rectangular-2D-strip-packing-problem/" class="archive-article-date">
   	<time datetime="2019-10-28T06:05:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-28</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/28/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-Data-mining-based-framework-to-assess-solution-quality-for-the-rectangular-2D-strip-packing-problem/">论文阅读:Data mining based framework to assess solution quality for the rectangular 2D strip-packing problem</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>Abstract: In this paper, we explore the use of reference values (predictors) for the optimal objective function value of hard combinatorial optimization problems, instead of bounds, obtained by data mining techniques, and that may be used to assess the quality of heuristic solutions for the problem. With this purpose, we resort to the rectangular two-dimensional strip-packing problem (2D-SPP), which can be found in many industrial contexts. Mostly this problem is solved by heuristic methods, which provide good solutions. However, heuristic approaches do not guarantee optimality, and lower bounds are generally used to give information on the solution quality, in particular, the area lower bound. But this bound has a severe accuracy problem. Therefore, we propose a data mining-based framework capable of assessing the quality of heuristic solutions for the 2D-SPP. A regression model was fitted by comparing the strip height solutions obtained with the bottom-left-fill heuristic and 19 predictors provided by problem characteristics. Random forest was selected as the data mining technique with the best level of generalisation for the problem, and 30,000 problem instances were generated to represent different 2D-SPP variations found in real-world applications. Height predictions for new problem instances can be found in the regression model fitted. In the computational experimentation, we demonstrate that the data mining-based framework proposed is consistent, opening the doors for its application to finding predictions for other combinatorial optimisation problems, in particular, other cutting and packing problems. However, how to use a reference value instead of a bound, has still a large room for discussion and innovative ideas. Some directions for the use of reference values as a stopping criterion in search algorithms are also provided.<br><a id="more"></a> &gt;&gt;  </p>
+<p>摘要: 在这篇文章里, 我们探讨了使用参考值(预测变量)来代替使用数据挖掘直接获得边界的方法去求解难组合优化问题的最佳目标函数, 并用来评估启发式求解的质量. 为此, 我们使用2D-SPP来研究这种方法, 这个问题在工业界很常见. 一般情况下, 2D-SPP通过启发式方法求解, 求解的效果也较为良好. 但是, 启发式方法不能保证最优解, 通常使用下限来提供求解质量的相关信息, 尤其是区域下限. 但是下界存在严重的精度问题. 因此, 我们提出了一个基于数据挖掘的框架, 该框架能够评估2D-SPP启发式求解的质量. 通过将得到的条带高度解与左下填充法和问题特征提供的19个预测因子进行比较, 拟合出回归模型. 随机森林作为较为泛用的数据挖掘模型被我们选用, 并生成了30,000个问题实例来表示在实际应用中发现的不同2D-SPP变体. 拟合的回归模型中可以找到关于新问题实例的高度预测. 实验表明, …(后面几句不看了)</p>
+</blockquote>
+<h2 id="亮点"><a href="#亮点" class="headerlink" title="亮点"></a>亮点</h2><ul>
+<li>这个数据挖掘框架可以评估启发式解的质量.</li>
+<li>回归模型拟合了左下填充解和19个预测因子.</li>
+</ul>
+<h2 id="基于数据挖掘的框架-Data-mining-based-framework"><a href="#基于数据挖掘的框架-Data-mining-based-framework" class="headerlink" title="基于数据挖掘的框架(Data mining-based framework)"></a>基于数据挖掘的框架(Data mining-based framework)</h2><p>整个过程是这样的:<br><img src="https://img-blog.csdnimg.cn/2019102812000322.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDk3ODQ1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>先从总体来看, 蓝色训练集, 橙色验证集, 绿色问题实例(等于测试集, 不过这里只能算测试实例), 通过对训练集拟合回归模型, 输出条带高度, 测试实例初始化一个解, 之后进行局部搜索并且用模型输出的条带高度作为其搜索的终止条件. 文章里说浅灰色块是knowlegde discovery(知识发现?)步骤, 深灰色是数据挖掘步骤. </p>
+<p>文章中用了一大堆来介绍每个部分, 我就不说这么细了, 只讲几个主要的点.<br>数据生成的内容这里也不讨论.</p>
+<h4 id="Technical-analysis"><a href="#Technical-analysis" class="headerlink" title="Technical analysis"></a>Technical analysis</h4><p>拿到一个训练集$X$(自己生成), 首先利用以往的2D-SPP技术进行求解, 得到解和下界(我对2D-SPP不是非常熟悉, 根据文章表述是这样的), 这里不讨论用的什么2D-SPP方法.</p>
+<h4 id="C-D-reduction"><a href="#C-D-reduction" class="headerlink" title="C/D reduction"></a>C/D reduction</h4><p>总之, 根据这个结果, 得到反应变量(Response variable, R variable)的就是$Y$, 那么拥有$X$和$Y$, 自然也就能做回归了. 但是$X$肯定是不能直接输入的, 因此需要经过一个预处理, 在文章里, 经过处理后的$X$, 被称为预测子(Predictors), 当然, 这个预测子是经过降维的, 在文章给出的问题中得到19个预测子, 可以利用PCA之类的直接降维. </p>
+<h4 id="Technique-selection"><a href="#Technique-selection" class="headerlink" title="Technique selection"></a>Technique selection</h4><p>主要是对比各种数据挖掘模型, 选一个最合适的, 文章里最终使用的是随机森林. 方法是计算决定系数(或者判定系数, 拟合优度)$R^2$. 这里拓展的将一下$R^2$:<br>$R^2$反应了$y$的波动有多少百分比能被$x$的波动所描述, 即表征依变数$Y$的变异中有多少百分比,可由控制的自变数$X$来解释. </p>
+<p>表达式: $R^2 = \frac {SSR}{SST} = 1 - \frac {SSE}{SST} = 1 - \frac {\sum_i (y_i - f_i)^2}{\sum (y_i - \hat y)^2}$<br>$y$是实际值, $\hat y$是平均值, $f$是预测值.</p>
+<p>SST=SSR+SSE, SST(total sum of squares)为总平方和, 证明过程可以看看<a href="https://en.wikipedia.org/wiki/Explained_sum_of_squares#Partitioning_in_the_general_ordinary_least_squares_model" target="_blank" rel="noopener">这里</a>, SSR(regression sum of squares)为回归平方和, SSE(error sum of squares) 为残差平方和.</p>
+<p>意义: $R^2$越大, 自变量对因变量的解释程度越高, 自变量引起的变动占总变动的百分比高. 观察点在回归直线附近越密集. </p>
+<p>需要注意的是, $R^2$一般用在线性模型中, 并且不能反映模型预测能力的高低.</p>
+<h3 id="Regression-analysis"><a href="#Regression-analysis" class="headerlink" title="Regression analysis"></a>Regression analysis</h3><p>这部分内容基本都在讲随机森林是如何工作在我们的问题中的, 事实上就是在讲随机森林这个算法.</p>
+<h3 id="Additional-validation"><a href="#Additional-validation" class="headerlink" title="Additional validation"></a>Additional validation</h3><p>利用RMSE做验证指标, 没什么好说的.</p>
+<h3 id="inference"><a href="#inference" class="headerlink" title="inference"></a>inference</h3><p>由上述得到一个回归模型, OK, 接下来自然是如何推理.<br>一个新的问题实例到来, 首先仍然是预处理降维得到预测子, 由预测子输入到利用验证指标里得到的最佳模型推理出$g\hat a p_{ref}(L_0)$, 这个输出的变量定义为:</p>
+<blockquote>
+<p>In our research, the gap $g\hat a p_{ref}(L_0)$ is the normalised value to be used as a known response variable in the regression analysis. </p>
+</blockquote>
+<p>并且$\hat H^{ref} = L_0(1+gap^{ref}(L_0))$.<br>将它作为局部搜索的终止条件.<br>文章表明预测值和实际计算出来的值具有相当小的误差.</p>
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://gakkiri.github.io/2019/10/28/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-Data-mining-based-framework-to-assess-solution-quality-for-the-rectangular-2D-strip-packing-problem/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/27/%E7%B1%BB%E5%88%AB%E4%B8%8D%E5%B9%B3%E8%A1%A1%E4%BB%A5%E5%8F%8AImbalance-XGBoost/" class="archive-article-date">
-  	<time datetime="2019-10-27T03:56:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-27</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/10/27/%E7%B1%BB%E5%88%AB%E4%B8%8D%E5%B9%B3%E8%A1%A1%E4%BB%A5%E5%8F%8AImbalance-XGBoost/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">类别不平衡以及Imbalance-XGBoost</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/27/%E7%B1%BB%E5%88%AB%E4%B8%8D%E5%B9%B3%E8%A1%A1%E4%BB%A5%E5%8F%8AImbalance-XGBoost/">类别不平衡以及Imbalance-XGBoost</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/20/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%89%8B%E6%92%95%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF/" class="archive-article-date">
-  	<time datetime="2019-10-20T05:06:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/20/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%89%8B%E6%92%95%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF/">机器学习 - 手撕朴素贝叶斯</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/19/%E8%AE%BA%E6%96%87-%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-Gated-SCNN-Gated-Shape-CNNs-for-Semantic-Segmentation/" class="archive-article-date">
-  	<time datetime="2019-10-19T15:30:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/19/%E8%AE%BA%E6%96%87-%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-Gated-SCNN-Gated-Shape-CNNs-for-Semantic-Segmentation/">论文+源码阅读: Gated-SCNN: Gated Shape CNNs for Semantic Segmentation</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/18/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%A6%BB%E6%95%A3%E5%80%BC%E7%BC%96%E7%A0%81-%E7%9B%AE%E6%A0%87%E7%BC%96%E7%A0%81-Target-Encoding/" class="archive-article-date">
-  	<time datetime="2019-10-18T08:28:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/18/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%A6%BB%E6%95%A3%E5%80%BC%E7%BC%96%E7%A0%81-%E7%9B%AE%E6%A0%87%E7%BC%96%E7%A0%81-Target-Encoding/">机器学习离散值编码 - 目标编码(Target Encoding)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/17/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-AdaptIS-Adaptive-Instance-Selection-Network-%E8%87%AA%E9%80%82%E5%BA%94%E5%AE%9E%E4%BE%8B%E9%80%89%E6%8B%A9%E7%BD%91%E7%BB%9C/" class="archive-article-date">
-  	<time datetime="2019-10-17T05:56:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-17</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/17/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-AdaptIS-Adaptive-Instance-Selection-Network-%E8%87%AA%E9%80%82%E5%BA%94%E5%AE%9E%E4%BE%8B%E9%80%89%E6%8B%A9%E7%BD%91%E7%BB%9C/">论文阅读: AdaptIS: Adaptive Instance Selection Network 自适应实例选择网络</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/16/%E5%9B%9B%E5%85%83%E6%95%B0-%E4%BA%8C/" class="archive-article-date">
-  	<time datetime="2019-10-16T11:29:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/16/%E5%9B%9B%E5%85%83%E6%95%B0-%E4%BA%8C/">四元数(二)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/15/%E5%9B%9B%E5%85%83%E6%95%B0-%E4%B8%80/" class="archive-article-date">
-  	<time datetime="2019-10-15T02:16:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/15/%E5%9B%9B%E5%85%83%E6%95%B0-%E4%B8%80/">四元数(一)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/10/%E4%B8%80%E4%BA%9B%E5%AE%9E%E7%94%A8%E7%9A%84pytorch%E8%84%9A%E6%9C%AC/" class="archive-article-date">
-  	<time datetime="2019-10-10T15:59:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/10/%E4%B8%80%E4%BA%9B%E5%AE%9E%E7%94%A8%E7%9A%84pytorch%E8%84%9A%E6%9C%AC/">一些实用的pytorch脚本</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -424,8 +320,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
