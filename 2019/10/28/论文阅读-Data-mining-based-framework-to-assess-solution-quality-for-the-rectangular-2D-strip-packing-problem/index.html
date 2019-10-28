@@ -15,10 +15,10 @@
 <meta property="og:site_name" content="gakkiri&#39;s blog">
 <meta property="og:description" content="Abstract: In this paper, we explore the use of reference values (predictors) for the optimal objective function value of hard combinatorial optimization problems, instead of bounds, obtained by data">
 <meta property="og:locale" content="zn">
-<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;2019102812000322.png?x-oss-process=image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDk3ODQ1,size_16,color_FFFFFF,t_70">
-<meta property="og:updated_time" content="2019-10-28T06:06:32.436Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;gakkiri&#x2F;gakkiri.github.io&#x2F;master&#x2F;img&#x2F;cut_model.png">
+<meta property="og:updated_time" content="2019-10-28T06:09:28.915Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;2019102812000322.png?x-oss-process=image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDk3ODQ1,size_16,color_FFFFFF,t_70">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;gakkiri&#x2F;gakkiri.github.io&#x2F;master&#x2F;img&#x2F;cut_model.png">
   
     <link rel="alternative" href="/atom.xml" title="gakkiri&#39;s blog" type="application/atom+xml">
   
@@ -174,7 +174,7 @@
 <li>这个数据挖掘框架可以评估启发式解的质量.</li>
 <li>回归模型拟合了左下填充解和19个预测因子.</li>
 </ul>
-<h2 id="基于数据挖掘的框架-Data-mining-based-framework"><a href="#基于数据挖掘的框架-Data-mining-based-framework" class="headerlink" title="基于数据挖掘的框架(Data mining-based framework)"></a>基于数据挖掘的框架(Data mining-based framework)</h2><p>整个过程是这样的:<br><img src="https://img-blog.csdnimg.cn/2019102812000322.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDk3ODQ1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>先从总体来看, 蓝色训练集, 橙色验证集, 绿色问题实例(等于测试集, 不过这里只能算测试实例), 通过对训练集拟合回归模型, 输出条带高度, 测试实例初始化一个解, 之后进行局部搜索并且用模型输出的条带高度作为其搜索的终止条件. 文章里说浅灰色块是knowlegde discovery(知识发现?)步骤, 深灰色是数据挖掘步骤. </p>
+<h2 id="基于数据挖掘的框架-Data-mining-based-framework"><a href="#基于数据挖掘的框架-Data-mining-based-framework" class="headerlink" title="基于数据挖掘的框架(Data mining-based framework)"></a>基于数据挖掘的框架(Data mining-based framework)</h2><p>整个过程是这样的:<br><img src="https://raw.githubusercontent.com/gakkiri/gakkiri.github.io/master/img/cut_model.png" alt="在这里插入图片描述"><br>先从总体来看, 蓝色训练集, 橙色验证集, 绿色问题实例(等于测试集, 不过这里只能算测试实例), 通过对训练集拟合回归模型, 输出条带高度, 测试实例初始化一个解, 之后进行局部搜索并且用模型输出的条带高度作为其搜索的终止条件. 文章里说浅灰色块是knowlegde discovery(知识发现?)步骤, 深灰色是数据挖掘步骤. </p>
 <p>文章中用了一大堆来介绍每个部分, 我就不说这么细了, 只讲几个主要的点.<br>数据生成的内容这里也不讨论.</p>
 <h4 id="Technical-analysis"><a href="#Technical-analysis" class="headerlink" title="Technical analysis"></a>Technical analysis</h4><p>拿到一个训练集$X$(自己生成), 首先利用以往的2D-SPP技术进行求解, 得到解和下界(我对2D-SPP不是非常熟悉, 根据文章表述是这样的), 这里不讨论用的什么2D-SPP方法.</p>
 <h4 id="C-D-reduction"><a href="#C-D-reduction" class="headerlink" title="C/D reduction"></a>C/D reduction</h4><p>总之, 根据这个结果, 得到反应变量(Response variable, R variable)的就是$Y$, 那么拥有$X$和$Y$, 自然也就能做回归了. 但是$X$肯定是不能直接输入的, 因此需要经过一个预处理, 在文章里, 经过处理后的$X$, 被称为预测子(Predictors), 当然, 这个预测子是经过降维的, 在文章给出的问题中得到19个预测子, 可以利用PCA之类的直接降维. </p>
@@ -561,5 +561,21 @@ MathJax.Hub.Queue(function() {
 
 </div>
   </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!-- script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>
