@@ -6,16 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://gakkiri.github.io">
-  <title>Archives | gakkiri&#39;s blog</title>
+  <title>一篇实验结果很夸张(coco mAP 50+hexo s -p 5000)的paper, EfficientDet, 来自谷歌 | gakkiri&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="CV, NLP, SLAM(a little) and KAGGLEER!!! my kaggle page: www.kaggle.com&#x2F;sdeagggg">
-<meta property="og:type" content="website">
-<meta property="og:title" content="gakkiri&#39;s blog">
-<meta property="og:url" content="http:&#x2F;&#x2F;gakkiri.github.io&#x2F;archives&#x2F;index.html">
+  <meta name="description" content="谷歌目前挂在arXiv上, 估计打算投CVPR2020? 基于EfficientNet做的目标检测, 几个主要的点: BiFPN(双向FPN), Cross-Scale Connections(特征加权再融合融合).   paper: https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;1911.09070code: 未开源, 不过看起来还算容易复现.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一篇实验结果很夸张(coco mAP 50+hexo s -p 5000)的paper, EfficientDet, 来自谷歌">
+<meta property="og:url" content="http:&#x2F;&#x2F;gakkiri.github.io&#x2F;2019&#x2F;11&#x2F;29&#x2F;%E4%B8%80%E7%AF%87%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C%E5%BE%88%E5%A4%B8%E5%BC%A0-coco-mAP-50-hexo-s-p-5000-%E7%9A%84paper-EfficientDet-%E6%9D%A5%E8%87%AA%E8%B0%B7%E6%AD%8C&#x2F;index.html">
 <meta property="og:site_name" content="gakkiri&#39;s blog">
-<meta property="og:description" content="CV, NLP, SLAM(a little) and KAGGLEER!!! my kaggle page: www.kaggle.com&#x2F;sdeagggg">
+<meta property="og:description" content="谷歌目前挂在arXiv上, 估计打算投CVPR2020? 基于EfficientNet做的目标检测, 几个主要的点: BiFPN(双向FPN), Cross-Scale Connections(特征加权再融合融合).   paper: https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;1911.09070code: 未开源, 不过看起来还算容易复现.">
 <meta property="og:locale" content="zn">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20191129163807150.png#pic_center">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;2019112916441563.png#pic_center">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20191129165135192.png#pic_center">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20191129165221594.png#pic_center">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20191129170206926.png#pic_center">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20191129170753557.png#pic_center0">
+<meta property="og:updated_time" content="2019-11-29T09:08:55.396Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20191129163807150.png#pic_center">
   
     <link rel="alternative" href="/atom.xml" title="gakkiri&#39;s blog" type="application/atom+xml">
   
@@ -143,295 +151,159 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-一篇实验结果很夸张-coco-mAP-50-hexo-s-p-5000-的paper-EfficientDet-来自谷歌" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      一篇实验结果很夸张(coco mAP 50+hexo s -p 5000)的paper, EfficientDet, 来自谷歌
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/11/29/%E4%B8%80%E7%AF%87%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C%E5%BE%88%E5%A4%B8%E5%BC%A0-coco-mAP-50-hexo-s-p-5000-%E7%9A%84paper-EfficientDet-%E6%9D%A5%E8%87%AA%E8%B0%B7%E6%AD%8C/" class="archive-article-date">
+
+        
+        <a href="/2019/11/29/%E4%B8%80%E7%AF%87%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C%E5%BE%88%E5%A4%B8%E5%BC%A0-coco-mAP-50-hexo-s-p-5000-%E7%9A%84paper-EfficientDet-%E6%9D%A5%E8%87%AA%E8%B0%B7%E6%AD%8C/" class="archive-article-date">
   	<time datetime="2019-11-29T09:08:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-29</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/11/29/%E4%B8%80%E7%AF%87%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C%E5%BE%88%E5%A4%B8%E5%BC%A0-coco-mAP-50-hexo-s-p-5000-%E7%9A%84paper-EfficientDet-%E6%9D%A5%E8%87%AA%E8%B0%B7%E6%AD%8C/">一篇实验结果很夸张(coco mAP 50+hexo s -p 5000)的paper, EfficientDet, 来自谷歌</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<blockquote>
+<p>谷歌目前挂在arXiv上, 估计打算投CVPR2020? 基于EfficientNet做的目标检测, 几个主要的点: BiFPN(双向FPN), Cross-Scale Connections(特征加权再融合融合).</p>
+</blockquote>
+</blockquote>
+<p>paper: <a href="https://arxiv.org/abs/1911.09070" target="_blank" rel="noopener">https://arxiv.org/abs/1911.09070</a><br>code: 未开源, 不过看起来还算容易复现.<br><a id="more"></a> &gt;&gt;</p>
+<h2 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h2><p><img src="https://img-blog.csdnimg.cn/20191129163807150.png#pic_center" alt="在这里插入图片描述"><br>效果非常惊人, 绝对的sota, 并且具有更低的FLOPS(仅仅十分之一).<br>这篇文章主要针对特征融合和参考EfficientNet的做法通过协调width、depth和resolution三个方面来优化网络的性能和速度(效率).</p>
+<h2 id="BiFPN"><a href="#BiFPN" class="headerlink" title="BiFPN"></a>BiFPN</h2><p>从结构和融合两个角度做了改进</p>
+<h4 id="1-FPN结构"><a href="#1-FPN结构" class="headerlink" title="1. FPN结构"></a>1. FPN结构</h4><p><img src="https://img-blog.csdnimg.cn/2019112916441563.png#pic_center" alt="在这里插入图片描述"><br>事实上PANet采用的结构在性能上是比较好的, 但是计算量比较大, 于是做出一部分简化:</p>
+<ul>
+<li>去掉只有单个输入的节点, 因为它不太重要(假设), 就简化成图e的样子.</li>
+<li>同level的feature map增加skip-connection, 就得到了图f.</li>
+<li>然后把这个结构当做一个block, 重复几次, 就得到了下图, 也是最终的结构.<br><img src="https://img-blog.csdnimg.cn/20191129165135192.png#pic_center" alt="在这里插入图片描述"><br>相对FPN能涨4个点:<br><img src="https://img-blog.csdnimg.cn/20191129165221594.png#pic_center" alt="在这里插入图片描述"><h4 id="2-feature-map的融合方式"><a href="#2-feature-map的融合方式" class="headerlink" title="2. feature map的融合方式"></a>2. feature map的融合方式</h4>这部分其实很简单, 但是之前一直没有人注意到, 在以往的对featmap(feature map, 之后我就这样简称了)的融合都是直接resize到相同尺寸然后相加, 这意味着两张featmap具有相同的权重. 从更复杂的建模角度来说这显然是不合理的, 于是作者采用加权求和(这不就是attention嘛…).<br>简单的说, 如果$feat1, feat2$是两张被融合的featmap, 那么以往的办法就是:</li>
+</ul>
+<ol>
+<li>$feat1-&gt;resize(feat2.size())$</li>
+<li>$feat2 = 1<em>feat1 + 1</em>feat2$</li>
+</ol>
+<p>那么文章中采用的办法就是:</p>
+<ol>
+<li>同上</li>
+<li>$feat2 = weight_{feat1}<em>feat1 + weight_{feat2}</em>feat2$  </li>
+</ol>
+<p>权重需要做出一些限制, 否则会给训练带来困难:<br><img src="https://img-blog.csdnimg.cn/20191129170206926.png#pic_center" alt="在这里插入图片描述"><br>其实就是去掉了指数的softmax.</p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>剩下的一点改进在于参考EfficientNet从网络的width, depth和resolution三个角度来考虑优化如何结构, 这部分其实没什么好说的, 可以直接在paper里看最终结果, 超参数非常非常多, 也没有给出太多解释, 估计也是谷歌用算力硬调出来的(特别是channel里的1.35!).</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>实际上除了featmap加权求和, 其他的或多或少都在PANET或者其他paper里见过, 而且也有很多经验法则的东西, 不过性能实在是高啊…<br><img src="https://img-blog.csdnimg.cn/20191129170753557.png#pic_center0" alt="在这里插入图片描述"></p>
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://gakkiri.github.io/2019/11/29/%E4%B8%80%E7%AF%87%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C%E5%BE%88%E5%A4%B8%E5%BC%A0-coco-mAP-50-hexo-s-p-5000-%E7%9A%84paper-EfficientDet-%E6%9D%A5%E8%87%AA%E8%B0%B7%E6%AD%8C/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/11/28/%E8%AE%B0%E5%BD%95leetcode%E5%88%B7%E7%9A%84%E9%A2%98/" class="archive-article-date">
-  	<time datetime="2019-11-28T06:29:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-28</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/11/28/%E8%AE%B0%E5%BD%95leetcode%E5%88%B7%E7%9A%84%E9%A2%98/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">记录leetcode刷的题</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/11/28/%E8%AE%B0%E5%BD%95leetcode%E5%88%B7%E7%9A%84%E9%A2%98/">记录leetcode刷的题</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/11/01/CV%E7%AE%97%E6%B3%95%E7%A7%8B%E6%8B%9B%E4%BB%A5%E5%8F%8A%E5%85%B6%E4%BB%96%E4%B8%80%E4%BA%9B%E5%85%B3%E4%BA%8EAI%E7%9A%84%E6%84%9F%E6%83%B3/" class="archive-article-date">
-  	<time datetime="2019-11-01T04:49:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/11/01/CV%E7%AE%97%E6%B3%95%E7%A7%8B%E6%8B%9B%E4%BB%A5%E5%8F%8A%E5%85%B6%E4%BB%96%E4%B8%80%E4%BA%9B%E5%85%B3%E4%BA%8EAI%E7%9A%84%E6%84%9F%E6%83%B3/">CV算法秋招以及其他一些关于AI的感想...</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/28/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-Data-mining-based-framework-to-assess-solution-quality-for-the-rectangular-2D-strip-packing-problem/" class="archive-article-date">
-  	<time datetime="2019-10-28T06:05:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/28/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-Data-mining-based-framework-to-assess-solution-quality-for-the-rectangular-2D-strip-packing-problem/">论文阅读:Data mining based framework to assess solution quality for the rectangular 2D strip-packing problem</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/27/%E7%B1%BB%E5%88%AB%E4%B8%8D%E5%B9%B3%E8%A1%A1%E4%BB%A5%E5%8F%8AImbalance-XGBoost/" class="archive-article-date">
-  	<time datetime="2019-10-27T03:56:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/27/%E7%B1%BB%E5%88%AB%E4%B8%8D%E5%B9%B3%E8%A1%A1%E4%BB%A5%E5%8F%8AImbalance-XGBoost/">类别不平衡以及Imbalance-XGBoost</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/20/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%89%8B%E6%92%95%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF/" class="archive-article-date">
-  	<time datetime="2019-10-20T05:06:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/20/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%89%8B%E6%92%95%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF/">机器学习 - 手撕朴素贝叶斯</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/19/%E8%AE%BA%E6%96%87-%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-Gated-SCNN-Gated-Shape-CNNs-for-Semantic-Segmentation/" class="archive-article-date">
-  	<time datetime="2019-10-19T15:30:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/19/%E8%AE%BA%E6%96%87-%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-Gated-SCNN-Gated-Shape-CNNs-for-Semantic-Segmentation/">论文+源码阅读: Gated-SCNN: Gated Shape CNNs for Semantic Segmentation</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/18/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%A6%BB%E6%95%A3%E5%80%BC%E7%BC%96%E7%A0%81-%E7%9B%AE%E6%A0%87%E7%BC%96%E7%A0%81-Target-Encoding/" class="archive-article-date">
-  	<time datetime="2019-10-18T08:28:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/18/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%A6%BB%E6%95%A3%E5%80%BC%E7%BC%96%E7%A0%81-%E7%9B%AE%E6%A0%87%E7%BC%96%E7%A0%81-Target-Encoding/">机器学习离散值编码 - 目标编码(Target Encoding)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/17/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-AdaptIS-Adaptive-Instance-Selection-Network-%E8%87%AA%E9%80%82%E5%BA%94%E5%AE%9E%E4%BE%8B%E9%80%89%E6%8B%A9%E7%BD%91%E7%BB%9C/" class="archive-article-date">
-  	<time datetime="2019-10-17T05:56:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-17</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/17/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-AdaptIS-Adaptive-Instance-Selection-Network-%E8%87%AA%E9%80%82%E5%BA%94%E5%AE%9E%E4%BE%8B%E9%80%89%E6%8B%A9%E7%BD%91%E7%BB%9C/">论文阅读: AdaptIS: Adaptive Instance Selection Network 自适应实例选择网络</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/16/%E5%9B%9B%E5%85%83%E6%95%B0-%E4%BA%8C/" class="archive-article-date">
-  	<time datetime="2019-10-16T11:29:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/16/%E5%9B%9B%E5%85%83%E6%95%B0-%E4%BA%8C/">四元数(二)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">Next &amp;raquo;</a>
-    </nav>
   
 
 
@@ -455,8 +327,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
