@@ -145,6 +145,77 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-四元数-二" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/16/%E5%9B%9B%E5%85%83%E6%95%B0-%E4%BA%8C/">四元数(二)</a>
+    </h1>
+  
+
+        
+        <a href="/2019/10/16/%E5%9B%9B%E5%85%83%E6%95%B0-%E4%BA%8C/" class="archive-article-date">
+  	<time datetime="2019-10-16T11:29:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="四元数（Quaternion）-二"><a href="#四元数（Quaternion）-二" class="headerlink" title="四元数（Quaternion）(二)"></a>四元数（Quaternion）(二)</h1><p><a href="https://gakkiri.github.io/2019/10/18/%E5%9B%9B%E5%85%83%E6%95%B0/#more">四元数(一)</a></p>
+<h2 id="3-四元数"><a href="#3-四元数" class="headerlink" title="3. 四元数"></a>3. 四元数</h2><h3 id="3-1-性质"><a href="#3-1-性质" class="headerlink" title="3.1 性质"></a>3.1 性质</h3><h4 id="3-1-1-模长-范数"><a href="#3-1-1-模长-范数" class="headerlink" title="3.1.1 模长(范数)"></a>3.1.1 模长(范数)</h4><p>&ensp;&ensp;&ensp;&ensp;仿照复数的定义, 可以暂时将一个四元数$q=a+bi+cj+dk$的模长定义为:  </p>
+<script type="math/tex; mode=display">
+\Vert q \Vert = \sqrt{a^2+b^2+c^2+d^2}</script><p>&ensp;&ensp;&ensp;&ensp;若用标量向量有序对的形式进行表示的话, $q = [s, \mathbf v]$的模长为:  </p>
+<script type="math/tex; mode=display">
+\Vert q \Vert = \sqrt{s^2 + \Vert \mathbf v \Vert ^2}\\
+= \sqrt{s^2 + \mathbf  v · \mathbf v}</script><p>&ensp;&ensp;&ensp;&ensp;四元数很难用几何的方法进行理解, 因为它代表四维长度. 但是, 和高维向量的模长一样, 这只是类比复数模长进行衍生定义的结果.<br>
+        
+          <a class="article-more-a" href="/2019/10/16/%E5%9B%9B%E5%85%83%E6%95%B0-%E4%BA%8C/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/10/16/%E5%9B%9B%E5%85%83%E6%95%B0-%E4%BA%8C/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-四元数-一" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -545,5 +616,21 @@ MathJax.Hub.Queue(function() {
 
 </div>
   </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!-- script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>
