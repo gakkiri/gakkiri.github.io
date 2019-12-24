@@ -6,16 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://gakkiri.github.io">
-  <title>Archives | gakkiri&#39;s blog</title>
+  <title>论文阅读: SOLO: Segmenting Objects by Locations | gakkiri&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="CV, NLP, SLAM(a little) and KAGGLEER!!! my kaggle page: www.kaggle.com&#x2F;sdeagggg">
-<meta property="og:type" content="website">
-<meta property="og:title" content="gakkiri&#39;s blog">
-<meta property="og:url" content="http:&#x2F;&#x2F;gakkiri.github.io&#x2F;archives&#x2F;page&#x2F;2&#x2F;index.html">
+  <meta name="description" content="paper: https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;1912.04488code: 还没放出来  这是一种one-shot instance segmentation模型, 思路是比较新颖的. 具体的说, 将实例用尺寸和位置来表示. 对于尺寸, 可以利用FPN分割不同尺寸的物体, 对于位置, 将图片划分为$s×s$个网格, 判断实例属于哪一个网格. 整体思路清晰明了, 并且模型也很容易理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文阅读: SOLO: Segmenting Objects by Locations">
+<meta property="og:url" content="http:&#x2F;&#x2F;gakkiri.github.io&#x2F;2019&#x2F;12&#x2F;24&#x2F;%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-SOLO-Segmenting-Objects-by-Locations&#x2F;index.html">
 <meta property="og:site_name" content="gakkiri&#39;s blog">
-<meta property="og:description" content="CV, NLP, SLAM(a little) and KAGGLEER!!! my kaggle page: www.kaggle.com&#x2F;sdeagggg">
+<meta property="og:description" content="paper: https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;1912.04488code: 还没放出来  这是一种one-shot instance segmentation模型, 思路是比较新颖的. 具体的说, 将实例用尺寸和位置来表示. 对于尺寸, 可以利用FPN分割不同尺寸的物体, 对于位置, 将图片划分为$s×s$个网格, 判断实例属于哪一个网格. 整体思路清晰明了, 并且模型也很容易理">
 <meta property="og:locale" content="zn">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20191224123558728.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20191224130225482.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20191224130404158.png">
+<meta property="og:updated_time" content="2019-12-24T05:09:34.906Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20191224123558728.png">
   
     <link rel="alternative" href="/atom.xml" title="gakkiri&#39;s blog" type="application/atom+xml">
   
@@ -143,133 +148,145 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-论文阅读-SOLO-Segmenting-Objects-by-Locations" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      论文阅读: SOLO: Segmenting Objects by Locations
+    </h1>
+  
+
+        
+        <a href="/2019/12/24/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-SOLO-Segmenting-Objects-by-Locations/" class="archive-article-date">
+  	<time datetime="2019-12-24T05:09:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-24</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<blockquote>
+<p>paper: <a href="https://arxiv.org/abs/1912.04488" target="_blank" rel="noopener">https://arxiv.org/abs/1912.04488</a><br>code: 还没放出来</p>
+</blockquote>
+<p>这是一种one-shot instance segmentation模型, 思路是比较新颖的. 具体的说, 将实例用尺寸和位置来表示. 对于尺寸, 可以利用FPN分割不同尺寸的物体, 对于位置, 将图片划分为$s×s$个网格, 判断实例属于哪一个网格. 整体思路清晰明了, 并且模型也很容易理解.</p>
+<p><a id="more"></a> &gt;&gt; </p>
+</blockquote>
+<h1 id="整体来说"><a href="#整体来说" class="headerlink" title="整体来说"></a>整体来说</h1><p><img src="https://img-blog.csdnimg.cn/20191224123558728.png" alt="在这里插入图片描述"><br>十分干净的模型, SOLO的中心思想在于把实例分割问题转变为实例分类问题, 通过将图片分为$S×S$个网格, 这是为了position sensitive.<br>通过category branch解决语义分类问题, 通过mask branch解决实例的位置问题.<br>打个比方, 如果检测到2个实例(不一定真的是2个), 但是这2个实例具有相同的位置、分类以及尺寸, 那么这2个实例就属于同一个实例.</p>
+<p>对于尺寸, 利用FPN中的不同层来分割不同尺寸的物体.<br>对于位置, 利用事先划分好的$S×S$个网格, 一旦中心落入其中一个网络, 那么他的位置就是这个网格.<br>对于分类, 其实不是很重要, 一般而言, 两个物体尺寸和位置完全相同(或者几乎完全相同), 那么几乎可以肯定是同一个实例.</p>
+<p>到了这里, 核心思想已经定下来了, 剩下的内容就是基于这个思路进行的各种技术上的细节优化.<br>比如说: 最终输出$H×W×S^2$的tensor, 这是相当大的, 于是作者提出Decoupled SOLO, 使得最终只需要输出$H×W×(S+S)$, 并且能维持原本的性能, 使得显存开销大大降低. 简单地描述, 作者直接预测x方向和y方向的mask.<br>其次, 考虑到position sensitive, 文章中使用coorconv(也可以 semi-convolutional, 只是coorconv比较好操作), 在分割上用的是Dice loss.</p>
+<p><img src="https://img-blog.csdnimg.cn/20191224130225482.png" alt="在这里插入图片描述">显然, 最后需要NMS, 作者的做法是直接用Mask IOU来做.</p>
+<h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p><img src="https://img-blog.csdnimg.cn/20191224130404158.png" alt="在这里插入图片描述"><br>精度很好, 框架很干净. 因为源码还没有放出来, 更多的细节还不清楚.<br>我认为实例分割由两阶段走向单阶段几乎是必然的, 就像目标检测一样. 这篇文章有点类似于YOLO, 同样通过划分网格的方式, 并且在单阶段上实现的很好的精度, 不知道以后会不会出现如同SSD一样的实例分割框架, 又快又准~</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/17/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-AdaptIS-Adaptive-Instance-Selection-Network-%E8%87%AA%E9%80%82%E5%BA%94%E5%AE%9E%E4%BE%8B%E9%80%89%E6%8B%A9%E7%BD%91%E7%BB%9C/" class="archive-article-date">
-  	<time datetime="2019-10-17T05:56:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-17</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/17/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-AdaptIS-Adaptive-Instance-Selection-Network-%E8%87%AA%E9%80%82%E5%BA%94%E5%AE%9E%E4%BE%8B%E9%80%89%E6%8B%A9%E7%BD%91%E7%BB%9C/">论文阅读: AdaptIS: Adaptive Instance Selection Network 自适应实例选择网络</a>
-    </h1>
-  
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://gakkiri.github.io/2019/12/24/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-SOLO-Segmenting-Objects-by-Locations/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/16/%E5%9B%9B%E5%85%83%E6%95%B0-%E4%BA%8C/" class="archive-article-date">
-  	<time datetime="2019-10-16T11:29:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-16</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/12/13/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-Filter-Response-Normalization/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">论文阅读: Filter Response Normalization</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/16/%E5%9B%9B%E5%85%83%E6%95%B0-%E4%BA%8C/">四元数(二)</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/15/%E5%9B%9B%E5%85%83%E6%95%B0-%E4%B8%80/" class="archive-article-date">
-  	<time datetime="2019-10-15T02:16:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/15/%E5%9B%9B%E5%85%83%E6%95%B0-%E4%B8%80/">四元数(一)</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/10/%E4%B8%80%E4%BA%9B%E5%AE%9E%E7%94%A8%E7%9A%84pytorch%E8%84%9A%E6%9C%AC/" class="archive-article-date">
-  	<time datetime="2019-10-10T15:59:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/10/%E4%B8%80%E4%BA%9B%E5%AE%9E%E7%94%A8%E7%9A%84pytorch%E8%84%9A%E6%9C%AC/">一些实用的pytorch脚本</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/">&amp;laquo; Prev</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span>
-    </nav>
   
 
 
@@ -293,8 +310,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
