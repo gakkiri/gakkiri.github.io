@@ -8,15 +8,29 @@
   <link rel="dns-prefetch" href="http://gakkiri.github.io">
   <title>[转]path finding q learning tutorial: 相当简单易懂的Q-learning | gakkiri&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="来自: http:&#x2F;&#x2F;mnemstudio.org&#x2F;path-finding-q-learning-tutorial.htm(http:&#x2F;&#x2F;mnemstudio.org&#x2F;path-finding-q-learning-tutorial.htm)大概是我看过最简单易懂的一篇…有空的时候会在这里做一下翻译.">
+  <meta name="description" content="来自: link大概是我看过最简单易懂的一篇…有空的时候会在这里做一下翻译.(==已经更新翻译==)">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[转]path finding q learning tutorial: 相当简单易懂的Q-learning">
 <meta property="og:url" content="http:&#x2F;&#x2F;gakkiri.github.io&#x2F;2020&#x2F;01&#x2F;04&#x2F;%E8%BD%AC-path-finding-q-learning-tutorial-%E7%9B%B8%E5%BD%93%E7%AE%80%E5%8D%95%E6%98%93%E6%87%82%E7%9A%84Q-learning&#x2F;index.html">
 <meta property="og:site_name" content="gakkiri&#39;s blog">
-<meta property="og:description" content="来自: http:&#x2F;&#x2F;mnemstudio.org&#x2F;path-finding-q-learning-tutorial.htm(http:&#x2F;&#x2F;mnemstudio.org&#x2F;path-finding-q-learning-tutorial.htm)大概是我看过最简单易懂的一篇…有空的时候会在这里做一下翻译.">
+<meta property="og:description" content="来自: link大概是我看过最简单易懂的一篇…有空的时候会在这里做一下翻译.(==已经更新翻译==)">
 <meta property="og:locale" content="zn">
-<meta property="og:updated_time" content="2020-01-04T15:52:38.165Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20200108135411262.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20200108135501758.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20200108135907699.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;2020010814045162.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20200108140703206.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20200108141045818.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20200108144657139.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20200108144740769.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20200108152116908.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20200108152130690.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20200108152249186.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20200108152336271.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20200108152403689.png">
+<meta property="og:updated_time" content="2020-01-08T07:25:22.528Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20200108135411262.png">
   
     <link rel="alternative" href="/atom.xml" title="gakkiri&#39;s blog" type="application/atom+xml">
   
@@ -164,7 +178,61 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>来自: <a href="http://mnemstudio.org/path-finding-q-learning-tutorial.htm(http://mnemstudio.org/path-finding-q-learning-tutorial.htm" target="_blank" rel="noopener">http://mnemstudio.org/path-finding-q-learning-tutorial.htm(http://mnemstudio.org/path-finding-q-learning-tutorial.htm</a>)<br>大概是我看过最简单易懂的一篇…有空的时候会在这里做一下翻译.</p>
+        <p>来自: <a href="http://mnemstudio.org/path-finding-q-learning-tutorial.htm" target="_blank" rel="noopener">link</a><br>大概是我看过最简单易懂的一篇…有空的时候会在这里做一下翻译.(==已经更新翻译==)</p>
+<p><a id="more"></a> &gt;&gt;</p>
+<h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><p>假设我们有5个相互连接的房间, 并且对每个房间编号, 整个房间的外部视作房间5.<br><img src="https://img-blog.csdnimg.cn/20200108135411262.png" alt="在这里插入图片描述"><br>以房间为节点, 房门为边, 则可以用图来描述房间之间的关系:<br><img src="https://img-blog.csdnimg.cn/20200108135501758.png" alt="在这里插入图片描述"></p>
+<h2 id="奖励机制"><a href="#奖励机制" class="headerlink" title="奖励机制"></a>奖励机制</h2><p>这里设置一个agent(在强化学习中, agent意味着与环境交互、做出决策的智能体), 初始可以放置在任意一个房间, agent最终的目标是走到房间5(外部).</p>
+<p>为此, 为每扇门设置一个reward(奖励), 一旦agent通过该门, 就能获得奖励:<br><img src="https://img-blog.csdnimg.cn/20200108135907699.png" alt="在这里插入图片描述"><br>其中一个特别的地方是房间5可以循环回到自身节点, 并且同样有100点奖励.<br>在Q-learning中, agent的目标是达成最高的奖励值, 如果agent到达目标, 就会一直停留在原地, 这称之为absorbing goal.</p>
+<p>对于agent, 这是i一个可以通过经验进行学习的robot, agent可以从一个房间(节点)通过门(边)通往另一个房间(节点), 但是它不知道门会连接到哪个房间, 更不知道哪扇门能进入房间5(外部).</p>
+<h2 id="学习过程"><a href="#学习过程" class="headerlink" title="学习过程"></a>学习过程</h2><p>举个栗子, 现在我们在房间2设置一个agent, 我们想让它学习如何走能走向房间5.<br><img src="https://img-blog.csdnimg.cn/2020010814045162.png" alt="在这里插入图片描述"><br>在Q-leanring中,有两个术语state(状态)和action(行为).<br>每个房间可以称之为state, 而通过门进行移动的行为称之为action, 在图中state代表节点, action代表边.</p>
+<p>现在代理处于<em>state2</em>(节点2, 房间2), 从<em>state2</em>可以通往<em>state3</em>, 但是无法直接通往<em>state1</em>.<br>在<em>state3</em>, 可以移动到<em>state1</em>或回到<em>state2</em>.<br><img src="https://img-blog.csdnimg.cn/20200108140703206.png" alt="在这里插入图片描述"><br>根据现在掌握的state, reward, 可以形成一张reward table(奖励表), 称之为矩阵R:<br><img src="https://img-blog.csdnimg.cn/20200108141045818.png" alt="在这里插入图片描述"><br>只有矩阵R是不够的, agent还需要一张表, 被称之为矩阵Q, 矩阵Q表示agent通过经验学习到的记忆(可以理解为矩阵Q就是模型通过学习得到的权重).<br>起初, 代理对环境一无所知, 因此矩阵Q初始化为0. 为了简单起见, 假设状态数已知为6. 如果状态数未知, 则Q仅初始化为单个元素0, 每当发现新的状态就在矩阵中添加跟多的行列.</p>
+<p>Q-learning的状态转移公式如下:</p>
+<script type="math/tex; mode=display">Q(state, action) = R(state, action) + Gamma * Max[Q(next-state, all actions)]</script><p>根据该公式, 可以对矩阵Q中的特定元素赋值.</p>
+<p>agent在没有老师的情况下通过经验进行学习(无监督), 从一个状态探索到另一个状态, 直到到达目标为止. 每次完整的学习称之为(episode, 其实也就相当于epoch), 每个episode包括从初始状态移动到目标状态的过程, 一旦到达目标状态就可以进入下一个episode.</p>
+<h3 id="算法过程"><a href="#算法过程" class="headerlink" title="算法过程"></a>算法过程</h3><blockquote>
+<ol>
+<li>设置gamme参数, 在矩阵R中设置reward.</li>
+<li>初始化矩阵Q.</li>
+<li>对于每一个episode:<blockquote>
+<p>选择随机的初始状态(随便放到一个房间里).<br>如果目标状态没有达成, 则</p>
+<blockquote>
+<ul>
+<li>从当前所有可能的action中选择一个.</li>
+<li>执行action, 并准备进入下一个state.</li>
+<li>根据action得到reward.</li>
+<li>计算$Q(state, action) = R(state, action) + Gamma * Max[Q(next-state, all actions)]$</li>
+<li>将下一个state设置为当前的state.</li>
+<li>进入下一个state.</li>
+</ul>
+</blockquote>
+</blockquote>
+</li>
+<li>结束.</li>
+</ol>
+</blockquote>
+<p>在算法中, 训练agent在每一个episode中探索环境(矩阵R), 并获得reward, 直到达到目标状态. 训练的目的是不断更新agent的矩阵Q: 每个episode都在对矩阵Q进行优化. 因此, 起初随意性的探索就会被通往目标状态的最快路径取代. </p>
+<p>参数gamme取0到1之间. 该参数主要体现在agent对于reward的贪心程度上, 具体的说, 如果gamma为0, 那么agent仅会考虑立即能被得到的reward, 而gamma为1时, agent会放长眼光, 考虑将来的延迟奖励.</p>
+<p>要使用矩阵Q, agent只需要查询矩阵Q中当前state具有最高Q值的action:</p>
+<blockquote>
+<ol>
+<li>设置当前state为初始state.</li>
+<li>从当前state查询具有最高Q值的action.</li>
+<li>设置当前state为执行action后的state.</li>
+<li>重复2,3直到当前state为目标state.</li>
+</ol>
+</blockquote>
+<h2 id="Q-learning模拟"><a href="#Q-learning模拟" class="headerlink" title="Q-learning模拟"></a>Q-learning模拟</h2><p>==注意原文里有些地方是错的, 所以这里我会按我自己的理解来算==<br>现在假设gamme=0.8, 初始state为房间1.<br>初始化矩阵Q:<br><img src="https://img-blog.csdnimg.cn/20200108144657139.png" alt="在这里插入图片描述"><br>同时有矩阵R:<br><img src="https://img-blog.csdnimg.cn/20200108144740769.png" alt="在这里插入图片描述"></p>
+<h4 id="episode-1"><a href="#episode-1" class="headerlink" title="episode 1"></a>episode 1</h4><p>现在agent处于房间1, 那么就检查矩阵R的第二行. agent面临两个action, 一个通往房间3, 一个通往房间5. 通过随机选择, 假设agent选择了房间5. </p>
+<script type="math/tex; mode=display">Q(state, action) = R(state, action) + Gamma * Max[Q(next state, all actions)]\\
+Q(1, 5) = R(1, 5) + 0.8 * Max[Q(5, 1), Q(5, 4), Q(5, 5)] = 100 + 0.8 * 0 = 100</script><p>由于矩阵Q被初始化为0, 因此Q(5,1), Q(5, 4), Q(5, 5)都是0, 那么Q(1, 5)就是100.<br>现在房间5变成了当前state, 并且到达目标state, 因此这一轮episode结束.</p>
+<p>于是agent对矩阵Q进行更新, 注意这里图是错的, 应该是Q(1, 5)=100:<br><img src="https://img-blog.csdnimg.cn/20200108152116908.png" alt="在这里插入图片描述"></p>
+<h4 id="episode-2"><a href="#episode-2" class="headerlink" title="episode 2"></a>episode 2</h4><p>现在, 从新的随机state开始, 假设房间3为初始state.<br>同样地, 查看矩阵R的第四行, 有3种可能的action: 进入房间1、2或者4. 通过随机选择, 进入房间1. 这里Q值算出来为0, 换句话说, Q(1, 3)=0.</p>
+<p>现在agent处于房间1, 查看矩阵R的第二行. 此时可以进入房间3或房间5, 选择去5, 计算Q值:</p>
+<script type="math/tex; mode=display">Q(state, action) = R(state, action) + Gamma * Max[Q(next state, all actions)]\\
+Q(1, 5) = R(1, 5) + 0.8 * Max[Q(5, 1), Q(5, 4), Q(5, 5)] = 100 + 0.8 * 0 = 100</script><p>由于到达目标state, 对矩阵Q进行更新, Q(1, 5)=100.<br><img src="https://img-blog.csdnimg.cn/20200108152130690.png" alt="在这里插入图片描述"></p>
+<h4 id="episode-n"><a href="#episode-n" class="headerlink" title="episode n"></a>episode n</h4><p>之后就是不断重复上面的过程, 更新Q表, 直到结束为止.</p>
+<h3 id="推理"><a href="#推理" class="headerlink" title="推理"></a>推理</h3><p>假设现在Q表被更新为(但是注意是有错误的, 当然不影响演示)<br><img src="https://img-blog.csdnimg.cn/20200108152249186.png" alt="在这里插入图片描述"><br>对数据标准化处理( matrix_Q / max(matrix_Q)), 可以将Q值看作概率:<br><img src="https://img-blog.csdnimg.cn/20200108152336271.png" alt="在这里插入图片描述"><br>描绘成图:<br><img src="https://img-blog.csdnimg.cn/20200108152403689.png" alt="在这里插入图片描述"></p>
+<p>到这里已经很清晰了, agent已经总结出一条从任意房间通往房间5(外部)的路径.</p>
 
       
 
