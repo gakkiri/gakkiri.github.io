@@ -16,7 +16,7 @@
 <meta property="og:description" content="损失函数可以说是模型的指路牌, 也是深度学习中比较具有可解释性的部分, 我认为一个合适的损失函数所带来的提升是相当大的, 这里因此写一篇博客来聊一聊 optimizing directly for the metric.">
 <meta property="og:locale" content="zn">
 <meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20200618175424782.png">
-<meta property="og:updated_time" content="2020-06-18T11:45:27.121Z">
+<meta property="og:updated_time" content="2020-06-18T11:51:07.308Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20200618175424782.png">
   
@@ -167,12 +167,10 @@
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p>损失函数可以说是模型的指路牌, 也是深度学习中比较具有可解释性的部分, 我认为一个合适的损失函数所带来的提升是相当大的, 这里因此写一篇博客来聊一聊 optimizing directly for the metric.<br><a id="more"></a> &gt;&gt; </p>
-<ul>
-<li>损失函数(loss function) 是机器学习的基本. 我们需要通过损失函数对训练样本的误差进行度量, 同时损失函数必须可微, 从而通过反向传播机制将梯度回传并且更新模型的权重.   </li>
-</ul>
+<p>损失函数可以说是模型的指路牌, 也是深度学习中比较具有可解释性的部分, 我认为一个合适的损失函数所带来的提升是相当大的, 这里因此写一篇博客来聊一聊 optimizing directly for the metric.<br><a id="more"></a> &gt;&gt;</p>
 </blockquote>
 <ul>
+<li>损失函数(loss function) 是机器学习的基本. 我们需要通过损失函数对训练样本的误差进行度量, 同时损失函数必须可微, 从而通过反向传播机制将梯度回传并且更新模型的权重.   </li>
 <li>评估函数(evaluation function)用来评估模型的性能. 这个函数必须在一定程度上反映出模型在现实世界中的表现(性能). </li>
 </ul>
 <p>模型的最终目的是优化这两个函数, 而最终的性能取决于评估函数. 所以为什么不直接优化评估函数呢? 实际上目前有很多方法已经在这么做了, 并且相当好用.</p>
