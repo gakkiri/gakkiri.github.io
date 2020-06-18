@@ -16,7 +16,7 @@
 <meta property="og:description" content="损失函数可以说是模型的指路牌, 也是深度学习中比较具有可解释性的部分, 我认为一个合适的损失函数所带来的提升是相当大的, 这里因此写一篇博客来聊一聊 optimizing directly for the metric.">
 <meta property="og:locale" content="zn">
 <meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20200618175424782.png">
-<meta property="og:updated_time" content="2020-06-18T11:51:07.308Z">
+<meta property="og:updated_time" content="2020-06-18T15:15:04.973Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20200618175424782.png">
   
@@ -193,19 +193,19 @@ L_{bce} = -\frac{1}{N}\sum^N_{i=1}y_i\log(p(y_i))+(1-y_i)\log(1-p(y_i))</script>
 <script type="math/tex; mode=display">
 DICE = \frac{2TP}{2TP+FP+FN}=\frac{2|X∩Y|}{|X|+|Y|}
 \\IOU = \frac{TP}{TP+FP+FN}=\frac{2|X∩Y|}{|X|+|Y|-|X∩Y|}</script><p>在数值上, $DICE &gt; IOU$.<br>显然, pixel-wise cross entropy也不能直接优化DICE, 那么与soft f1 score一样, 用概率替代离散值, 从而变得可微, 与前面所提到的思路差不多.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dice_loss</span><span class="params">(pred, target)</span>:</span></span><br><span class="line">    smooth = <span class="number">1.</span></span><br><span class="line"></span><br><span class="line">    iflat = pred.contiguous().view(<span class="number">-1</span>)</span><br><span class="line">    tflat = target.contiguous().view(<span class="number">-1</span>)</span><br><span class="line">    intersection = (iflat * tflat).sum()</span><br><span class="line"></span><br><span class="line">    A_sum = torch.sum(tflat * iflat)</span><br><span class="line">    B_sum = torch.sum(tflat * tflat)</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span> - ((<span class="number">2.</span> * intersection + smooth) / (A_sum + B_sum + smooth) )</span><br></pre></td></tr></table></figure><br>通常, dice loss表现比ce好, 但是也有一些问题. 使用dice loss训练的模型在metric上占优, 在视觉表现上确不如ce, 这实际上是数据科学面临的一个困境, 选择实用还是选择刷分?<br>(我认为某种程度上能反应对于分割而言, DICE不是最好的metric)</p>
-<h3 id="Lovase-loss"><a href="#Lovase-loss" class="headerlink" title="Lovase loss"></a>Lovase loss</h3><p>这是一个非常强大的损失, arxiv: <a href="https://arxiv.org/abs/1705.08790" target="_blank" rel="noopener">The Lovász-Softmax loss: A tractable surrogate for the optimization of the intersection-over-union measure in neural networks</a><br>数学上的证明非常严谨且复杂, 效果也相当好, 本质上也是优化metric(针对IOU).<br>在个人的实践中, 这个损失比较”难用”, 在训练的初期不是非常稳定, 因此通常会搭配CE来用.<br>关于这个损失建议直接看paper, 这里就不多说了(因为后半段证明我也没有完全看懂, 哈哈..)</p>
+<h3 id="Lovase-loss"><a href="#Lovase-loss" class="headerlink" title="Lovase loss"></a>Lovase loss</h3><p>这是一个用好了很能涨点的损失, arxiv: <a href="https://arxiv.org/abs/1705.08790" target="_blank" rel="noopener">The Lovász-Softmax loss: A tractable surrogate for the optimization of the intersection-over-union measure in neural networks</a><br>数学上的证明非常严谨且复杂, 效果也相当好, 本质上也是优化metric(针对IOU).<br>在个人的实践中, 这个损失比较”难用”, 在训练的初期不是非常稳定, 因此通常会搭配CE来用.<br>关于这个损失建议直接看paper, 这里就不多说了(因为后半段证明我也没有完全看懂, 哈哈..)</p>
 <h1 id="3-Optimizing-directly-for-the-IOU-in-object-detection"><a href="#3-Optimizing-directly-for-the-IOU-in-object-detection" class="headerlink" title="3. Optimizing directly for the IOU in object detection"></a>3. Optimizing directly for the IOU in object detection</h1><p>在目标检测领域中, 预测框与标签框(GT)的匹配程度用IOU来表示.<br>一开始, 大家都用mse(Mean Squared Error)来监督预测框, 从回归得到的预测框坐标与GT计算l1 loss.</p>
 <p>然而, mse的缺点很多(可以看看IOU loss的paper, <a href="https://arxiv.org/abs/1608.01471" target="_blank" rel="noopener">UnitBox: An Advanced Object Detection Network</a>):</p>
 <ul>
-<li>mse在数值上的不稳定导致损失的组合上需要调参.</li>
-<li>mse对于预测框的监督实际上是非常”狭义”的, BTW, 在数值上难以反映预测框的质量.</li>
+<li>mse在数值上的不稳定导致损失的组合上需要对加权平均调参.</li>
+<li>mse对于预测框的监督实际上是非常”狭义”的. BTW, 在数值上难以反映预测框的质量.</li>
 <li>往往需要对回归数值做各种预处理(exp或者归一化).</li>
 <li>优化四个独立的变量，没有利用四个变量的相关性.</li>
 </ul>
 <p>需要调参的损失往往比较”难用”.</p>
 <p>由此衍生出各种基于IOU的损失: IOU、GIOU、DIOU、CIOU…<br>由于判断预测与GT匹配程度直接用IOU衡量, 采用IOU loss也是一件非常直觉的方法. 并且IOU有许多良好的性质, 从比较主观的视角来说, 我认为IOU loss是全方位优于mse的.</p>
 <p>当然IOU loss也不是没有缺点, 因此陆陆续续出现了IOU loss family.<br>下面的代码来自<a href="https://github.com/miaoshuyu/object-detection-usages" target="_blank" rel="noopener">https://github.com/miaoshuyu/object-detection-usages</a>.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_iou</span><span class="params">(pred_bbox, gt_bbox)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    :param pred_bbox: [x1, y1, x2, y2]</span></span><br><span class="line"><span class="string">    :param gt_bbox:  [x1, y1, x2, y2]</span></span><br><span class="line"><span class="string">    :return: iou</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line"></span><br><span class="line">    ixmin = max(pred_bbox[<span class="number">0</span>], gt_bbox[<span class="number">0</span>])</span><br><span class="line">    iymin = max(pred_bbox[<span class="number">1</span>], gt_bbox[<span class="number">1</span>])</span><br><span class="line">    ixmax = min(pred_bbox[<span class="number">2</span>], gt_bbox[<span class="number">2</span>])</span><br><span class="line">    iymax = min(pred_bbox[<span class="number">3</span>], gt_bbox[<span class="number">3</span>])</span><br><span class="line">    iw = np.maximum(ixmax - ixmin + <span class="number">1.0</span>, <span class="number">0.</span>)</span><br><span class="line">    ih = np.maximum(iymax - iymin + <span class="number">1.0</span>, <span class="number">0.</span>)</span><br><span class="line"></span><br><span class="line">    inters = iw * ih</span><br><span class="line"></span><br><span class="line">    <span class="comment"># uni=s1+s2-inters</span></span><br><span class="line">    uni = (pred_bbox[<span class="number">2</span>] - pred_bbox[<span class="number">0</span>] + <span class="number">1.0</span>) * (pred_bbox[<span class="number">3</span>] - pred_bbox[<span class="number">1</span>] + <span class="number">1.0</span>) + \</span><br><span class="line">          (gt_bbox[<span class="number">2</span>] - gt_bbox[<span class="number">0</span>] + <span class="number">1.0</span>) * (gt_bbox[<span class="number">3</span>] - gt_bbox[<span class="number">1</span>] + <span class="number">1.0</span>) - inters</span><br><span class="line"></span><br><span class="line">    iou = inters / uni</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> iou</span><br></pre></td></tr></table></figure></p>
-<h1 id="Other"><a href="#Other" class="headerlink" title="Other"></a>Other</h1><p>是否能直接优化AUC? Sure, 这还能缓解数据部平衡所带来的问题.<br><a href="https://www.cs.bgu.ac.il/~rba/Papers/MaximizingAUC_MG.pdf" target="_blank" rel="noopener">Maximizing AUC with Deep Learning for Classification of Imbalanced Mammogram Datasets</a></p>
+<h1 id="Other"><a href="#Other" class="headerlink" title="Other"></a>Other</h1><p>是否能直接优化AUC? Sure, 这还能缓解一部分数据不平衡带来的问题.<br><a href="https://www.cs.bgu.ac.il/~rba/Papers/MaximizingAUC_MG.pdf" target="_blank" rel="noopener">Maximizing AUC with Deep Learning for Classification of Imbalanced Mammogram Datasets</a></p>
 <p>实际上还有一篇文章, 有提到Mamilton Jacobi Bellman方程来做可惜我找不到了, 以后想起出处或许会补回来.</p>
 
       
@@ -578,21 +578,5 @@ MathJax.Hub.Queue(function() {
 
 </div>
   </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<!-- script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>
